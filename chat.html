@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Asistente ECG - MedTechRider</title>
+  <title>Asistente ECG</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
   <script>
     // Configura explícitamente el endpoint del backend cuando se abre chat.html directo
     window.CHAT_API_URL = 'https://ekggo.onrender.com/api/chat';
@@ -12,22 +13,27 @@
   <style>
     body { background-color: #f4f7fa; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans; }
     .chat-container { max-width: 700px; margin: 10px auto; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); background: #fff; padding: 16px; }
-    .chat-header { background: #0d6efd; color: #fff; padding: 12px; border-radius: 12px 12px 0 0; text-align: center; }
+    .chat-header { background: #710C04; color: #fff; padding: 12px; border-radius: 12px; text-align: center; }
     .chat-box { height: 360px; overflow-y: auto; margin: 12px 0; padding: 10px; border: 1px solid #ddd; border-radius: 10px; background: #fdfdfd; }
     .user-msg { text-align: right; background: #d1e7dd; color: #0a3622; padding: 10px; margin: 8px; border-radius: 12px 12px 0 12px; display: inline-block; max-width: 80%; }
     .bot-msg { text-align: left; background: #e7f1ff; color: #052c65; padding: 10px; margin: 8px; border-radius: 12px 12px 12px 0; display: inline-block; max-width: 80%; }
     .chat-input { display: flex; gap: 10px; }
-    .chat-input input { flex: 1; padding: 10px; border-radius: 10px; border: 1px solid #ccc; }
-    .chat-input button { background: #0d6efd; color: #fff; border: none; padding: 10px 15px; border-radius: 10px; cursor: pointer; }
-    .chat-input button:hover { background: #084298; }
+    .chat-input input { flex: 1; padding: 10px; border-radius: 10px; border: 1px solid var(--ao-border); }
+    .chat-input button { border: none; padding: 10px 15px; border-radius: 10px; cursor: pointer; }
+    /* Efecto sutil para botón IA */
+    .btn-ai { position: relative; overflow: hidden; }
+    .btn-ai::after { content: ''; position: absolute; top: 0; left: -50%; width: 50%; height: 100%; pointer-events: none;
+      background: linear-gradient(120deg, rgba(255,255,255,0.35), rgba(113,12,4,0.15), rgba(255,255,255,0.35)); transform: translateX(-100%); }
+    .btn-ai:hover::after { animation: ai-shine 1.1s ease; }
+    @keyframes ai-shine { from { transform: translateX(-100%);} to { transform: translateX(300%);} }
     footer { text-align: center; color: #6c757d; margin-top: 12px; font-size: 0.9rem; }
   </style>
 </head>
 <body>
   <div class="chat-container">
     <div class="chat-header">
-      <h6 class="mb-0">💬 Asistente ECG - MedTechRider</h6>
-      <p class="mb-0" style="font-size: 0.85rem;">Tu asistente para dudas sobre ECG y anestesia</p>
+      <h6 class="mb-0">💬 Asistente ECG</h6>
+      <p class="mb-0" style="font-size: 0.85rem;">Tu asistente para dudas sobre ECG <span id="statusBadge" class="badge bg-secondary ms-2" style="font-size: 0.75rem;">Verificando…</span></p>
     </div>
 
     <div id="chat-box" class="chat-box">
@@ -36,15 +42,34 @@
 
     <div class="chat-input">
       <input type="text" id="mensaje" placeholder="Escribe tu pregunta aquí...">
-      <button id="btnEnviar" type="button">Enviar</button>
+      <button id="btnEnviar" type="button" class="btn btn-primary btn-ai">Enviar</button>
     </div>
   </div>
 
-  <footer>
-    <p class="mb-0">Desarrollado por Dr. Luis Ángel Rueda Cuervo · MedTechRider © 2025</p>
-  </footer>
+  <!-- footer removido por solicitud -->
 
   <script>
+    function getApiBaseUrl() {
+      const url = (window.CHAT_API_URL || '/api/chat');
+      return url.endsWith('/chat') ? url.slice(0, -5) : url.replace(/\/chat$/, '');
+    }
+    async function checkHealth() {
+      const badge = document.getElementById('statusBadge');
+      try {
+        const base = getApiBaseUrl();
+        const res = await fetch(base + '/health', { method: 'GET' });
+        if (res.ok) {
+          badge.textContent = 'Conectado';
+          badge.className = 'badge bg-success ms-2';
+        } else {
+          badge.textContent = 'Sin conexión (' + res.status + ')';
+          badge.className = 'badge bg-danger ms-2';
+        }
+      } catch (e) {
+        badge.textContent = 'Sin conexión';
+        badge.className = 'badge bg-danger ms-2';
+      }
+    }
     async function enviarMensaje() {
       const input = document.getElementById('mensaje');
       const chatBox = document.getElementById('chat-box');
@@ -72,11 +97,13 @@
         }
         chatBox.scrollTop = chatBox.scrollHeight;
       } catch (e) {
-        chatBox.innerHTML += `<div class='bot-msg'><b>Asistente:</b> Hubo un problema de conexión con el servicio. Verifique que el backend /api/chat esté accesible.</div>`;
+        const detail = (e && e.message) ? ' (' + e.message + ')' : '';
+        chatBox.innerHTML += `<div class='bot-msg'><b>Asistente:</b> Hubo un problema de conexión con el servicio${detail}. Verifique que el backend /api/chat esté accesible.</div>`;
       }
     }
     document.getElementById('btnEnviar').addEventListener('click', enviarMensaje);
     document.getElementById('mensaje').addEventListener('keypress', function(e){ if (e.key === 'Enter') enviarMensaje(); });
+    document.addEventListener('DOMContentLoaded', checkHealth);
   </script>
 </body>
 </html>
