@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EKGGo — Lectura Guiada</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg ao-topbar">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="index.html">EKGGo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarLectura"
+                    aria-controls="navbarLectura" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="navbarLectura" class="collapse navbar-collapse">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="conceptos-basicos.html">Conceptos Básicos</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="lectura-guiada.html">Lectura Guiada</a></li>
+                    <li class="nav-item"><a class="nav-link" href="comparacion-patrones.html">Comparación de Patrones</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-4">
+        <section class="ao-hero mb-4">
+            <h1 class="ao-hero-title display-6">Lectura Guiada de ECG</h1>
+            <p class="ao-hero-subtitle lead">Sigue el checklist en una interfaz uniforme.</p>
+        </section>
+
+        
+
+        <section class="ao-content">
+            <div class="row g-3">
+            <div class="col-md-8">
+                <div class="card ao-card mb-4">
+                    <div class="card-header">Checklist de lectura</div>
+                    <div class="card-body">
+                <form id="ecgForm" class="mb-0">
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="bienTomado">
+                        <label class="form-check-label" for="bienTomado">ECG bien tomado</label>
+                        <small class="form-text text-muted d-block">Verificar calibración (10 mm/mV) y velocidad (25 mm/s), ausencia de artefactos.</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="ritmo" class="form-label">Ritmo</label>
+                        <select class="form-select" id="ritmo">
+                            <option value="">Seleccione...</option>
+                            <option value="Sinusal">Sinusal</option>
+                            <option value="No sinusal">No sinusal</option>
+                        </select>
+                        <small class="form-text text-muted">Ritmo sinusal: onda P positiva en DII, relación P-QRS 1:1, frecuencia regular. (Consignar: seleccione Sinusal o No sinusal)</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="frecuencia" class="form-label">Frecuencia cardíaca (lpm)</label>
+                        <input type="number" class="form-control" id="frecuencia" min="20" max="300">
+                        <small class="form-text text-muted">Normal: 60–100 lpm. Contar cuadros pequeños entre dos QRS y dividir 1500 por ese número.</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="eje" class="form-label">Eje</label>
+                        <select class="form-select" id="eje">
+                            <option value="">Seleccione...</option>
+                            <option value="Normal">Normal</option>
+                            <option value="Desviación izquierda">Desviación izquierda</option>
+                            <option value="Desviación derecha">Desviación derecha</option>
+                            <option value="Eje extremo">Eje extremo</option>
+                        </select>
+                        <small class="form-text text-muted">Eje normal: entre -30° y +90°. Medición breve: deflexión neta (R−S) en DI y aVF; calcular atan2(aVF, DI) y normalizar a −180°…+180°. (Consignar: categoría de eje)</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="pr" class="form-label">Intervalo PR (ms)</label>
+                        <input type="number" class="form-control" id="pr" min="80" max="400">
+                        <small class="form-text text-muted">Normal: 120–200 ms. Medir desde el inicio de la onda P hasta el inicio del QRS. (Respuesta: dar en milisegundos)</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="ondaP" class="form-label">Onda P</label>
+                        <input type="text" class="form-control" id="ondaP">
+                        <small class="form-text text-muted">Normal: duración &lt;120 ms, amplitud &lt;2.5 mm en derivaciones frontales. (Respuesta: normal, Aumetada en duracion, Aumentada en voltaje)</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="qrs" class="form-label">Complejo QRS (ms)</label>
+                        <input type="number" class="form-control" id="qrs" min="60" max="200">
+                        <small class="form-text text-muted">Normal: &lt;120 ms. Medir desde el inicio de la onda Q hasta el final de la onda S. (Consignar: milisegundos)</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="st" class="form-label">Segmento ST</label>
+                        <input type="text" class="form-control" id="st">
+                        <small class="form-text text-muted">Debe ser isoeléctrico; elevación o depresión sugiere isquemia o lesión. (Consignar: texto breve — isoeléctrico/elevación/descenso)</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="ondaT" class="form-label">Onda T</label>
+                        <input type="text" class="form-control" id="ondaT">
+                        <small class="form-text text-muted">Debe ser positiva en la mayoría de derivaciones excepto aVR; inversión puede indicar isquemia. (Consignar: texto breve)</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="qt" class="form-label">Intervalo QT (ms)</label>
+                        <input type="number" class="form-control" id="qt" min="300" max="600">
+                        <small class="form-text text-muted">QTc &lt; 440 ms (H), &lt; 460 ms (M). QTc prolongado puede predisponer a arritmias ventriculares. (Consignar: milisegundos)</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="alteraciones" class="form-label">Alteraciones adicionales</label>
+                        <textarea class="form-control" id="alteraciones" rows="3"></textarea>
+                        <small class="form-text text-muted">Ej: bloqueos, arritmias, signos de necrosis, crecimiento auricular o ventricular. (Consignar: texto — hallazgos relevantes)</small>
+                    </div>
+
+                    <button type="button" class="btn btn-primary" id="generarInforme">Generar informe</button>
+                </form>
+                    </div>
+                </div>
+                <!-- Criterios morfológicos (opcional) -->
+                <div class="card ao-card mb-4">
+                    <div class="card-header">Criterios morfológicos (opcional)</div>
+                    <div class="card-body">
+                        <div class="row g-2">
+                            <div class="col-md-6">
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_rsr_v1"><label class="form-check-label" for="crit_rsr_v1">rSR' en V1 (BRD)</label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_s_ancha_i_v6"><label class="form-check-label" for="crit_s_ancha_i_v6">S ancha en I/V6 (BRD)</label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_r_empastada_v5_v6"><label class="form-check-label" for="crit_r_empastada_v5_v6">R empastada en V5–V6 (BRI)</label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_sin_q_i_v6"><label class="form-check-label" for="crit_sin_q_i_v6">Sin q en I/V6 (BRI)</label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_notch_75_i"><label class="form-check-label" for="crit_notch_75_i">Notch >75 ms en I (BRI)</label></div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_disociacion_av"><label class="form-check-label" for="crit_disociacion_av">Disociación AV (BAV completo)</label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_pr_progresivo"><label class="form-check-label" for="crit_pr_progresivo">PR progresivo (Mobitz I)</label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_pr_constante"><label class="form-check-label" for="crit_pr_constante">PR constante (Mobitz II)</label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_p_no_conducida"><label class="form-check-label" for="crit_p_no_conducida">P no conducida (Mobitz I/II)</label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_capturas_ventriculares"><label class="form-check-label" for="crit_capturas_ventriculares">Capturas ventriculares (TV)</label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_fusion"><label class="form-check-label" for="crit_fusion">Latidos de fusión (TV)</label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_concordancia_precordial"><label class="form-check-label" for="crit_concordancia_precordial">Concordancia precordial (TV)</label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_onda_delta"><label class="form-check-label" for="crit_onda_delta">Onda delta (WPW)</label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_st_concordante_bri"><label class="form-check-label" for="crit_st_concordante_bri">ST concordante en BRI (STEMI)</label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_st_discordante_bri"><label class="form-check-label" for="crit_st_discordante_bri">ST discordante excesivo en BRI (STEMI)</label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_onda_u"><label class="form-check-label" for="crit_onda_u">Onda U (Hipokalemia)</label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_t_picuda"><label class="form-check-label" for="crit_t_picuda">T picuda (Hiperkalemia)</label></div>
+                            </div>
+                        </div>
+                        <small class="form-text text-muted">Estos criterios son opcionales. También puedes consignarlos en “Alteraciones adicionales”.</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card ao-card">
+                    <div class="card-header">Informe ECG</div>
+                    <div class="card-body">
+                        <div id="informeECG" class="mb-3">
+                            Complete el formulario y haga clic en "Generar informe" para ver el resultado.
+                        </div>
+                        <button type="button" class="btn btn-outline-primary btn-sm" id="copiarInforme">Copiar informe</button>
+                    </div>
+                </div>
+                <!-- Sospecha diagnóstica justo debajo del informe -->
+                <div class="card ao-card mt-3">
+                    <div class="card-header">Sospecha diagnóstica electrocardiográfica</div>
+                    <div class="card-body">
+                        <p class="mb-2">Se genera automáticamente al crear el informe, basada en reglas clínicas y patrones del módulo de comparación.</p>
+                        <div class="d-flex gap-2 mb-3">
+                            <!-- Botón de generar removido; se dispara desde Generar informe -->
+                            <button type="button" id="copiarSospecha" class="btn btn-outline-primary btn-sm">Copiar sospecha</button>
+                        </div>
+                        <div id="resultadoSospecha" class="alert alert-info d-none"></div>
+                        <div id="criteriosDetectados" class="small text-muted d-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Barra de búsqueda de Gemini -->
+    <section class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card border-primary">
+                    <div class="card-header bg-primary text-white text-center">
+                        <h5 class="mb-0">Si tienes preguntas adicionales, has una pregunta concreta y breve a la IA</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-center">
+                            <a href="https://gemini.google.com" target="_blank" rel="noopener" class="btn btn-primary">
+                                <svg width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                </svg>
+                                Abrir Gemini
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+    
+    <script>
+        // Enlace directo a Gemini; no se requiere script adicional.
+    </script>
+</body>
+</html>
+
+<footer class="container my-5">
+    <div class="text-center text-muted small">
+        Contenido educativo — No sustituye evaluación clínica. Autor: Dr. Luis Ángel Rueda Cuervo.
+    </div>
+</footer>

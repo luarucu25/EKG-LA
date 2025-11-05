@@ -1,0 +1,29 @@
+<svg width="420" height="300" viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="420" height="300" fill="#f8f9fa"/>
+  <text x="210" y="20" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#333">Método de 6 segundos</text>
+  
+  <!-- Banda de 30 cuadros grandes (6 segundos) -->
+  <g>
+    <rect x="30" y="60" width="360" height="40" fill="#e3f2fd" stroke="#90caf9"/>
+    <text x="210" y="85" text-anchor="middle" font-family="Arial" font-size="12" fill="#1565c0">30 cuadros grandes = 6 s (velocidad 25 mm/s)</text>
+  </g>
+  
+  <!-- Marcas de latidos -->
+  <g stroke="#1976d2" stroke-width="3">
+    <line x1="60" y1="60" x2="60" y2="100"/>
+    <line x1="110" y1="60" x2="110" y2="100"/>
+    <line x1="160" y1="60" x2="160" y2="100"/>
+    <line x1="210" y1="60" x2="210" y2="100"/>
+    <line x1="260" y1="60" x2="260" y2="100"/>
+    <line x1="310" y1="60" x2="310" y2="100"/>
+    <line x1="360" y1="60" x2="360" y2="100"/>
+  </g>
+  
+  <text x="210" y="130" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#333">Latidos en 6 s: 7 → FC ≈ 7 × 10 = 70 lpm</text>
+  
+  <g transform="translate(40,170)" font-family="Arial" font-size="12" fill="#333">
+    <text x="0" y="0">• Contar latidos (QRS) en 6 s.</text>
+    <text x="0" y="18">• Multiplicar por 10 para obtener lpm.</text>
+    <text x="0" y="36">• Útil en ritmos irregulares (ej. fibrilación auricular).</text>
+  </g>
+</svg>

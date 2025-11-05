@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <title>Onda T — Visual</title>
+  <defs>
+    <pattern id="gridSmall" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M20 0H0V20" fill="none" stroke="#e5e7eb" stroke-width="1"/>
+    </pattern>
+    <pattern id="gridLarge" width="100" height="100" patternUnits="userSpaceOnUse">
+      <rect width="100" height="100" fill="url(#gridSmall)"/>
+      <path d="M100 0H0V100" fill="none" stroke="#cbd5e1" stroke-width="1.5"/>
+    </pattern>
+  </defs>
+  <rect x="20" y="20" width="760" height="560" rx="18" fill="#fff" stroke="#d1d5db"/>
+  <rect x="40" y="80" width="720" height="360" fill="url(#gridLarge)" rx="8"/>
+  <line x1="40" y1="260" x2="760" y2="260" stroke="#9ca3af" stroke-width="2"/>
+
+  <!-- Trazo ECG simplificado con T amplia -->
+  <path d="M40 260 L180 260 C190 260 200 250 210 248 
+           L220 258 L228 250 L235 310 L242 180 L250 310 L258 240 L265 260 
+           C285 260 320 280 360 260 
+           C400 240 460 220 520 260 
+           C580 300 620 300 660 260 L760 260"
+        fill="none" stroke="#1a73e8" stroke-width="4"/>
+
+  <!-- Resaltado de la Onda T -->
+  <rect x="400" y="220" width="180" height="100" fill="#9333ea" opacity="0.10" rx="6"/>
+  <path d="M400 210 H580" stroke="#9333ea" stroke-width="3" marker-end="url(#arrowT)"/>
+  <text x="405" y="205" fill="#9333ea" font-size="20" font-weight="700">Onda T</text>
+
+  <defs>
+    <marker id="arrowT" orient="auto" markerWidth="6" markerHeight="6" refX="2" refY="3">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#9333ea"/>
+    </marker>
+  </defs>
+
+  <!-- Glosa lateral -->
+  <g font-size="16" fill="#111827">
+    <text x="60" y="480" font-weight="700">Características normales</text>
+    <text x="60" y="505">Positiva en DI, DII, V3–V6</text>
+    <text x="60" y="530">Morfología asimétrica</text>
+  </g>
+</svg>

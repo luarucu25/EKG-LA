@@ -1,0 +1,36 @@
+<svg width="500" height="320" viewBox="0 0 500 320" xmlns="http://www.w3.org/2000/svg">
+  <rect width="500" height="320" fill="#f8f9fa"/>
+  <text x="250" y="24" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#333">Derivaciones precordiales: V1–V6</text>
+  
+  <!-- Tórax simplificado -->
+  <rect x="50" y="70" width="400" height="150" fill="#e3f2fd" stroke="#90caf9" rx="8"/>
+  <text x="250" y="95" text-anchor="middle" font-family="Arial" font-size="12" fill="#1565c0">Vista anterior del tórax</text>
+  
+  <!-- Posiciones V1–V6 -->
+  <g font-family="Arial" font-size="12">
+    <circle cx="120" cy="150" r="10" fill="#ffcdd2" stroke="#ef9a9a"/>
+    <text x="120" y="140" text-anchor="middle">V1</text>
+
+    <circle cx="150" cy="150" r="10" fill="#ffcdd2" stroke="#ef9a9a"/>
+    <text x="150" y="140" text-anchor="middle">V2</text>
+
+    <circle cx="200" cy="150" r="10" fill="#ffe0b2" stroke="#ffcc80"/>
+    <text x="200" y="140" text-anchor="middle">V3</text>
+
+    <circle cx="250" cy="150" r="10" fill="#ffe0b2" stroke="#ffcc80"/>
+    <text x="250" y="140" text-anchor="middle">V4</text>
+
+    <circle cx="320" cy="150" r="10" fill="#c8e6c9" stroke="#a5d6a7"/>
+    <text x="320" y="140" text-anchor="middle">V5</text>
+
+    <circle cx="360" cy="150" r="10" fill="#c8e6c9" stroke="#a5d6a7"/>
+    <text x="360" y="140" text-anchor="middle">V6</text>
+  </g>
+  
+  <!-- Leyenda territorial -->
+  <g transform="translate(50,240)" font-family="Arial" font-size="12" fill="#333">
+    <text x="0" y="0">• V1–V2: Septal</text>
+    <text x="130" y="0">• V3–V4: Anterior</text>
+    <text x="270" y="0">• V5–V6: Lateral</text>
+  </g>
+</svg>

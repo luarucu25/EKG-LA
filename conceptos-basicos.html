@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EKGGo — Conceptos Básicos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- Eliminar cualquier navbar duplicada de estilo antiguo -->
+<!--
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm rounded-3 mt-2 mb-4 mx-3 px-3">
+    <a class="navbar-brand fw-bold" href="index.html">EKGGo</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+            aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="conceptos-basicos.html">Conceptos Básicos</a></li>
+            <li class="nav-item"><a class="nav-link" href="lectura-guiada.html">Lectura Guiada</a></li>
+            <li class="nav-item"><a class="nav-link" href="comparacion-patrones.html">Comparación de Patrones</a></li>
+        </ul>
+    </div>
+</nav>
+-->
+
+<!-- Eliminar cualquier hero duplicado si existiera -->
+<!--
+<section class="jumbotron ...">
+    ... hero duplicado ...
+</section>
+-->
+
+<nav class="navbar navbar-expand-lg ao-topbar">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="index.html">EKGGo</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarConceptos"
+                aria-controls="navbarConceptos" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navbarConceptos" class="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link active" href="conceptos-basicos.html">Conceptos Básicos</a></li>
+                <li class="nav-item"><a class="nav-link" href="lectura-guiada.html">Lectura Guiada</a></li>
+                <li class="nav-item"><a class="nav-link" href="comparacion-patrones.html">Comparación de Patrones</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<main class="container my-4">
+    <section class="ao-hero mb-4">
+        <h1 class="ao-hero-title display-6">Conceptos Básicos de ECG</h1>
+        <p class="ao-hero-subtitle lead">Contenido textual y paneles interactivos unificados.</p>
+    </section>
+
+    <section class="ao-content">
+        <div class="accordion" id="accordionConceptos">
+            <!-- Sistema de conducción cardíaca -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingConduccion">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseConduccion" aria-expanded="true" aria-controls="collapseConduccion">
+                        Sistema de conducción cardíaca
+                    </button>
+                </h2>
+                <div id="collapseConduccion" class="accordion-collapse collapse show" aria-labelledby="headingConduccion" data-bs-parent="#accordionConceptos">
+                    <div class="accordion-body">
+                        <p>
+                            El sistema de conducción cardíaca coordina la despolarización para producir un latido eficaz. Componentes principales:
+                        </p>
+                        <ul>
+                            <li>Nodo SA (sinusal): marcapasos fisiológico.</li>
+                            <li>Vías internodales y haz de Bachmann.</li>
+                            <li>Nodo AV: retraso fisiológico para llenar ventrículos.</li>
+                            <li>Haz de His, ramas derecha e izquierda.</li>
+                            <li>Red de Purkinje.</li>
+                        </ul>
+                        <p class="mb-0">
+                            Secuencia: inicio en nodo SA → aurículas → nodo AV (pausa) → His → ramas → Purkinje → ventrículos. Alteraciones generan arritmias o trastornos de conducción.
+                        </p>
+                        
+                        <!-- Imágenes: Sistema de conducción (reemplazadas y citadas) -->
+                        <div class="row g-3 mt-3">
+                            <!-- Imagen 1: OpenStax College -->
+                            <div class="col-md-4">
+                                <figure class="mb-0 ecg-fig">
+                                    <img class="img-fluid rounded border ecg-img" src="img/sistema-conduccion-openstax.jpg" alt="Conduction System of Heart — OpenStax">
+                                    <figcaption class="small text-muted mt-1">OpenStax College. Conduction System of Heart [imagen]. Anatomy &amp; Physiology; 2013. CC BY 3.0.</figcaption>
+                                </figure>
+                            </div>
+                            <!-- Imagen 2: Wikimedia (Madhero88) -->
+                            <div class="col-md-4">
+                                <figure class="mb-0 ecg-fig">
+                                    <img class="img-fluid rounded border ecg-img" src="img/sistema-conduccion-madhero88.png" alt="Electrical conduction system of the heart — Madhero88 (Wikimedia)">
+                                    <figcaption class="small text-muted mt-1">Madhero88. Conduction system of the heart [imagen]. Wikimedia Commons. CC BY-SA.</figcaption>
+                                </figure>
+                            </div>
+                            <!-- Imagen 3: USQ Pressbooks (ECG y ciclo cardiaco) -->
+                            <div class="col-md-4">
+                                <figure class="mb-0 ecg-fig">
+                                    <img class="img-fluid rounded border ecg-img" src="img/ecg-ciclo-usq.png" alt="ECG tracing correlated to the cardiac cycle — USQ Pressbooks">
+                                    <figcaption class="small text-muted mt-1">USQ Pressbooks (Fundamentals of Anatomy and Physiology). ECG tracing correlated to the cardiac cycle [figura 4].</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Papel electrocardiográfico -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingPapel">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePapel" aria-expanded="false" aria-controls="collapsePapel">
+                        Papel electrocardiográfico
+                    </button>
+                </h2>
+                <div id="collapsePapel" class="accordion-collapse collapse" aria-labelledby="headingPapel" data-bs-parent="#accordionConceptos">
+                    <div class="accordion-body">
+                        <p>
+                            El papel de ECG tiene cuadrícula: cada cuadro pequeño (1 mm) equivale a 0.04 s y 0.1 mV a 25 mm/s y 10 mm/mV. Un cuadro grande (5 mm) equivale a 0.20 s y 0.5 mV.
+                        </p>
+                        <ul>
+                            <li>Velocidad estándar: 25 mm/s (alternativa: 50 mm/s).</li>
+                            <li>Ganancia estándar: 10 mm/mV.</li>
+                            <li>Medición de intervalos: cuenta cuadros y multiplica por equivalencias.</li>
+                        </ul>
+                        <p class="mb-0">
+                            Usando estas equivalencias puedes medir PR, QRS, QT y calcular FC a partir de cuadros.
+                        </p>
+
+                        <!-- Espacios para imágenes: Papel electrocardiográfico -->
+                        <div class="row g-3 mt-3">
+                            <div class="col-md-4"><figure class="mb-0 ecg-fig"><img class="img-fluid rounded border ecg-img" src="img/papel-ecg-tiempo.svg" alt="Cuadrícula de papel ECG — escala de tiempo"><figcaption class="small text-muted mt-1">Cuadrícula — escala de tiempo</figcaption></figure></div>
+                            <div class="col-md-4"><figure class="mb-0 ecg-fig"><img class="img-fluid rounded border ecg-img" src="img/papel-ecg-voltaje.svg" alt="Cuadrícula de papel ECG — escala de voltaje"><figcaption class="small text-muted mt-1">Cuadrícula — escala de voltaje</figcaption></figure></div>
+                            <div class="col-md-4">
+                                <figure class="mb-0 ecg-fig">
+                                    <img class="img-fluid rounded border ecg-img" src="img/papel-ecg-intervalos-user.jpg?v=1" alt="Ejemplo de medición de intervalos en papel ECG">
+                                    <figcaption class="small text-muted mt-1">Medición de intervalos</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Derivaciones -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingDerivaciones">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDerivaciones" aria-expanded="false" aria-controls="collapseDerivaciones">
+                        Derivaciones
+                    </button>
+                </h2>
+                <div id="collapseDerivaciones" class="accordion-collapse collapse" aria-labelledby="headingDerivaciones" data-bs-parent="#accordionConceptos">
+                    <div class="accordion-body">
+                        <p>
+                            Las derivaciones son “miradas” del corazón en diferentes planos:
+                        </p>
+                        <ul>
+                            <li>Plano frontal: DI, DII, DIII; aVR, aVL, aVF.</li>
+                            <li>Plano horizontal (precordiales): V1–V6.</li>
+                        </ul>
+                        <p>
+                            Correlaciones aproximadas:
+                        </p>
+                        <ul>
+                            <li>Septal: V1–V2.</li>
+                            <li>Anterior: V3–V4.</li>
+                            <li>Lateral: DI, aVL, V5–V6.</li>
+                            <li>Inferior: DII, DIII, aVF.</li>
+                        </ul>
+                        <p class="mb-0">
+                            La lectura territorial ayuda a localizar isquemia, necrosis o bloqueos específicos.
+                        </p>
+
+                        <!-- Imágenes: Derivaciones (nuevas) -->
+                        <div class="row g-3 mt-3">
+                            <div class="col-md-4">
+                                <figure class="mb-0 ecg-fig">
+                                    <img class="img-fluid rounded border ecg-img" src="img/derivaciones-limb-leads-npatchett.png" alt="Limb leads of EKG — Npatchett (Wikimedia)">
+                                    <figcaption class="small text-muted mt-1">Npatchett. Limb leads of EKG [imagen]. Wikimedia Commons; 2015. Licencia CC BY-SA 4.0.</figcaption>
+                                </figure>
+                            </div>
+                            <div class="col-md-4">
+                                <figure class="mb-0 ecg-fig">
+                                    <img class="img-fluid rounded border ecg-img" src="img/derivaciones-chest-landmarks-litfl.png" alt="Chest external landmarks in ECG placement — LITFL">
+                                    <figcaption class="small text-muted mt-1">Cadogan, M. Chest external landmarks in ECG placement [imagen]. En: LITFL – ECG Lead positioning; 2022. Licencia CC BY-NC-SA 4.0.</figcaption>
+                                </figure>
+                            </div>
+                            <div class="col-md-4">
+                                <figure class="mb-0 ecg-fig">
+                                    <img class="img-fluid rounded border ecg-img" src="img/derivaciones-placement-fig1a-safdar-2023.png" alt="Placement position of ECG limbs and chest leads — Safdar et al.">
+                                    <figcaption class="small text-muted mt-1">Safdar MF, Pałka P, Nowak RM, Al Faresi A. Placement position of ECG limbs lead RA, LA, RL, LL y precordiales V1–V6 (Fig. 1a) [imagen]. En: A novel data augmentation approach for enhancement of ECG signal classification; 2023.</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Frecuencia cardíaca (FC) -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFC">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFC" aria-expanded="false" aria-controls="collapseFC">
+                        Frecuencia cardíaca (FC)
+                    </button>
+                </h2>
+                <div id="collapseFC" class="accordion-collapse collapse" aria-labelledby="headingFC" data-bs-parent="#accordionConceptos">
+                    <div class="accordion-body">
+                        <p>Métodos comunes para calcular la FC:</p>
+                        <ul>
+                            <li>Método 1500: FC ≈ 1500 / cuadros pequeños entre dos R.</li>
+                            <li>Método 300: FC ≈ 300 / cuadros grandes entre dos R.</li>
+                            <li>Método 6 segundos: cuenta latidos en 30 cuadros grandes y multiplica por 10.</li>
+                        </ul>
+                        <p class="mb-0">
+                            Referencias: bradicardia &lt; 60 lpm; normal 60–100 lpm; taquicardia &gt; 100 lpm (en adultos).
+                        </p>
+
+                        <!-- Espacios para imágenes: Frecuencia cardíaca -->
+                        <div class="row g-3 mt-3">
+                            <div class="col-md-4"><figure class="mb-0 ecg-fig"><img class="img-fluid rounded border ecg-img" src="img/fc-metodo-1500.svg" alt="Método 1500 para calcular frecuencia cardíaca"><figcaption class="small text-muted mt-1">Método 1500</figcaption></figure></div>
+                            <div class="col-md-4"><figure class="mb-0 ecg-fig"><img class="img-fluid rounded border ecg-img" src="img/fc-metodo-300.svg" alt="Método 300 para calcular frecuencia cardíaca"><figcaption class="small text-muted mt-1">Método 300</figcaption></figure></div>
+                            <div class="col-md-4"><figure class="mb-0 ecg-fig"><img class="img-fluid rounded border ecg-img" src="img/fc-metodo-6seg.svg" alt="Método de 6 segundos para calcular frecuencia cardíaca"><figcaption class="small text-muted mt-1">Método 6 segundos</figcaption></figure></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Intervalos normales -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingIntervalos">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseIntervalos" aria-expanded="false" aria-controls="collapseIntervalos">
+                        Intervalos normales
+                    </button>
+                </h2>
+                <div id="collapseIntervalos" class="accordion-collapse collapse" aria-labelledby="headingIntervalos" data-bs-parent="#accordionConceptos">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>PR: 120–200 ms.</li>
+                            <li>QRS: &lt; 120 ms.</li>
+                            <li>QT: depende de la FC; usar QTc (Bazett: QTc ≈ QT / √RR).</li>
+                        </ul>
+                        <p class="mb-0">
+                            PR prolongado sugiere bloqueo AV; QRS ancho sugiere bloqueos de rama o ritmos ventriculares; alteraciones de QTc pueden asociarse a riesgo de arritmias.
+                        </p>
+
+                        <!-- Imágenes reemplazables: Intervalos normales -->
+                        <div class="row g-3 mt-3">
+                            <div class="col-md-4"><figure class="mb-0 ecg-fig"><img class="img-fluid rounded border ecg-img" src="img/intervalo-pr.svg" alt="Ejemplo de medición del intervalo PR"><figcaption class="small text-muted mt-1">Intervalo PR</figcaption></figure></div>
+                            <div class="col-md-4"><figure class="mb-0 ecg-fig"><img class="img-fluid rounded border ecg-img" src="img/intervalo-qrs.svg" alt="Ejemplo de duración del QRS"><figcaption class="small text-muted mt-1">Duración del QRS</figcaption></figure></div>
+                            <div class="col-md-4"><figure class="mb-0 ecg-fig"><img class="img-fluid rounded border ecg-img" src="img/qt-qtc.svg" alt="Ejemplo de QT y QTc"><figcaption class="small text-muted mt-1">QT/QTc</figcaption></figure></div>
+                        </div>
+
+                        <!-- Calculadora QTc -->
+                        <div class="row g-3 mt-3">
+                            <div class="col-md-6">
+                                <div class="card shadow-sm rounded-3">
+                                    <div class="card-header">Calculadora QT corregido — fórmulas</div>
+                                    <div class="card-body">
+                                        <p class="mb-2 small text-muted">RR en segundos; QT en milisegundos. Si ingresas FC, se usa RR = 60 / FC cuando la fórmula requiere RR.</p>
+                                        <div class="mb-2">
+                                            <label class="form-label" for="qtFormula">Fórmula</label>
+                                            <select id="qtFormula" class="form-select">
+                                                <option value="bazett" selected>Bazett (QT/√RR)</option>
+                                                <option value="fridericia">Fridericia (QT/RR^(1/3))</option>
+                                                <option value="framingham">Framingham (QT + 154×(1−RR))</option>
+                                                <option value="hodges">Hodges (QT + 1.75×(FC−60))</option>
+                                            </select>
+                                            <small class="text-muted">Elige la fórmula de corrección.</small>
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="form-label" for="qtBazettQt">QT (ms)</label>
+                                            <input type="number" id="qtBazettQt" class="form-control" placeholder="Ej.: 400">
+                                        </div>
+                                        <!-- Método de entrada para fórmulas basadas en RR -->
+                                        <div class="mb-2" id="qtMetodoGroup">
+                                            <label class="form-label">Método de entrada</label>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="qtMetodo" id="qtMetodoRR" value="rr" checked>
+                                                <label class="form-check-label" for="qtMetodoRR">Usar RR (s)</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="qtMetodo" id="qtMetodoFC" value="fc">
+                                                <label class="form-check-label" for="qtMetodoFC">Usar FC (lpm)</label>
+                                            </div>
+                                            <small class="text-muted d-block">Para Bazett/Fridericia puedes elegir RR o FC. Framingham requiere RR. Hodges requiere FC.</small>
+                                        </div>
+                                        <div class="mb-2">
+                                            <div id="qtBazettHrGrp">
+                                                <label class="form-label" for="qtBazettHr">Frecuencia cardíaca (lpm)</label>
+                                                <input type="number" id="qtBazettHr" class="form-control" placeholder="Ej.: 70">
+                                            </div>
+                                        </div>
+                                        <div class="mb-2">
+                                            <div id="qtBazettRrGrp">
+                                                <label class="form-label" for="qtBazettRr">RR (s)</label>
+                                                <input type="number" step="0.01" id="qtBazettRr" class="form-control" placeholder="Ej.: 0.86">
+                                            </div>
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="form-label" for="qtSexo">Sexo</label>
+                                            <select id="qtSexo" class="form-select">
+                                                <option value="hombre" selected>Hombre</option>
+                                                <option value="mujer">Mujer</option>
+                                            </select>
+                                            <small class="text-muted">Referencia: Normal H ≤ 440 ms; M ≤ 460 ms. Prolongado: H ≥ 450 ms; M ≥ 470 ms. Riesgo alto: ≥ 500 ms.</small>
+                                        </div>
+                                        <div class="mt-3 d-flex gap-2">
+                                            <button class="btn btn-primary" id="btnCalcularQTc">Calcular QTc (Bazett)</button>
+                                            <button class="btn btn-outline-secondary" id="btnLimpiarQTc">Limpiar</button>
+                                        </div>
+                                        <div id="resultadoQTc" class="alert alert-info mt-3 d-none"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cálculo del eje del QRS -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingEjeQRS">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEjeQRS" aria-expanded="false" aria-controls="collapseEjeQRS">
+                        Cálculo del eje del QRS
+                    </button>
+                </h2>
+                <div id="collapseEjeQRS" class="accordion-collapse collapse" aria-labelledby="headingEjeQRS" data-bs-parent="#accordionConceptos">
+                    <div class="accordion-body">
+                        <p class="mb-3">
+                            El eje del QRS representa la dirección promedio de la despolarización ventricular. Puedes estimarlo con la deflexión neta (R−S) en DI y aVF:
+                        </p>
+                        <ul>
+                            <li>Deflexión en mm: positiva si el QRS es mayormente hacia arriba; negativa si hacia abajo.</li>
+                            <li>Ángulo aproximado: atan2(aVF, DI) en grados, normalizado a −180°…+180°. Aquí DI se toma como eje horizontal (0°) y aVF como eje vertical (+90° hacia abajo), de modo que el signo y el cuadrante se interpretan en el sistema hexaxial clínico.</li>
+                            <li>Rangos: Normal (−30° a +90°), Desviación izquierda (−30° a −90°), Desviación derecha (&gt; +90°), Eje extremo (&lt; −90°).</li>
+                        </ul>
+                        <div class="alert alert-secondary mt-2">
+                            <strong>Ejemplo rápido:</strong>
+                            <ul class="mb-0">
+                                <li>DI = +8 mm, aVF = +3 mm → atan2(3, 8) ≈ 20° → dentro de eje <em>Normal</em>.</li>
+                                <li>DI = −5 mm, aVF = +6 mm → atan2(6, −5) ≈ 129° → <em>Desviación derecha</em>.</li>
+                            </ul>
+                        </div>
+
+                        <div class="row g-3 mt-3">
+                            <div class="col-md-6">
+                                <label class="form-label" for="ejeDI">Deflexión neta en DI (mm, R−S)</label>
+                                <input type="number" id="ejeDI" class="form-control" placeholder="Ej.: 8">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label" for="ejeAVF">Deflexión neta en aVF (mm, R−S)</label>
+                                <input type="number" id="ejeAVF" class="form-control" placeholder="Ej.: 3">
+                            </div>
+                        </div>
+
+                        <div class="mt-3 d-flex gap-2">
+                            <button class="btn btn-primary" id="btnCalcularEje">Calcular eje</button>
+                            <button class="btn btn-outline-secondary" id="btnLimpiarEje">Limpiar</button>
+                        </div>
+
+                        <div id="resultadoEje" class="alert alert-info mt-3 d-none"></div>
+
+                        <!-- Imágenes: Cálculo del eje del QRS (2 imágenes, 4:3) -->
+                        <div class="row g-3 mt-3">
+                            <div class="col-md-6">
+                                <figure class="mb-0 ecg-fig">
+                                    <img class="img-fluid rounded border ecg-img" src="img/eje-interpretacion.svg" data-prefer-src="img/eje-qrs-derivadas-perpendiculares.png" alt="Zonas del eje QRS con derivadas perpendiculares: DI—aVF, DII—aVL, DIII—aVR">
+                                    <figcaption class="small text-muted mt-1">Zonas del eje y derivadas perpendiculares</figcaption>
+                                </figure>
+                            </div>
+                            <div class="col-md-6">
+                                <figure class="mb-0 ecg-fig">
+                                    <img class="img-fluid rounded border ecg-img" src="img/eje-qrs-normal.svg" data-prefer-src="img/eje-qrs-normal-axis.png" alt="Normal Axis −30° a +90° sobre sistema hexaxial">
+                                    <figcaption class="small text-muted mt-1">Eje normal del QRS (−30° a +90°)</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Evaluación de ondas P, QRS y T -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOndas">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOndas" aria-expanded="false" aria-controls="collapseOndas">
+                        Evaluación de ondas P, QRS y T
+                    </button>
+                </h2>
+                <div id="collapseOndas" class="accordion-collapse collapse" aria-labelledby="headingOndas" data-bs-parent="#accordionConceptos">
+                    <div class="accordion-body">
+                        <p class="mb-2">Guía práctica y referencias para ondas del ECG:</p>
+                        <ul class="mb-3">
+                            <li>Onda P: duración &lt; 120 ms, amplitud &lt; 2.5 mm; morfología variable.</li>
+                            <li>QRS: duración &lt; 120 ms (estrecho); ≥ 120 ms (ancho). Considera bloqueos de rama.</li>
+                            <li>Onda T: usualmente positiva en DI, DII y V3–V6; asimétrica. Inversiones sugieren isquemia u otras causas.</li>
+                        </ul>
+
+                        <div class="row g-4 mt-2">
+                            <div class="col-md-4">
+                                <div class="card shadow-sm rounded-3">
+                                    <div class="card-header">Onda P</div>
+                                    <div class="card-body">
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" id="pPresente">
+                                            <label class="form-check-label" for="pPresente">P visible</label>
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="form-label" for="pDuracion">Duración (ms)</label>
+                                            <input type="number" id="pDuracion" class="form-control" placeholder="Ej.: 100">
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="form-label" for="pAmplitud">Amplitud (mm)</label>
+                                            <input type="number" id="pAmplitud" class="form-control" placeholder="Ej.: 2">
+                                        </div>
+                                        <small class="text-muted">Referencia: &lt; 120 ms y &lt; 2.5 mm.</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="card shadow-sm rounded-3">
+                                    <div class="card-header">Complejo QRS</div>
+                                    <div class="card-body">
+                                        <div class="mb-2">
+                                            <label class="form-label" for="qrsDuracion">Duración (ms)</label>
+                                            <input type="number" id="qrsDuracion" class="form-control" placeholder="Ej.: 90">
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="form-label">Morfología</label>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="rbbb">
+                                                <label class="form-check-label" for="rbbb">BRD (RBBB)</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="lbbb">
+                                                <label class="form-check-label" for="lbbb">BCRI (LBBB)</label>
+                                            </div>
+                                        </div>
+                                        <small class="text-muted">Referencia: QRS &lt; 120 ms.</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="card shadow-sm rounded-3">
+                                    <div class="card-header">Onda T</div>
+                                    <div class="card-body">
+                                        <div class="mb-2">
+                                            <label class="form-label" for="tSimetria">Simetría</label>
+                                            <select id="tSimetria" class="form-select">
+                                                <option value="asimetrica" selected>Asimétrica (normal)</option>
+                                                <option value="simetrica">Simétrica</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" id="tInvertida">
+                                            <label class="form-check-label" for="tInvertida">Invertida donde debería ser positiva</label>
+                                        </div>
+                                        <small class="text-muted">T suele ser positiva en DI, DII, V3–V6.</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-3 d-flex gap-2">
+                            <button class="btn btn-primary" id="btnEvaluarOndas">Evaluar</button>
+                            <button class="btn btn-outline-secondary" id="btnLimpiarOndas">Limpiar</button>
+                        </div>
+
+                        <div id="resultadoOndas" class="alert alert-info mt-3 d-none"></div>
+
+                        <div class="mt-4">
+                            <h6>Descripción textual adicional</h6>
+                            <p class="mb-1"><strong>Onda P:</strong> despolarización auricular. Ausencia sugiere ritmos no sinusales; P alta (&gt;2.5 mm) sugiere dilatación AD; P ancha (&ge;120 ms) dilatación AI.</p>
+                            <p class="mb-1"><strong>QRS:</strong> despolarización ventricular. QRS ancho (&ge;120 ms) se asocia a bloqueos de rama o ritmos ventriculares; morfología RBBB/LBBB guía localización del trastorno.</p>
+                            <p class="mb-0"><strong>Onda T:</strong> repolarización ventricular. Inversiones o simetría marcada pueden sugerir isquemia aguda, alteraciones electrolíticas o efectos farmacológicos.</p>
+                        </div>
+
+                        <!-- Imágenes reemplazables: Evaluación de ondas P/QRS/T -->
+                        <div class="row g-3 mt-3">
+                            <div class="col-md-4"><figure class="mb-0 ecg-fig"><img class="img-fluid rounded border ecg-img" src="img/ondas-p-simple.svg" alt="Onda P — básica, sencilla"><figcaption class="small text-muted mt-1">Onda P (básica)</figcaption></figure></div>
+                            <div class="col-md-4"><figure class="mb-0 ecg-fig"><img class="img-fluid rounded border ecg-img" src="img/ondas-qrs-simple.svg" alt="Complejo QRS — básico, sencillo"><figcaption class="small text-muted mt-1">QRS (básico)</figcaption></figure></div>
+                            <div class="col-md-4"><figure class="mb-0 ecg-fig"><img class="img-fluid rounded border ecg-img" src="img/ondas-t-simple.svg" alt="Onda T — básica, sencilla"><figcaption class="small text-muted mt-1">Onda T (básica)</figcaption></figure></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</main>
+
+<footer class="container my-5">
+    <div class="text-center text-muted small">
+        Contenido educativo — No sustituye evaluación clínica. Autor: Dr. Luis Ángel Rueda Cuervo.
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // QTc (Bazett) — Calculadora
+    const btnCalcularQTc = document.getElementById('btnCalcularQTc');
+    const btnLimpiarQTc = document.getElementById('btnLimpiarQTc');
+    const resultadoQTc = document.getElementById('resultadoQTc');
+    const qtFormulaSel = document.getElementById('qtFormula');
+    const qtSexoSel = document.getElementById('qtSexo');
+
+    function calcularQTc(qtMs, rrSec, hrBpm, formula) {
+        switch (formula) {
+            case 'bazett':
+                if (isNaN(rrSec) || rrSec <= 0) return NaN;
+                return qtMs / Math.sqrt(rrSec);
+            case 'fridericia':
+                if (isNaN(rrSec) || rrSec <= 0) return NaN;
+                return qtMs / Math.cbrt(rrSec);
+            case 'framingham':
+                if (isNaN(rrSec) || rrSec <= 0) return NaN;
+                return qtMs + 154 * (1 - rrSec);
+            case 'hodges':
+                if (isNaN(hrBpm) || hrBpm <= 0) return NaN;
+                return qtMs + 1.75 * (hrBpm - 60);
+            default:
+                return NaN;
+        }
+    }
+
+    function clasificarQTc(qtcMs, sexo) {
+        const thrNormal = sexo === 'mujer' ? 460 : 440;
+        const thrProl = sexo === 'mujer' ? 470 : 450;
+        if (qtcMs >= 500) return 'Prolongado significativo (≥500 ms): alto riesgo de TdP';
+        if (qtcMs >= thrProl) return 'Prolongado';
+        if (qtcMs > thrNormal) return 'Límite';
+        return 'Normal';
+    }
+
+    function updateQTFieldsForFormula() {
+        const formula = qtFormulaSel?.value || 'bazett';
+        const metodoGroup = document.getElementById('qtMetodoGroup');
+        const rrGrp = document.getElementById('qtBazettRrGrp');
+        const hrGrp = document.getElementById('qtBazettHrGrp');
+        const metodoRR = document.getElementById('qtMetodoRR');
+        const metodoFC = document.getElementById('qtMetodoFC');
+
+        // Reset required flags
+        document.getElementById('qtBazettRr')?.removeAttribute('required');
+        document.getElementById('qtBazettHr')?.removeAttribute('required');
+
+        if (formula === 'bazett' || formula === 'fridericia') {
+            metodoGroup?.classList.remove('d-none');
+            const metodo = metodoRR?.checked ? 'rr' : 'fc';
+            if (metodo === 'rr') {
+                rrGrp?.classList.remove('d-none');
+                hrGrp?.classList.add('d-none');
+                document.getElementById('qtBazettRr')?.setAttribute('required', 'true');
+            } else {
+                hrGrp?.classList.remove('d-none');
+                rrGrp?.classList.add('d-none');
+                document.getElementById('qtBazettHr')?.setAttribute('required', 'true');
+            }
+        } else if (formula === 'framingham') {
+            metodoGroup?.classList.add('d-none');
+            rrGrp?.classList.remove('d-none');
+            hrGrp?.classList.add('d-none');
+            document.getElementById('qtBazettRr')?.setAttribute('required', 'true');
+        } else if (formula === 'hodges') {
+            metodoGroup?.classList.add('d-none');
+            hrGrp?.classList.remove('d-none');
+            rrGrp?.classList.add('d-none');
+            document.getElementById('qtBazettHr')?.setAttribute('required', 'true');
+        }
+    }
+
+    qtFormulaSel?.addEventListener('change', updateQTFieldsForFormula);
+    document.getElementById('qtMetodoRR')?.addEventListener('change', updateQTFieldsForFormula);
+    document.getElementById('qtMetodoFC')?.addEventListener('change', updateQTFieldsForFormula);
+    // Inicializar estados al cargar
+    updateQTFieldsForFormula();
+
+    btnCalcularQTc?.addEventListener('click', () => {
+        const qtMs = parseFloat(document.getElementById('qtBazettQt')?.value);
+        const hrBpm = parseFloat(document.getElementById('qtBazettHr')?.value);
+        const rrSecInput = parseFloat(document.getElementById('qtBazettRr')?.value);
+        const formula = qtFormulaSel?.value || 'bazett';
+        const sexo = qtSexoSel?.value || 'hombre';
+        const metodo = (document.getElementById('qtMetodoRR')?.checked ? 'rr' : (document.getElementById('qtMetodoFC')?.checked ? 'fc' : null));
+
+        if (isNaN(qtMs) || qtMs <= 0) {
+            resultadoQTc.textContent = 'Ingresa un QT válido en milisegundos.';
+            resultadoQTc.classList.remove('d-none', 'alert-success');
+            resultadoQTc.classList.add('alert-danger');
+            return;
+        }
+
+        let rrSec = NaN;
+        if (formula === 'bazett' || formula === 'fridericia') {
+            if (metodo === 'rr' && !isNaN(rrSecInput) && rrSecInput > 0) {
+                rrSec = rrSecInput;
+            } else if (metodo === 'fc' && !isNaN(hrBpm) && hrBpm > 0) {
+                rrSec = 60 / hrBpm;
+            }
+        } else if (formula === 'framingham') {
+            if (!isNaN(rrSecInput) && rrSecInput > 0) rrSec = rrSecInput;
+        }
+
+        const qtcMs = calcularQTc(qtMs, rrSec, hrBpm, formula);
+        if (isNaN(qtcMs)) {
+            const necesitaRR = ['bazett', 'fridericia', 'framingham'].includes(formula);
+            if (formula === 'hodges') {
+                resultadoQTc.textContent = 'Ingresa FC (lpm) válida para Hodges.';
+            } else if (formula === 'framingham') {
+                resultadoQTc.textContent = 'Ingresa RR (s) válido para Framingham.';
+            } else {
+                const mNecesario = metodo === 'rr' ? 'RR (s)' : 'FC (lpm)';
+                resultadoQTc.textContent = 'Ingresa ' + mNecesario + ' válido para la fórmula seleccionada.';
+            }
+            resultadoQTc.classList.remove('d-none', 'alert-success');
+            resultadoQTc.classList.add('alert-danger');
+            return;
+        }
+
+        const qtcRounded = Math.round(qtcMs);
+        const clasif = clasificarQTc(qtcRounded, sexo);
+        const nombre = formula.charAt(0).toUpperCase() + formula.slice(1);
+        const metodoText = (formula === 'bazett' || formula === 'fridericia') ? (metodo === 'rr' ? 'con RR' : 'con FC→RR') : (formula === 'framingham' ? 'con RR' : 'con FC');
+        resultadoQTc.innerHTML = 'QTc (' + nombre + ', ' + metodoText + '): <strong>' + qtcRounded + ' ms</strong> — ' + clasif + '.<br><span class="small text-muted">Referencias: Normal H ≤ 440 ms; M ≤ 460 ms. Prolongado: H ≥ 450 ms; M ≥ 470 ms. Riesgo alto: ≥ 500 ms.</span>';
+        resultadoQTc.classList.remove('d-none', 'alert-danger');
+        resultadoQTc.classList.add('alert-info');
+    });
+
+    btnLimpiarQTc?.addEventListener('click', () => {
+        ['qtBazettQt', 'qtBazettHr', 'qtBazettRr'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.value = '';
+        });
+        if (qtFormulaSel) qtFormulaSel.value = 'bazett';
+        if (qtSexoSel) qtSexoSel.value = 'hombre';
+        const metodoRR = document.getElementById('qtMetodoRR');
+        if (metodoRR) metodoRR.checked = true;
+        resultadoQTc.textContent = '';
+        resultadoQTc.classList.add('d-none');
+        updateQTFieldsForFormula();
+    });
+    // Cálculo del eje del QRS
+    const btnCalcularEje = document.getElementById('btnCalcularEje');
+    const btnLimpiarEje = document.getElementById('btnLimpiarEje');
+    const resultadoEje = document.getElementById('resultadoEje');
+
+    function clasificarEje(angle) {
+        if (angle >= -30 && angle <= 90) return 'Normal';
+        if (angle < -30 && angle >= -90) return 'Desviación izquierda';
+        if (angle > 90 && angle <= 180) return 'Desviación derecha';
+        if (angle < -90) return 'Eje extremo';
+        return 'Indeterminado';
+    }
+
+    btnCalcularEje?.addEventListener('click', () => {
+        const di = parseFloat(document.getElementById('ejeDI').value);
+        const avf = parseFloat(document.getElementById('ejeAVF').value);
+
+        if (isNaN(di) || isNaN(avf) || (di === 0 && avf === 0)) {
+            resultadoEje.textContent = 'Ingresa valores válidos (DI y aVF no pueden ser ambos 0).';
+            resultadoEje.classList.remove('d-none', 'alert-success');
+            resultadoEje.classList.add('alert-danger');
+            return;
+        }
+
+        let angle = Math.atan2(avf, di) * 180 / Math.PI;
+        if (angle > 180) angle -= 360;
+        if (angle <= -180) angle += 360;
+
+        const angleRounded = Math.round(angle);
+        const clase = clasificarEje(angleRounded);
+
+        resultadoEje.innerHTML = 'Eje QRS aproximado: <strong>' + angleRounded + '°</strong> (' + clase + ').';
+        resultadoEje.classList.remove('d-none', 'alert-danger');
+        resultadoEje.classList.add('alert-info');
+    });
+
+    btnLimpiarEje?.addEventListener('click', () => {
+        const ejeDI = document.getElementById('ejeDI');
+        const ejeAVF = document.getElementById('ejeAVF');
+        if (ejeDI) ejeDI.value = '';
+        if (ejeAVF) ejeAVF.value = '';
+        resultadoEje.textContent = '';
+        resultadoEje.classList.add('d-none');
+    });
+
+    // Activar imágenes preferidas (usa fallback automático si falla la carga)
+    const preferImgs = document.querySelectorAll('#accordionConceptos img.ecg-img[data-prefer-src]');
+    preferImgs.forEach(img => {
+        const prefer = img.dataset.preferSrc;
+        if (!prefer) return;
+        const fallback = img.getAttribute('src');
+        // Intenta cargar directamente la imagen preferida
+        img.src = prefer;
+        img.onerror = () => {
+            // Si falla, regresa al fallback original (SVG)
+            img.onerror = null; // evita bucles
+            if (fallback) img.src = fallback;
+        };
+    });
+
+    // Evaluación de ondas P/QRS/T
+    const btnEvaluarOndas = document.getElementById('btnEvaluarOndas');
+    const btnLimpiarOndas = document.getElementById('btnLimpiarOndas');
+    const resultadoOndas = document.getElementById('resultadoOndas');
+
+    btnEvaluarOndas?.addEventListener('click', () => {
+        const conclusions = [];
+
+        const pPresente = document.getElementById('pPresente')?.checked;
+        const pDuracion = parseFloat(document.getElementById('pDuracion')?.value);
+        const pAmplitud = parseFloat(document.getElementById('pAmplitud')?.value);
+
+        if (!pPresente) conclusions.push('Ausencia de P: considerar ritmo no sinusal.');
+        if (!isNaN(pDuracion) && pDuracion >= 120) conclusions.push('P ancha (≥120 ms): P mitrale / dilatación AI.');
+        if (!isNaN(pAmplitud) && pAmplitud > 2.5) conclusions.push('P alta (>2.5 mm): P pulmonale / dilatación AD.');
+
+        const qrsDuracion = parseFloat(document.getElementById('qrsDuracion')?.value);
+        const rbbb = document.getElementById('rbbb')?.checked;
+        const lbbb = document.getElementById('lbbb')?.checked;
+
+        if (!isNaN(qrsDuracion)) {
+            if (qrsDuracion >= 120) conclusions.push('QRS ancho (≥120 ms): posible bloqueo de rama / ritmo ventricular.');
+            else conclusions.push('QRS estrecho (<120 ms): conducción supraventricular.');
+        }
+        if (rbbb) conclusions.push('Morfología compatible con BRD (RBBB).');
+        if (lbbb) conclusions.push('Morfología compatible con BCRI (LBBB).');
+
+        const tSimetria = document.getElementById('tSimetria')?.value;
+        const tInvertida = document.getElementById('tInvertida')?.checked;
+
+        if (tInvertida) conclusions.push('T invertidas: evaluar isquemia, repolarización secundaria, etc.');
+        if (tSimetria === 'simetrica') conclusions.push('T simétricas: pueden sugerir isquemia aguda o hiperK.');
+
+        if (conclusions.length) {
+            resultadoOndas.textContent = conclusions.join(' ');
+            resultadoOndas.classList.remove('d-none', 'alert-danger');
+            resultadoOndas.classList.add('alert-info');
+        } else {
+            resultadoOndas.textContent = 'Sin hallazgos patológicos evidentes según los valores ingresados.';
+            resultadoOndas.classList.remove('d-none', 'alert-danger');
+            resultadoOndas.classList.add('alert-success');
+        }
+    });
+
+    btnLimpiarOndas?.addEventListener('click', () => {
+        ['pDuracion','pAmplitud','qrsDuracion'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+        ['pPresente','rbbb','lbbb','tInvertida'].forEach(id => { const el = document.getElementById(id); if (el) el.checked = false; });
+        const tPolaridad = document.getElementById('tPolaridad');
+        const tSimetria = document.getElementById('tSimetria');
+        if (tPolaridad) tPolaridad.value = 'positiva';
+        if (tSimetria) tSimetria.value = 'asimetrica';
+        resultadoOndas.textContent = '';
+        resultadoOndas.classList.add('d-none');
+    });
+});
+</script>
+<script src="app.js"></script>
+</body>
+</html>

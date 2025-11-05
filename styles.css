@@ -1,0 +1,233 @@
+:root {
+  --ao-bg: #f9fafb;
+  --ao-surface: #ffffff;
+  --ao-primary: #710C04;          /* red blood */
+  --ao-primary-600: #5a0a03;
+  --ao-accent: #B21F13;
+  --ao-text: #1f2937;
+  --ao-muted: #6b7280;
+  --ao-border: #e4d2cf;
+  --ao-shadow: 0 10px 28px rgba(113,12,4,0.18);
+  --ao-shadow-strong: 0 16px 40px rgba(113,12,4,0.26);
+  --ao-inner: inset 0 1px 0 rgba(255,255,255,0.6), inset 0 -1px 0 rgba(113,12,4,0.08);
+  --ao-radius: 16px;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: var(--ao-bg);
+  color: var(--ao-text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  line-height: 1.6;
+}
+
+/* Topbar inspirado (no literal) */
+.navbar.ao-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  background: #ffffff; /* remove heavy blur for performance */
+  border: 1px solid var(--ao-primary);
+  border-radius: 12px;
+  margin: 12px 16px;
+  box-shadow: var(--ao-shadow);
+}
+.navbar.ao-topbar .navbar-brand {
+  color: var(--ao-primary);
+  text-shadow: 0 1px 0 rgba(0,0,0,0.06);
+}
+.navbar.ao-topbar .nav-link {
+  color: #374151;
+}
+.navbar.ao-topbar .nav-link:hover {
+  color: var(--ao-primary);
+  transform: translateY(-1px);
+}
+.navbar.ao-topbar .nav-link { transition: color .12s ease, transform .12s ease; }
+
+/* Hero */
+.ao-hero {
+  background: linear-gradient(135deg, rgba(113,12,4,0.10), rgba(178,31,19,0.10));
+  border: 1px solid var(--ao-primary);
+  border-radius: var(--ao-radius);
+  padding: 32px 24px;
+  box-shadow: var(--ao-shadow);
+}
+.ao-hero-title {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.ao-hero-subtitle {
+  color: var(--ao-muted);
+}
+
+/* Contenido principal */
+.ao-content {
+  margin-top: 24px;
+}
+
+/* Tarjetas unificadas */
+.card.ao-card {
+  background: #ffffff;
+  border: 1px solid var(--ao-primary);
+  border-radius: var(--ao-radius);
+  box-shadow: var(--ao-shadow);
+}
+.card.ao-card:hover {
+  box-shadow: var(--ao-shadow);
+  transform: none;
+}
+
+/* Imágenes de catálogo de patrones */
+.ecg-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.ecg-fig figcaption { color: var(--ao-muted); }
+
+/* Cabecera de tarjeta más consistente */
+.card.ao-card .card-header {
+  background: linear-gradient(180deg, rgba(113,12,4,0.06), rgba(113,12,4,0.02));
+  border-bottom: 1px solid var(--ao-primary);
+  font-weight: 600;
+}
+
+/* Botones */
+.btn-primary {
+  background: linear-gradient(180deg, var(--ao-primary), var(--ao-primary-600));
+  border-color: var(--ao-primary-600);
+  border-radius: 999px;
+  padding: 10px 18px;
+  box-shadow: 0 6px 14px rgba(113,12,4,0.25);
+  transition: transform .08s ease, box-shadow .08s ease;
+}
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 18px rgba(113,12,4,0.28);
+}
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(113,12,4,0.22);
+}
+.btn-outline-secondary {
+  border-color: var(--ao-primary);
+  color: var(--ao-primary);
+  border-radius: 999px;
+  padding: 10px 18px;
+}
+.btn-outline-secondary:hover { background: var(--ao-primary); color: #fff; }
+
+/* Formularios */
+.form-control, .form-select {
+  border-radius: 12px;
+  border: 1px solid var(--ao-primary);
+  box-shadow: var(--ao-inner);
+}
+.form-control:focus, .form-select:focus {
+  border-color: var(--ao-primary);
+  box-shadow: 0 0 0 0.22rem rgba(113,12,4,0.22);
+}
+.form-check-input:checked {
+  background-color: var(--ao-primary);
+  border-color: var(--ao-primary);
+}
+/* remove bump animation for performance */
+
+/* Accordion */
+.accordion {
+  --bs-accordion-border-color: var(--ao-primary);
+  --bs-accordion-border-radius: var(--ao-radius);
+  --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(113,12,4,0.18);
+  --bs-accordion-btn-icon-transform: rotate(0deg);
+}
+.accordion-button {
+  border-radius: 12px !important;
+}
+.accordion-item {
+  border: 1px solid var(--ao-primary);
+  border-radius: var(--ao-radius);
+  box-shadow: var(--ao-shadow);
+  margin-bottom: 12px;
+}
+.accordion-button:not(.collapsed) { color: var(--ao-primary); background-color: rgba(113,12,4,0.06); }
+.accordion .collapsing { transition: height .12s ease !important; }
+
+/* Alerts */
+.alert { border-radius: 12px; border: 1px solid var(--ao-primary); }
+
+/* Utilidades */
+.rounded-ao { border-radius: var(--ao-radius); }
+.shadow-ao { box-shadow: var(--ao-shadow); }
+
+/* Visibilizar imágenes en el módulo de conceptos (se replica estilo de Comparación) */
+/* Ajuste de relación de aspecto 4:3 solo para el módulo de Conceptos */
+#accordionConceptos img.ecg-img {
+  width: 100%;
+  height: auto !important; /* sobreescribe altura fija general */
+  aspect-ratio: 4 / 3;
+  object-fit: contain; /* muestra el contenido completo dentro del 4:3 */
+}
+/* Eliminado override específico: todas las imágenes en Conceptos usan 4:3 */
+
+/* Ajuste de imágenes en módulo Comparación de Patrones: respetar tamaño natural */
+#accordionComparacion img.ecg-img {
+  width: 100%;
+  height: auto !important; /* evita recorte por altura fija */
+  object-fit: contain;      /* muestra la imagen completa */
+  aspect-ratio: auto;       /* usa la relación de aspecto intrínseca */
+}
+
+/* Animaciones sutiles en select y checkbox */
+.form-select, .form-check-input { transition: box-shadow .12s ease, transform .08s ease; }
+
+/* Outline primary al tema rojo */
+.btn-outline-primary {
+  border-color: var(--ao-primary);
+  color: var(--ao-primary);
+}
+.btn-outline-primary:hover {
+  background: var(--ao-primary);
+  color: #fff;
+  border-color: var(--ao-primary);
+}
+
+/* Pulse animation disabled by default for performance */
+.pulse { animation: none; }
+
+/* Prefer reduced motion: turn off transitions/animations */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+/* Chat widget: botón y panel */
+.chat-widget-toggle {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 1050;
+  background: var(--ao-primary);
+  color: #fff;
+  border: 1px solid var(--ao-primary);
+  border-radius: 999px;
+  padding: 10px 14px;
+  box-shadow: var(--ao-shadow);
+}
+.chat-widget-panel {
+  position: fixed;
+  right: 16px;
+  bottom: 72px;
+  width: 380px;
+  height: 560px;
+  z-index: 1050;
+  background: #fff;
+  border: 1px solid var(--ao-primary);
+  border-radius: 12px;
+  box-shadow: var(--ao-shadow);
+  display: none;
+}
+.chat-widget-panel.open { display: block; }
+.chat-widget-panel iframe { width: 100%; height: 100%; border: 0; border-radius: 12px; }

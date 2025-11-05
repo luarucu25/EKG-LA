@@ -1,0 +1,19 @@
+<svg width="420" height="300" viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="420" height="300" fill="#f8f9fa"/>
+  <text x="210" y="22" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#333">Onda T</text>
+  
+  <g stroke="#2196f3" stroke-width="3" fill="none" transform="translate(40,80)">
+    <!-- T normal (positiva) -->
+    <path d="M0 50 Q30 15 60 50"/>
+    <text x="30" y="70" text-anchor="middle" font-family="Arial" font-size="12" fill="#333">Normal</text>
+    
+    <!-- T invertida -->
+    <path d="M100 50 Q130 85 160 50"/>
+    <text x="130" y="70" text-anchor="middle" font-family="Arial" font-size="12" fill="#333">Invertida</text>
+  </g>
+  
+  <g transform="translate(30,200)" font-family="Arial" font-size="12" fill="#333">
+    <text x="0" y="0">Normal: positiva en DI, DII, V3–V6; asimétrica.</text>
+    <text x="0" y="18">Inversiones: isquemia, alteraciones electrolíticas, fármacos u otras causas.</text>
+  </g>
+</svg>

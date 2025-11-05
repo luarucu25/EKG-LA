@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EKGGo — Comparación de Patrones</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg ao-topbar">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="index.html">EKGGo</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarComparacion"
+                aria-controls="navbarComparacion" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navbarComparacion" class="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="conceptos-basicos.html">Conceptos Básicos</a></li>
+                <li class="nav-item"><a class="nav-link" href="lectura-guiada.html">Lectura Guiada</a></li>
+                <li class="nav-item"><a class="nav-link active" href="comparacion-patrones.html">Comparación de Patrones</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<main class="container my-4">
+    <section class="ao-hero mb-4">
+        <h1 class="ao-hero-title display-6">Patrones Electrocardiográficos Comunes</h1>
+        <p class="ao-hero-subtitle lead">Catálogo con ejemplos visuales, criterios y breve descripción clínica.</p>
+    </section>
+
+    <section class="ao-content">
+        <div class="accordion" id="accordionComparacion">
+        <!-- 1. Fibrilación auricular (FA) -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingPatron1">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePatron1" aria-expanded="true" aria-controls="collapsePatron1">1. Fibrilación auricular (FA)</button>
+            </h2>
+            <div id="collapsePatron1" class="accordion-collapse collapse show" aria-labelledby="headingPatron1" data-bs-parent="#accordionComparacion">
+                <div class="accordion-body p-0">
+                    <div class="card ao-card mb-4">
+                        <div class="card-body">
+                <p class="mb-1"><strong>Descripción clínica:</strong> Arritmia sostenida con riesgo de eventos tromboembólicos; valorar anticoagulación.</p>
+                <p class="mb-2"><strong>Criterios clave:</strong></p>
+                <ul>
+                    <li>Ondas P ausentes; línea de base fibrilatoria ondulada.</li>
+                    <li>Ritmo irregularmente irregular (intervalos RR variables).</li>
+                    <li>Frecuencia ventricular variable (puede ser lenta, normal o rápida).</li>
+                </ul>
+                <div class="row g-3 mt-2">
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/ecg-ciclo-usq.png" data-prefer-src="img/fa-limb-leads.jpg" alt="Fibrilación auricular — derivaciones de miembros (I, II, III, aVR, aVL, aVF)">
+                        </figure>
+                    </div>
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/derivaciones-v1-v6.svg" data-prefer-src="img/fa-12-lead.jpg" alt="Fibrilación auricular — ECG de 12 derivaciones">
+                        </figure>
+                    </div>
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/ondas-qrs-visual.svg" data-prefer-src="img/fa-monitor.jpg" alt="Fibrilación auricular — monitor cardíaco">
+                        </figure>
+                    </div>
+                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Flutter auricular -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingPatron2">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePatron2" aria-expanded="false" aria-controls="collapsePatron2">2. Flutter auricular</button>
+            </h2>
+            <div id="collapsePatron2" class="accordion-collapse collapse" aria-labelledby="headingPatron2" data-bs-parent="#accordionComparacion">
+                <div class="accordion-body p-0">
+                    <div class="card ao-card mb-4">
+                        <div class="card-body">
+                <p class="mb-1"><strong>Descripción clínica:</strong> Arritmia macroreentrante auricular; puede requerir cardioversión o ablación.</p>
+                <p class="mb-2"><strong>Criterios clave:</strong></p>
+                <ul>
+                    <li>Ondas “en dientes de sierra” (ondas F), mejor en derivaciones II, III, aVF o V1.</li>
+                    <li>Frecuencia auricular típica ~250–350 lpm.</li>
+                    <li>Conducción AV frecuente 2:1 (ritmo ventricular puede ser regular) o variable.</li>
+                </ul>
+                <div class="row g-3 mt-2">
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/ecg-ciclo-usq.png" data-prefer-src="img/flutter-limb-leads.jpg" alt="Flutter auricular — derivaciones de miembros">
+                        </figure>
+                    </div>
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/derivaciones-v1-v6.svg" data-prefer-src="img/flutter-12-lead.jpg" alt="Flutter auricular — ECG de 12 derivaciones">
+                        </figure>
+                    </div>
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/ondas-qrs-visual.svg" data-prefer-src="img/flutter-monitor.jpg" alt="Flutter auricular — monitor">
+                        </figure>
+                    </div>
+                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Taquicardia supraventricular (TSV) -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingPatron3">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePatron3" aria-expanded="false" aria-controls="collapsePatron3">3. Taquicardia supraventricular (TSV)</button>
+            </h2>
+            <div id="collapsePatron3" class="accordion-collapse collapse" aria-labelledby="headingPatron3" data-bs-parent="#accordionComparacion">
+                <div class="accordion-body p-0">
+                    <div class="card ao-card mb-4">
+                        <div class="card-body">
+                <p class="mb-1"><strong>Descripción clínica:</strong> Reentradas AV/AVN; puede responder a maniobras vagales o adenosina.</p>
+                <p class="mb-2"><strong>Criterios clave:</strong></p>
+                <ul>
+                    <li>QRS estrecho (&lt;120 ms) si no hay aberrancia.</li>
+                    <li>Inicio y terminación súbitos (paroxística).</li>
+                    <li>Onda P puede estar oculta o retrógrada; ritmo regular; frecuencia alta (&gt;150 lpm).</li>
+                </ul>
+                <div class="row g-3 mt-2">
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/ecg-ciclo-usq.png" data-prefer-src="img/tsv-limb-leads.jpg" alt="Taquicardia supraventricular — derivaciones de miembros">
+                        </figure>
+                    </div>
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/derivaciones-v1-v6.svg" data-prefer-src="img/tsv-12-lead.jpg" alt="Taquicardia supraventricular — ECG de 12 derivaciones">
+                        </figure>
+                    </div>
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/ondas-qrs-visual.svg" data-prefer-src="img/tsv-monitor.jpg" alt="Taquicardia supraventricular — monitor">
+                        </figure>
+                    </div>
+                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Taquicardia ventricular (TV) -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingPatron4">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePatron4" aria-expanded="false" aria-controls="collapsePatron4">4. Taquicardia ventricular (TV)</button>
+            </h2>
+            <div id="collapsePatron4" class="accordion-collapse collapse" aria-labelledby="headingPatron4" data-bs-parent="#accordionComparacion">
+                <div class="accordion-body p-0">
+                    <div class="card ao-card mb-4">
+                        <div class="card-body">
+                <p class="mb-1"><strong>Descripción clínica:</strong> Origen ventricular; puede comprometer hemodinámica; atención urgente.</p>
+                <p class="mb-2"><strong>Criterios clave:</strong></p>
+                <ul>
+                    <li>QRS ancho (&gt;120 ms) y morfología monomórfica (si regular) o polimórfica.</li>
+                    <li>Generalmente ritmo regular y sin ondas P claramente relacionadas con cada QRS.</li>
+                    <li>Es sostenida si &gt;30 s (urgencia si hemodinámicamente inestable).</li>
+                </ul>
+                <div class="row g-3 mt-2">
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/ecg-ciclo-usq.png" data-prefer-src="img/tv-limb-leads.jpg" alt="Taquicardia ventricular — derivaciones de miembros">
+                        </figure>
+                    </div>
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/derivaciones-v1-v6.svg" data-prefer-src="img/tv-12-lead.jpg" alt="Taquicardia ventricular — ECG de 12 derivaciones">
+                        </figure>
+                    </div>
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/ondas-qrs-visual.svg" data-prefer-src="img/tv-monitor.jpg" alt="Taquicardia ventricular — monitor">
+                        </figure>
+                    </div>
+                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Fibrilación ventricular (FV) -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingPatron5">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePatron5" aria-expanded="false" aria-controls="collapsePatron5">5. Fibrilación ventricular (FV)</button>
+            </h2>
+            <div id="collapsePatron5" class="accordion-collapse collapse" aria-labelledby="headingPatron5" data-bs-parent="#accordionComparacion">
+                <div class="accordion-body p-0">
+                    <div class="card ao-card mb-4">
+                        <div class="card-body">
+                <p class="mb-1"><strong>Descripción clínica:</strong> Paro cardiaco; requiere desfibrilación inmediata.</p>
+                <p class="mb-2"><strong>Criterios clave:</strong></p>
+                <ul>
+                    <li>Sin complejos QRS definidos; actividad eléctrica caótica.</li>
+                    <li>Apariencia de “ruido” o trazado desorganizado.</li>
+                    <li>Emergencia vital: requiere RCP y desfibrilación.</li>
+                </ul>
+                <div class="row g-3 mt-2">
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/ecg-ciclo-usq.png" data-prefer-src="img/fv-limb-leads.jpg" alt="Fibrilación ventricular — derivaciones de miembros">
+                        </figure>
+                    </div>
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/derivaciones-v1-v6.svg" data-prefer-src="img/fv-12-lead.jpg" alt="Fibrilación ventricular — ECG de 12 derivaciones">
+                        </figure>
+                    </div>
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/ondas-qrs-visual.svg" data-prefer-src="img/fv-monitor.jpg" alt="Fibrilación ventricular — monitor">
+                        </figure>
+                    </div>
+                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. Bloqueo AV de primer grado -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingPatron6">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePatron6" aria-expanded="false" aria-controls="collapsePatron6">6. Bloqueo AV de primer grado</button>
+            </h2>
+            <div id="collapsePatron6" class="accordion-collapse collapse" aria-labelledby="headingPatron6" data-bs-parent="#accordionComparacion">
+                <div class="accordion-body p-0">
+                    <div class="card ao-card mb-4">
+                        <div class="card-body">
+                <p class="mb-1"><strong>Descripción clínica:</strong> Conducción AV enlentecida; suele ser benigno.</p>
+                <p class="mb-2"><strong>Criterios clave:</strong></p>
+                <ul>
+                    <li>Intervalo PR &gt; 200 ms.</li>
+                    <li>Cada onda P conduce a QRS (1:1).</li>
+                    <li>Suele ser asintomático, vigilar si hay otros cambios.</li>
+                </ul>
+                <div class="row g-3 mt-2">
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/ecg-ciclo-usq.png" data-prefer-src="img/bav1-limb-leads.jpg" alt="Bloqueo AV de primer grado — derivaciones de miembros">
+                        </figure>
+                    </div>
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/derivaciones-v1-v6.svg" data-prefer-src="img/bav1-12-lead.jpg" alt="Bloqueo AV de primer grado — ECG de 12 derivaciones">
+                        </figure>
+                    </div>
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/ondas-qrs-visual.svg" data-prefer-src="img/bav1-monitor.jpg" alt="Bloqueo AV de primer grado — monitor">
+                        </figure>
+                    </div>
+                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. Bloqueo AV de segundo grado — Mobitz I (Wenckebach) -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingPatron7">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePatron7" aria-expanded="false" aria-controls="collapsePatron7">7. Bloqueo AV de segundo grado — Mobitz I (Wenckebach)</button>
+            </h2>
+            <div id="collapsePatron7" class="accordion-collapse collapse" aria-labelledby="headingPatron7" data-bs-parent="#accordionComparacion">
+                <div class="accordion-body p-0">
+                    <div class="card ao-card mb-4">
+                        <div class="card-body">
+                <p class="mb-1"><strong>Descripción clínica:</strong> Conducción AV con alargamiento progresivo del PR; suele ser benigno.</p>
+                <p class="mb-2"><strong>Criterios clave:</strong></p>
+                <ul>
+                    <li>PR se prolonga progresivamente hasta que una P deja de conducir (cae QRS).</li>
+                    <li>Patrón cíclico repetitivo.</li>
+                    <li>QRS habitualmente estrecho; generalmente benigno.</li>
+                </ul>
+                <div class="row g-3 mt-2">
+                    <div class="col-md-6">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/ecg-ciclo-usq.png" data-prefer-src-list="img/mobitz1-limb-leads.png,img/mobitz1-limb-leads.PNG,img/mobitz1-limb-leads.jpg" alt="Bloqueo AV de segundo grado Mobitz I — derivaciones de miembros">
+                        </figure>
+                    </div>
+                    <div class="col-md-6">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/derivaciones-v1-v6.svg" data-prefer-src-list="img/mobitz1-12-lead.png,img/mobitz1-12-lead.PNG,img/mobitz1-12-lead.jpg" alt="Bloqueo AV de segundo grado Mobitz I — ECG de 12 derivaciones">
+                        </figure>
+                    </div>
+                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8. Bloqueo AV de segundo grado — Mobitz II -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingPatron8">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePatron8" aria-expanded="false" aria-controls="collapsePatron8">8. Bloqueo AV de segundo grado — Mobitz II</button>
+            </h2>
+            <div id="collapsePatron8" class="accordion-collapse collapse" aria-labelledby="headingPatron8" data-bs-parent="#accordionComparacion">
+                <div class="accordion-body p-0">
+                    <div class="card ao-card mb-4">
+                        <div class="card-body">
+                <p class="mb-1"><strong>Descripción clínica:</strong> Conducción AV intermitente; mayor riesgo de progresión a bloqueo completo.</p>
+                <p class="mb-2"><strong>Criterios clave:</strong></p>
+                <ul>
+                    <li>PR constante, pero hay ondas P que no conducen (caen QRS).</li>
+                    <li>Mayor riesgo de progresar a bloqueo completo; con frecuencia requiere marcapasos.</li>
+                </ul>
+                <div class="row g-3 mt-2">
+                    <div class="col-md-6">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/ecg-ciclo-usq.png" data-prefer-src-list="img/mobitz2-limb-leads.png,img/mobitz2-limb-leads.jpg,img/mobitz2-limb-leads.PNG,img/mobitz1-limb-leads.png,img/mobitz1-limb-leads.jpg,img/mobitz1-limb-leads.PNG" alt="Bloqueo AV de segundo grado Mobitz II — derivaciones de miembros">
+                        </figure>
+                    </div>
+                    <div class="col-md-6">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/derivaciones-v1-v6.svg" data-prefer-src-list="img/mobitz2-12-lead.png,img/mobitz2-12-lead.jpg,img/mobitz2-12-lead.PNG,img/mobitz1-12-lead.png,img/mobitz1-12-lead.jpg,img/mobitz1-12-lead.PNG" alt="Bloqueo AV de segundo grado Mobitz II — ECG de 12 derivaciones">
+                        </figure>
+                    </div>
+                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 9. Bloqueo AV completo (3er grado) -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingPatron9">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePatron9" aria-expanded="false" aria-controls="collapsePatron9">9. Bloqueo AV completo (3er grado)</button>
+            </h2>
+            <div id="collapsePatron9" class="accordion-collapse collapse" aria-labelledby="headingPatron9" data-bs-parent="#accordionComparacion">
+                <div class="accordion-body p-0">
+                    <div class="card ao-card mb-4">
+                        <div class="card-body">
+                <p class="mb-1"><strong>Descripción clínica:</strong> Disociación AV con ritmo de escape; frecuentemente requiere marcapasos.</p>
+                <p class="mb-2"><strong>Criterios clave:</strong></p>
+                <ul>
+                    <li>Disociación aurículo-ventricular: P y QRS sin relación.</li>
+                    <li>Ritmo de escape (nodal o ventricular) lento (p. ej. 20–60 lpm).</li>
+                    <li>Implica apoyo hemodinámico y generalmente marcapasos definitivo.</li>
+                </ul>
+                <div class="row g-3 mt-2">
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/ecg-ciclo-usq.png" data-prefer-src-list="img/bav3-limb-leads.png,img/bav3-limb-leads.jpg,img/bav3-limb-leads.PNG" alt="Bloqueo AV completo — derivaciones de miembros">
+                        </figure>
+                    </div>
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/derivaciones-v1-v6.svg" data-prefer-src-list="img/bav3-12-lead.png,img/bav3-12-lead.jpg,img/bav3-12-lead.PNG" alt="Bloqueo AV completo — ECG de 12 derivaciones">
+                        </figure>
+                    </div>
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/ondas-qrs-visual.svg" data-prefer-src-list="img/bav3-monitor.png,img/bav3-monitor.jpg,img/bav3-monitor.PNG" alt="Bloqueo AV completo — monitor">
+                        </figure>
+                    </div>
+                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 10. Bloqueo de rama derecha (BRD) -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingPatron10">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePatron10" aria-expanded="false" aria-controls="collapsePatron10">10. Bloqueo de rama derecha (BRD)</button>
+            </h2>
+            <div id="collapsePatron10" class="accordion-collapse collapse" aria-labelledby="headingPatron10" data-bs-parent="#accordionComparacion">
+                <div class="accordion-body p-0">
+                    <div class="card ao-card mb-4">
+                        <div class="card-body">
+                <p class="mb-1"><strong>Descripción clínica:</strong> Puede ser hallazgo benigno o asociarse a otras patologías.</p>
+                <p class="mb-2"><strong>Criterios clave:</strong></p>
+                <ul>
+                    <li>QRS ≥ 120 ms; patrón rSR' en V1–V2 (R’ terminal).</li>
+                    <li>Onda S ancha en derivaciones laterales (I, V6).</li>
+                    <li>Puede ser idiopático o asociado a enfermedad pulmonar/ECG crónico.</li>
+                </ul>
+                <div class="row g-3 mt-2">
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/ecg-ciclo-usq.png" data-prefer-src="img/brd-limb-leads.jpg" alt="Bloqueo de rama derecha — derivaciones de miembros">
+                        </figure>
+                    </div>
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/derivaciones-v1-v6.svg" data-prefer-src="img/brd-12-lead.jpg" alt="Bloqueo de rama derecha — ECG de 12 derivaciones">
+                        </figure>
+                    </div>
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/ondas-qrs-visual.svg" data-prefer-src="img/brd-monitor.jpg" alt="Bloqueo de rama derecha — monitor">
+                        </figure>
+                    </div>
+                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 11. Bloqueo de rama izquierda (BRI) — criterios actualizados y prácticos -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingPatron11">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePatron11" aria-expanded="false" aria-controls="collapsePatron11">11. Bloqueo de rama izquierda (BRI) — criterios actualizados y prácticos</button>
+            </h2>
+            <div id="collapsePatron11" class="accordion-collapse collapse" aria-labelledby="headingPatron11" data-bs-parent="#accordionComparacion">
+                <div class="accordion-body p-0">
+                    <div class="card ao-card mb-4">
+                        <div class="card-body">
+                <p class="mb-1"><strong>Descripción clínica:</strong> Interfiere con diagnóstico de isquemia; puede sugerir enfermedad estructural.</p>
+                <p class="mb-2"><strong>Criterios clave:</strong></p>
+                <ul>
+                    <li>Morfología clásica: R ancha y empastada en V5–V6, ausencia de q en I/V6, y S profunda/ausente en V1–V2.</li>
+                    <li>QRS: tradicionalmente ≥120 ms; estudios recientes muestran que QRS suele ser mayor en hombres y que en mujeres pueden observarse BRI auténticos con QRS algo menor → por tanto considere umbrales interpretativos (p. ej. sospechar LBBB verdadero con QRS ≥120 ms en hombres y tener menor umbral de sospecha en mujeres, evaluar morfología y criterios adicionales).</li>
+                    <li>Criterio complementario práctico: Time-to-notch (tiempo desde inicio del QRS hasta la primera muesca en derivación I) &gt; 75 ms apoya BRI verdadero (mejora especificidad frente a retraso intraventricular).</li>
+                    <li>Onda T en derivaciones laterales suele estar opuesta al QRS (inversión) por desincronía.</li>
+                </ul>
+                <div class="row g-3 mt-2">
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/ecg-ciclo-usq.png" data-prefer-src="img/bri-limb-leads.jpg" alt="Bloqueo de rama izquierda — derivaciones de miembros">
+                        </figure>
+                    </div>
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/derivaciones-v1-v6.svg" data-prefer-src="img/bri-12-lead.jpg" alt="Bloqueo de rama izquierda — ECG de 12 derivaciones">
+                        </figure>
+                    </div>
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/ondas-qrs-visual.svg" data-prefer-src="img/bri-monitor.jpg" alt="Bloqueo de rama izquierda — monitor">
+                        </figure>
+                    </div>
+                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 12. Infarto agudo de miocardio con elevación del ST (STEMI) -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingPatron12">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePatron12" aria-expanded="false" aria-controls="collapsePatron12">12. Infarto agudo de miocardio con elevación del ST (STEMI)</button>
+            </h2>
+            <div id="collapsePatron12" class="accordion-collapse collapse" aria-labelledby="headingPatron12" data-bs-parent="#accordionComparacion">
+                <div class="accordion-body p-0">
+                    <div class="card ao-card mb-4">
+                        <div class="card-body">
+                <p class="mb-1"><strong>Descripción clínica:</strong> Oclusión coronaria aguda; requiere reperfusión urgente.</p>
+                <p class="mb-2"><strong>Criterios clave:</strong></p>
+                <ul>
+                    <li>Elevación del ST ≥ 1 mm en dos derivaciones contiguas (o ≥2 mm en precordiales, según sitio).</li>
+                    <li>Aparición de ondas Q patológicas con el tiempo.</li>
+                    <li>Cambios regionales correspondientes a territorios coronarios (p. ej. V1–V4 → anterior).</li>
+                </ul>
+                <div class="row g-3 mt-2">
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/ecg-ciclo-usq.png" data-prefer-src="img/stemi-limb-leads.jpg" alt="STEMI — derivaciones de miembros">
+                        </figure>
+                    </div>
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/derivaciones-v1-v6.svg" data-prefer-src="img/stemi-12-lead.jpg" alt="STEMI — ECG de 12 derivaciones">
+                        </figure>
+                    </div>
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/ondas-qrs-visual.svg" data-prefer-src="img/stemi-monitor.jpg" alt="STEMI — monitor">
+                        </figure>
+                    </div>
+                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 13. Isquemia subendocárdica / NSTEMI (descenso ST / inversión de T) -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingPatron13">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePatron13" aria-expanded="false" aria-controls="collapsePatron13">13. Isquemia subendocárdica / NSTEMI (descenso ST / inversión de T)</button>
+            </h2>
+            <div id="collapsePatron13" class="accordion-collapse collapse" aria-labelledby="headingPatron13" data-bs-parent="#accordionComparacion">
+                <div class="accordion-body p-0">
+                    <div class="card ao-card mb-4">
+                        <div class="card-body">
+                <p class="mb-1"><strong>Descripción clínica:</strong> Isquemia sin elevación del ST; manejo según estratificación de riesgo.</p>
+                <p class="mb-2"><strong>Criterios clave:</strong></p>
+                <ul>
+                    <li>Depresión del ST o inversión de onda T en derivaciones relacionadas.</li>
+                    <li>Cambios dinámicos (comparar con ECG previos).</li>
+                    <li>Suele asociarse a lesión subendocárdica o isquemia reversible.</li>
+                </ul>
+                <div class="row g-3 mt-2">
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/ecg-ciclo-usq.png" data-prefer-src="img/nstemi-limb-leads.jpg" alt="NSTEMI — derivaciones de miembros">
+                        </figure>
+                    </div>
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/derivaciones-v1-v6.svg" data-prefer-src="img/nstemi-12-lead.jpg" alt="NSTEMI — ECG de 12 derivaciones">
+                        </figure>
+                    </div>
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/ondas-qrs-visual.svg" data-prefer-src-list="img/nstemi-monitor.gif,img/nstemi-monitor.jpg,img/nstemi-monitor.png" alt="NSTEMI — monitor">
+                        </figure>
+                    </div>
+                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 14. Hipertrofia ventricular izquierda (HVI) -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingPatron14">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePatron14" aria-expanded="false" aria-controls="collapsePatron14">14. Hipertrofia ventricular izquierda (HVI)</button>
+            </h2>
+            <div id="collapsePatron14" class="accordion-collapse collapse" aria-labelledby="headingPatron14" data-bs-parent="#accordionComparacion">
+                <div class="accordion-body p-0">
+                    <div class="card ao-card mb-4">
+                        <div class="card-body">
+                <p class="mb-1"><strong>Descripción clínica:</strong> Sobrecarga de presión; común en hipertensión arterial.</p>
+                <p class="mb-2"><strong>Criterios clave:</strong></p>
+                <ul>
+                    <li>Voltajes elevados: S(V1) + R(V5/V6) &gt; 35 mm (criterio Sokolow-Lyon) o criterios de Cornell.</li>
+                    <li>Eje puede desviarse a la izquierda; cambios de repolarización (ST-T en derivaciones laterales).</li>
+                    <li>Evaluar en contexto clínico (hipertensión, valvulopatía, etc.).</li>
+                </ul>
+                <div class="row g-3 mt-2">
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/ecg-ciclo-usq.png" data-prefer-src="img/hvi-limb-leads.jpg" alt="Hipertrofia ventricular izquierda — derivaciones de miembros">
+                        </figure>
+                    </div>
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/derivaciones-v1-v6.svg" data-prefer-src="img/hvi-12-lead.jpg" alt="Hipertrofia ventricular izquierda — ECG de 12 derivaciones">
+                        </figure>
+                    </div>
+                    <div class="col-md-4">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/ondas-qrs-visual.svg" data-prefer-src="img/hvi-monitor.jpg" alt="Hipertrofia ventricular izquierda — monitor">
+                        </figure>
+                    </div>
+                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 15. Alteraciones electrolíticas: Hiperkalemia e Hipokalemia -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingPatron15">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePatron15" aria-expanded="false" aria-controls="collapsePatron15">15. Alteraciones electrolíticas: Hiperkalemia e Hipokalemia</button>
+            </h2>
+            <div id="collapsePatron15" class="accordion-collapse collapse" aria-labelledby="headingPatron15" data-bs-parent="#accordionComparacion">
+                <div class="accordion-body p-0">
+                    <div class="card ao-card mb-4">
+                        <div class="card-body">
+                <p class="mb-1"><strong>Descripción clínica:</strong> Alteraciones electrolíticas con impacto en conducción y repolarización.</p>
+                <p class="mb-2"><strong>Criterios clave:</strong></p>
+                <ul>
+                    <li>Hiperkalemia: ondas T picudas y altas al inicio, luego PR prolongado y QRS ensanchado si empeora; riesgo de arritmias graves.</li>
+                    <li>Hipokalemia: T aplanada, onda U prominente, ST deprimido; predisposición a arritmias ventriculares.</li>
+                </ul>
+                <div class="row g-3 mt-2">
+                    <div class="col-md-6">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/ecg-ciclo-usq.png" data-prefer-src-list="img/hiperkalemia-1.jpg,img/hiperkalemia.jpg,img/hiperkalemia-12-lead.jpg" alt="Hiperkalemia — ondas T picudas, QRS puede ensancharse">
+                            <figcaption class="small text-muted mt-1">Hiperkalemia — T picudas, cambios progresivos con niveles altos.</figcaption>
+                        </figure>
+                    </div>
+                    <div class="col-md-6">
+                        <figure class="mb-0 ecg-fig">
+                            <img class="img-fluid rounded border ecg-img" src="img/derivaciones-v1-v6.svg" data-prefer-src-list="img/hipokalemia-1.jpg,img/hipokalemia.jpg,img/hipokalemia-12-lead.jpg" alt="Hipokalemia — T aplanada, onda U prominente, ST descendido">
+                            <figcaption class="small text-muted mt-1">Hipokalemia — T aplanada y onda U prominente.</figcaption>
+                        </figure>
+                    </div>
+                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    </section>
+</main>
+
+<footer class="container my-5">
+    <div class="text-center text-muted small">
+        Contenido educativo — No sustituye evaluación clínica. Autor: Dr. Luis Ángel Rueda Cuervo.
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="app.js"></script>
+<script>
+// Activar imágenes preferidas en Comparación de Patrones (soporta lista de candidatos y un solo src)
+document.addEventListener('DOMContentLoaded', () => {
+  const allImgs = document.querySelectorAll('#accordionComparacion img.ecg-img');
+  allImgs.forEach(img => {
+    const fallback = img.getAttribute('src');
+    const listAttr = img.getAttribute('data-prefer-src-list');
+    const singleAttr = img.getAttribute('data-prefer-src');
+    let candidates = [];
+    if (listAttr) {
+      candidates = listAttr.split(',').map(s => s.trim()).filter(Boolean);
+    } else if (singleAttr) {
+      candidates = [singleAttr];
+    }
+    if (!candidates.length) return;
+
+    let index = 0;
+    const tryNext = () => {
+      if (index >= candidates.length) {
+        if (fallback) img.src = fallback;
+        return;
+      }
+      const url = candidates[index++];
+      const probe = new Image();
+      probe.onload = () => { img.src = url; };
+      probe.onerror = tryNext;
+      probe.src = url;
+    };
+    tryNext();
+  });
+});
+</script>
+</body>
+</html>

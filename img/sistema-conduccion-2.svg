@@ -1,0 +1,93 @@
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo -->
+  <rect width="400" height="300" fill="#f8f9fa"/>
+  
+  <!-- Título -->
+  <text x="200" y="25" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#333">
+    Secuencia de Activación
+  </text>
+  
+  <!-- Línea de tiempo -->
+  <line x1="50" y1="60" x2="350" y2="60" stroke="#666" stroke-width="2"/>
+  
+  <!-- Marcadores de tiempo -->
+  <g font-family="Arial" font-size="10" fill="#666">
+    <line x1="50" y1="55" x2="50" y2="65" stroke="#666" stroke-width="1"/>
+    <text x="50" y="50" text-anchor="middle">0 ms</text>
+    
+    <line x1="120" y1="55" x2="120" y2="65" stroke="#666" stroke-width="1"/>
+    <text x="120" y="50" text-anchor="middle">50 ms</text>
+    
+    <line x1="200" y1="55" x2="200" y2="65" stroke="#666" stroke-width="1"/>
+    <text x="200" y="50" text-anchor="middle">120 ms</text>
+    
+    <line x1="280" y1="55" x2="280" y2="65" stroke="#666" stroke-width="1"/>
+    <text x="280" y="50" text-anchor="middle">200 ms</text>
+    
+    <line x1="350" y1="55" x2="350" y2="65" stroke="#666" stroke-width="1"/>
+    <text x="350" y="50" text-anchor="middle">280 ms</text>
+  </g>
+  
+  <!-- Eventos de conducción -->
+  <!-- 1. Nodo SA -->
+  <g transform="translate(50, 90)">
+    <circle cx="0" cy="0" r="12" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+    <text x="0" y="4" text-anchor="middle" font-family="Arial" font-size="10" fill="white" font-weight="bold">SA</text>
+    <text x="0" y="25" text-anchor="middle" font-family="Arial" font-size="11" fill="#333" font-weight="bold">Inicio</text>
+    <text x="0" y="38" text-anchor="middle" font-family="Arial" font-size="9" fill="#666">Nodo SA</text>
+  </g>
+  
+  <!-- 2. Aurículas -->
+  <g transform="translate(120, 90)">
+    <ellipse cx="0" cy="0" rx="15" ry="10" fill="#2196f3" stroke="#1565c0" stroke-width="2"/>
+    <text x="0" y="4" text-anchor="middle" font-family="Arial" font-size="9" fill="white" font-weight="bold">AU</text>
+    <text x="0" y="25" text-anchor="middle" font-family="Arial" font-size="11" fill="#333" font-weight="bold">Aurículas</text>
+    <text x="0" y="38" text-anchor="middle" font-family="Arial" font-size="9" fill="#666">Despolarización</text>
+  </g>
+  
+  <!-- 3. Nodo AV -->
+  <g transform="translate(200, 90)">
+    <circle cx="0" cy="0" r="12" fill="#ff9800" stroke="#e65100" stroke-width="2"/>
+    <text x="0" y="4" text-anchor="middle" font-family="Arial" font-size="10" fill="white" font-weight="bold">AV</text>
+    <text x="0" y="25" text-anchor="middle" font-family="Arial" font-size="11" fill="#333" font-weight="bold">Pausa AV</text>
+    <text x="0" y="38" text-anchor="middle" font-family="Arial" font-size="9" fill="#666">Retraso 120ms</text>
+  </g>
+  
+  <!-- 4. His-Purkinje -->
+  <g transform="translate(280, 90)">
+    <rect x="-12" y="-8" width="24" height="16" fill="#9c27b0" stroke="#6a1b9a" stroke-width="2" rx="3"/>
+    <text x="0" y="4" text-anchor="middle" font-family="Arial" font-size="9" fill="white" font-weight="bold">HIS</text>
+    <text x="0" y="25" text-anchor="middle" font-family="Arial" font-size="11" fill="#333" font-weight="bold">His-Ramas</text>
+    <text x="0" y="38" text-anchor="middle" font-family="Arial" font-size="9" fill="#666">Conducción rápida</text>
+  </g>
+  
+  <!-- 5. Ventrículos -->
+  <g transform="translate(350, 90)">
+    <ellipse cx="0" cy="0" rx="15" ry="12" fill="#f44336" stroke="#c62828" stroke-width="2"/>
+    <text x="0" y="4" text-anchor="middle" font-family="Arial" font-size="9" fill="white" font-weight="bold">VE</text>
+    <text x="0" y="25" text-anchor="middle" font-family="Arial" font-size="11" fill="#333" font-weight="bold">Ventrículos</text>
+    <text x="0" y="38" text-anchor="middle" font-family="Arial" font-size="9" fill="#666">Contracción</text>
+  </g>
+  
+  <!-- Flechas de flujo -->
+  <g stroke="#666" stroke-width="2" fill="#666" marker-end="url(#arrowhead)">
+    <defs>
+      <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+      </marker>
+    </defs>
+    <line x1="75" y1="90" x2="95" y2="90"/>
+    <line x1="145" y1="90" x2="175" y2="90"/>
+    <line x1="225" y1="90" x2="255" y2="90"/>
+    <line x1="305" y1="90" x2="325" y2="90"/>
+  </g>
+  
+  <!-- Información adicional -->
+  <g transform="translate(50, 170)">
+    <text x="0" y="0" font-family="Arial" font-size="12" font-weight="bold" fill="#333">Características importantes:</text>
+    <text x="0" y="20" font-family="Arial" font-size="10" fill="#666">• El nodo SA inicia cada latido (60-100 lpm)</text>
+    <text x="0" y="35" font-family="Arial" font-size="10" fill="#666">• La pausa en el nodo AV permite llenado ventricular</text>
+    <text x="0" y="50" font-family="Arial" font-size="10" fill="#666">• El sistema His-Purkinje sincroniza la contracción ventricular</text>
+    <text x="0" y="65" font-family="Arial" font-size="10" fill="#666">• Alteraciones causan arritmias o bloqueos de conducción</text>
+  </g>
+</svg>
