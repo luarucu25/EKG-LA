@@ -37,7 +37,10 @@
     </div>
 
     <div id="chat-box" class="chat-box">
-      <div class="bot-msg"><b>Asistente:</b> ¡Hola! 👋 Soy tu asistente ECG. Puedo ayudarte a interpretar un trazado, explicar criterios diagnósticos o resolver tus dudas. ¿En qué puedo asistirte hoy?</div>
+      <div class="bot-msg"><b>Asistente:</b> Hola, ¿en qué puedo ayudarte hoy? ¿Tienes alguna pregunta o inquietud relacionada con electrocardiografía? Estoy aquí para brindarte información y apoyo de manera clara y profesional.</div>
+      <div>
+        <button type="button" id="sugerenciaContacto" class="btn btn-outline-primary btn-sm mt-1">¿Quieres contactar con el Dr. Luis Angle Rueda Cuervo?</button>
+      </div>
     </div>
 
     <div class="chat-input">
@@ -102,6 +105,11 @@
       }
     }
     document.getElementById('btnEnviar').addEventListener('click', enviarMensaje);
+    document.getElementById('sugerenciaContacto').addEventListener('click', function(){
+      const chatBox = document.getElementById('chat-box');
+      chatBox.innerHTML += `<div class='bot-msg'><b>Asistente:</b> Wahstapp de contacto: +573508956163</div>`;
+      chatBox.scrollTop = chatBox.scrollHeight;
+    });
     document.getElementById('mensaje').addEventListener('keypress', function(e){ if (e.key === 'Enter') enviarMensaje(); });
     document.addEventListener('DOMContentLoaded', checkHealth);
   </script>

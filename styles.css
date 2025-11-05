@@ -199,6 +199,55 @@ body {
 /* Pulse animation disabled by default for performance */
 .pulse { animation: none; }
 
+/* Tooltip dot: small, subtle indicator for inline help */
+.tooltip-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 10px; /* ligeramente mayor para legibilidad */
+  height: 10px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid #333333;
+  color: #333333;
+  font-size: 8px; /* signo ? pequeño */
+  line-height: 1;
+  font-weight: 700;
+  vertical-align: middle;
+  cursor: help;
+}
+.tooltip-dot::after {
+  content: '?';
+  color: #333333;
+  font-size: 8px;
+  line-height: 1;
+  font-weight: 700;
+}
+.tooltip-dot:hover { border-color: #222222; }
+
+/* Aplicar estilo de punto de ayuda también a spans de tooltip en etiquetas */
+.form-check-label [data-bs-toggle="tooltip"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid #333333;
+  vertical-align: middle;
+  cursor: help;
+  font-size: 0; /* ocultar texto original (ℹ️) */
+}
+.form-check-label [data-bs-toggle="tooltip"]::after {
+  content: '?';
+  color: #333333;
+  font-size: 8px;
+  line-height: 1;
+  font-weight: 700;
+}
+.form-check-label [data-bs-toggle="tooltip"]:hover { border-color: #222222; }
+
 /* Prefer reduced motion: turn off transitions/animations */
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }

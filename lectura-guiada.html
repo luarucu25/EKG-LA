@@ -111,9 +111,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="alteraciones" class="form-label">Alteraciones adicionales</label>
-                        <textarea class="form-control" id="alteraciones" rows="3"></textarea>
-                        <small class="form-text text-muted">Ej: bloqueos, arritmias, signos de necrosis, crecimiento auricular o ventricular. (Consignar: texto — hallazgos relevantes)</small>
+                        <!-- Campo de alteraciones adicionales retirado: usamos criterios morfológicos específicos -->
                     </div>
 
                     <button type="button" class="btn btn-primary" id="generarInforme">Generar informe</button>
@@ -122,32 +120,45 @@
                 </div>
                 <!-- Criterios morfológicos (opcional) -->
                 <div class="card ao-card mb-4">
-                    <div class="card-header">Criterios morfológicos (opcional)</div>
+                    <div class="card-header">Criterios morfológicos (opcional) <span class="tooltip-dot ms-2" data-bs-toggle="tooltip" title="Estos criterios son la referencia principal para generar la sospecha diagnóstica."></span></div>
                     <div class="card-body">
                         <div class="row g-2">
                             <div class="col-md-6">
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_rsr_v1"><label class="form-check-label" for="crit_rsr_v1">rSR' en V1 (BRD)</label></div>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_s_ancha_i_v6"><label class="form-check-label" for="crit_s_ancha_i_v6">S ancha en I/V6 (BRD)</label></div>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_r_empastada_v5_v6"><label class="form-check-label" for="crit_r_empastada_v5_v6">R empastada en V5–V6 (BRI)</label></div>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_sin_q_i_v6"><label class="form-check-label" for="crit_sin_q_i_v6">Sin q en I/V6 (BRI)</label></div>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_notch_75_i"><label class="form-check-label" for="crit_notch_75_i">Notch >75 ms en I (BRI)</label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_rsr_v1"><label class="form-check-label" for="crit_rsr_v1">rSR' en V1 (BRD) <span class="ms-1" data-bs-toggle="tooltip" title="QRS mellado en V1; compatible con BRD.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_s_ancha_i_v6"><label class="form-check-label" for="crit_s_ancha_i_v6">S ancha en I/V6 (BRD) <span class="ms-1" data-bs-toggle="tooltip" title="Deflexión terminal negativa ancha; pista de BRD.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_r_empastada_v5_v6"><label class="form-check-label" for="crit_r_empastada_v5_v6">R empastada en V5–V6 (BRI) <span class="ms-1" data-bs-toggle="tooltip" title="Muesca en R lateral; típico de BRI.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_sin_q_i_v6"><label class="form-check-label" for="crit_sin_q_i_v6">Sin q en I/V6 (BRI) <span class="ms-1" data-bs-toggle="tooltip" title="Ausencia de onda q lateral; favorece BRI.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_notch_75_i"><label class="form-check-label" for="crit_notch_75_i">Notch >75 ms en I (BRI) <span class="ms-1" data-bs-toggle="tooltip" title="Empastamiento prolongado en I; BRI verdadero.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_v1_qs_rs"><label class="form-check-label" for="crit_v1_qs_rs">V1 QS/rS (patrón R/S en V1) <span class="ms-1" data-bs-toggle="tooltip" title="Patrón R/S en V1; orientación BRD/infarto.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_v6_r_ancha"><label class="form-check-label" for="crit_v6_r_ancha">V6 R alta ancha (onda R empastada) <span class="ms-1" data-bs-toggle="tooltip" title="R empastada en V6; sugiere BRI.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_qrs_ancho"><label class="form-check-label" for="crit_qrs_ancho">QRS ≥120 ms (QRS ancho) <span class="ms-1" data-bs-toggle="tooltip" title="Complejo ensanchado: bloqueo de rama o ritmo ventricular.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_pr_corto"><label class="form-check-label" for="crit_pr_corto">PR corto (WPW) <span class="ms-1" data-bs-toggle="tooltip" title="Vía accesoria; PR <120 ms.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_onda_delta"><label class="form-check-label" for="crit_onda_delta">Onda delta (WPW) <span class="ms-1" data-bs-toggle="tooltip" title="Inicio lento del QRS; preexcitación.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_st_difuso"><label class="form-check-label" for="crit_st_difuso">ST elevado difuso (Pericarditis) <span class="ms-1" data-bs-toggle="tooltip" title="ST en múltiples derivaciones; PR puede estar deprimido.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_pr_deprimido"><label class="form-check-label" for="crit_pr_deprimido">PR deprimido (Pericarditis) <span class="ms-1" data-bs-toggle="tooltip" title="Desnivel PR; marcador de inflamación pericárdica.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_hvi"><label class="form-check-label" for="crit_hvi">HVI voltaje alto (Sokolow-Lyon) <span class="ms-1" data-bs-toggle="tooltip" title="S V1 + R V5/V6 ≥35 mm aprox.; alto voltaje.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_qtc_prolongado"><label class="form-check-label" for="crit_qtc_prolongado">QTc prolongado (≥460 ms) <span class="ms-1" data-bs-toggle="tooltip" title="Riesgo de torsades; confirmar QTc (Bazett).">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_qr_v1_qs_v1v2"><label class="form-check-label" for="crit_qr_v1_qs_v1v2">qR en V1 / QS en V1–V2 (anteroseptal) <span class="ms-1" data-bs-toggle="tooltip" title="Patrón Q anteroseptal; infarto previo o lesión septal.">ℹ️</span></label></div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_disociacion_av"><label class="form-check-label" for="crit_disociacion_av">Disociación AV (BAV completo)</label></div>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_pr_progresivo"><label class="form-check-label" for="crit_pr_progresivo">PR progresivo (Mobitz I)</label></div>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_pr_constante"><label class="form-check-label" for="crit_pr_constante">PR constante (Mobitz II)</label></div>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_p_no_conducida"><label class="form-check-label" for="crit_p_no_conducida">P no conducida (Mobitz I/II)</label></div>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_capturas_ventriculares"><label class="form-check-label" for="crit_capturas_ventriculares">Capturas ventriculares (TV)</label></div>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_fusion"><label class="form-check-label" for="crit_fusion">Latidos de fusión (TV)</label></div>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_concordancia_precordial"><label class="form-check-label" for="crit_concordancia_precordial">Concordancia precordial (TV)</label></div>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_onda_delta"><label class="form-check-label" for="crit_onda_delta">Onda delta (WPW)</label></div>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_st_concordante_bri"><label class="form-check-label" for="crit_st_concordante_bri">ST concordante en BRI (STEMI)</label></div>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_st_discordante_bri"><label class="form-check-label" for="crit_st_discordante_bri">ST discordante excesivo en BRI (STEMI)</label></div>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_onda_u"><label class="form-check-label" for="crit_onda_u">Onda U (Hipokalemia)</label></div>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_t_picuda"><label class="form-check-label" for="crit_t_picuda">T picuda (Hiperkalemia)</label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_disociacion_av"><label class="form-check-label" for="crit_disociacion_av">Disociación AV (BAV completo) <span class="ms-1" data-bs-toggle="tooltip" title="P y QRS sin relación fija; marcapasos ventricular.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_pr_progresivo"><label class="form-check-label" for="crit_pr_progresivo">PR progresivo (Mobitz I) <span class="ms-1" data-bs-toggle="tooltip" title="Wenckebach: PR se alarga hasta bloqueo.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_pr_constante"><label class="form-check-label" for="crit_pr_constante">PR constante (Mobitz II) <span class="ms-1" data-bs-toggle="tooltip" title="PR fijo con P no conducida; más grave.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_p_no_conducida"><label class="form-check-label" for="crit_p_no_conducida">P no conducida (Mobitz I/II) <span class="ms-1" data-bs-toggle="tooltip" title="Onda P sin QRS posterior; evento de bloqueo AV.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_capturas_ventriculares"><label class="form-check-label" for="crit_capturas_ventriculares">Capturas ventriculares (TV) <span class="ms-1" data-bs-toggle="tooltip" title="Latido normal dentro de TV; criterio fuerte de TV.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_fusion"><label class="form-check-label" for="crit_fusion">Latidos de fusión (TV) <span class="ms-1" data-bs-toggle="tooltip" title="QRS mixto normal+ventricular; apoya TV.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_concordancia_precordial"><label class="form-check-label" for="crit_concordancia_precordial">Concordancia precordial (TV) <span class="ms-1" data-bs-toggle="tooltip" title="Polaridad uniforme en V1–V6; sugiere TV.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_st_concordante_bri"><label class="form-check-label" for="crit_st_concordante_bri">ST concordante en BRI (STEMI) <span class="ms-1" data-bs-toggle="tooltip" title="Criterio Sgarbossa: ST del mismo signo que QRS.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_st_discordante_bri"><label class="form-check-label" for="crit_st_discordante_bri">ST discordante excesivo en BRI (STEMI) <span class="ms-1" data-bs-toggle="tooltip" title="Criterio Smith modificado: discordancia ST desproporcionada.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_onda_u"><label class="form-check-label" for="crit_onda_u">Onda U (Hipokalemia) <span class="ms-1" data-bs-toggle="tooltip" title="Pequeña onda tras T; típica de hipokalemia.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_t_picuda"><label class="form-check-label" for="crit_t_picuda">T picuda (Hiperkalemia) <span class="ms-1" data-bs-toggle="tooltip" title="T altas y estrechas; sugiere hiperkalemia.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_brugada"><label class="form-check-label" for="crit_brugada">Patrón Brugada V1–V3 (ST convexo) <span class="ms-1" data-bs-toggle="tooltip" title="Elevación ST cóncava/convexa en V1–V3; patrón Brugada.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_wellens"><label class="form-check-label" for="crit_wellens">Wellens V2–V3 (T negativa profunda) <span class="ms-1" data-bs-toggle="tooltip" title="DA crítica: T negativa/profunda en V2–V3.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_t_inv_antero"><label class="form-check-label" for="crit_t_inv_antero">T invertida anteroseptal <span class="ms-1" data-bs-toggle="tooltip" title="Isquemia subendocárdica en territorio anteroseptal.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_st_dep_global"><label class="form-check-label" for="crit_st_dep_global">ST descendido global <span class="ms-1" data-bs-toggle="tooltip" title="Descenso ST generalizado; isquemia subendocárdica difusa.">ℹ️</span></label></div>
                             </div>
                         </div>
-                        <small class="form-text text-muted">Estos criterios son opcionales. También puedes consignarlos en “Alteraciones adicionales”.</small>
+                        <small class="form-text text-muted">Estos criterios son la referencia principal para generar la sospecha diagnóstica.</small>
                     </div>
                 </div>
             </div>
@@ -178,35 +189,19 @@
         </div>
     </div>
 
-    <!-- Barra de búsqueda de Gemini -->
-    <section class="container my-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card border-primary">
-                    <div class="card-header bg-primary text-white text-center">
-                        <h5 class="mb-0">Si tienes preguntas adicionales, has una pregunta concreta y breve a la IA</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="d-flex justify-content-center">
-                            <a href="https://gemini.google.com" target="_blank" rel="noopener" class="btn btn-primary">
-                                <svg width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                                </svg>
-                                Abrir Gemini
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-            </div>
-        </section>
+    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="app.js"></script>
     
     <script>
-        // Enlace directo a Gemini; no se requiere script adicional.
+        // Inicializar tooltips de Bootstrap para criterios morfológicos
+        document.addEventListener('DOMContentLoaded', function() {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+                new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        });
     </script>
 </body>
 </html>

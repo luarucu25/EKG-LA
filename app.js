@@ -112,7 +112,7 @@ function generarInformeECG() {
     const st = document.getElementById('st').value || '';
     const ondaT = document.getElementById('ondaT').value || '';
     const qt = document.getElementById('qt').value || '';
-    const alteraciones = document.getElementById('alteraciones').value || '';
+    const alteraciones = '';
 
     // Informe narrativo (tono clínico)
     const partes = [];
@@ -126,7 +126,7 @@ function generarInformeECG() {
     if (ondaT) partes.push(`Onda T ${ondaT.toLowerCase()}.`);
     if (qt) partes.push(`Intervalo QT ${qt} ms.`);
     if (ondaP) partes.push(`Onda P: ${ondaP}.`);
-    if (alteraciones) partes.push(`Otras observaciones: ${alteraciones}.`);
+    // Campo de alteraciones adicionales retirado: no se agrega al informe
 
     const informeNarrativo = partes.join(' ');
     const informeEl = document.getElementById('informeECG');
@@ -159,7 +159,7 @@ function generarSospechaECG() {
     const stText = (document.getElementById('st')?.value || '').toLowerCase();
     const ondaTText = (document.getElementById('ondaT')?.value || '').toLowerCase();
     const qt = parseFloat(document.getElementById('qt')?.value);
-    const otras = document.getElementById('alteraciones')?.value || '';
+    const otras = '';
     const has = (id) => !!document.getElementById(id)?.checked;
 
     // Normalizar palabras clave
@@ -205,16 +205,17 @@ function generarSospechaECG() {
     if (!isNaN(qrs) && qrs >= 120) addPick('Hiperkalemia probable', 1, 'QRS ancho');
     if (tAplanada) addPick('Hipokalemia probable', 3, 'T aplanada');
     if (stDescendido) addPick('Hipokalemia probable', 1, 'ST descendido');
-    if (/onda\s*u/i.test(otras)) addPick('Hipokalemia probable', 1, 'Onda U referida');
+    // Onda U por checkbox
+    if (has('crit_onda_u')) addPick('Hipokalemia probable', 3, 'Onda U');
 
     // QT prolongado (usar QT a falta de QTc)
     if (!isNaN(qt) && qt >= 470) addPick('QT prolongado (valorar QTc y riesgo de torsades)', 3, 'QT ≥470 ms');
 
-    // Detectar otros por texto libre (p. ej. WPW)
-    if (/wpw|delta/i.test(otras)) addPick('Preexcitación (WPW) probable', 3, 'PR corto/onda delta referida');
-    if (/wenckebach|mobitz\s*i/i.test(otras)) addPick('AV 2° Mobitz I (Wenckebach) probable', 3, 'Progresión PR con P no conducida');
-    if (/mobitz\s*ii|2\s*grado\s*ii/i.test(otras)) addPick('AV 2° Mobitz II probable', 3, 'PR constante con P no conducida');
-    if (/completo|disociaci[óo]n/i.test(otras)) addPick('Bloqueo AV completo (3er grado)', 4, 'Disociación P-QRS referida');
+    // WPW y AV blocks por checkboxes
+    if (has('crit_pr_corto') || has('crit_onda_delta')) addPick('Preexcitación (WPW) probable', 4, 'PR corto/onda delta');
+    if (has('crit_pr_progresivo') && has('crit_p_no_conducida')) addPick('AV 2° Mobitz I (Wenckebach) probable', 4, 'PR progresivo + P no conducida');
+    if (has('crit_pr_constante') && has('crit_p_no_conducida')) addPick('AV 2° Mobitz II probable', 4, 'PR constante + P no conducida');
+    if (has('crit_disociacion_av')) addPick('Bloqueo AV completo (3er grado)', 5, 'Disociación AV');
 
     // Checkboxes opcionales (sumar puntuación y razones)
     if (has('crit_rsr_v1')) addPick('Bloqueo de rama derecha (BRD) probable', 4, "rSR' en V1");
@@ -222,17 +223,25 @@ function generarSospechaECG() {
     if (has('crit_r_empastada_v5_v6')) addPick('Bloqueo de rama izquierda (BRI) probable', 4, 'R empastada en V5–V6');
     if (has('crit_sin_q_i_v6')) addPick('Bloqueo de rama izquierda (BRI) probable', 3, 'Sin q en I/V6');
     if (has('crit_notch_75_i')) addPick('Bloqueo de rama izquierda (BRI) probable', 3, 'Notch >75 ms en I');
+    if (has('crit_v1_qs_rs')) addPick('Bloqueo de rama derecha (BRD) probable', 2, 'V1 QS/rS');
+    if (has('crit_v6_r_ancha')) addPick('Bloqueo de rama izquierda (BRI) probable', 2, 'V6 R alta ancha');
+    if (has('crit_qrs_ancho')) addPick('Bloqueo de rama (QRS ≥120 ms)', 2, 'QRS ancho');
     if (has('crit_disociacion_av')) addPick('Bloqueo AV completo (3er grado)', 5, 'Disociación AV');
     if (has('crit_pr_progresivo') && has('crit_p_no_conducida')) addPick('AV 2° Mobitz I (Wenckebach) probable', 4, 'PR progresivo + P no conducida');
     if (has('crit_pr_constante') && has('crit_p_no_conducida')) addPick('AV 2° Mobitz II probable', 4, 'PR constante + P no conducida');
-    if (has('crit_capturas_ventriculares')) addPick('Taquicardia ventricular (TV) probable', 3, 'Capturas ventriculares');
-    if (has('crit_fusion')) addPick('Taquicardia ventricular (TV) probable', 2, 'Latidos de fusión');
+    if (has('crit_capturas_ventriculares')) addPick('Taquicardia ventricular (TV) probable', 4, 'Capturas ventriculares');
+    if (has('crit_fusion')) addPick('Taquicardia ventricular (TV) probable', 4, 'Latidos de fusión');
     if (has('crit_concordancia_precordial')) addPick('Taquicardia ventricular (TV) probable', 3, 'Concordancia precordial');
+    if (has('crit_brugada')) addPick('Síndrome de Brugada (patrón tipo 1/2)', 3, 'Elevación ST V1–V3');
+    if (has('crit_wellens')) addPick('Signo de Wellens (estenosis DA)', 3, 'T negativa profunda V2–V3');
+    if (has('crit_hvi')) addPick('Hipertrofia ventricular izquierda (HVI)', 2, 'Voltaje alto (Sokolow-Lyon)');
     if (has('crit_onda_delta')) addPick('Preexcitación (WPW) probable', 3, 'Onda delta');
     if (has('crit_st_concordante_bri')) addPick('Infarto con elevación del ST (STEMI)', 5, 'ST concordante en BRI');
     if (has('crit_st_discordante_bri')) addPick('Infarto con elevación del ST (STEMI)', 4, 'ST discordante excesivo en BRI');
+    if (has('crit_qr_v1_qs_v1v2')) addPick('Infarto anteroseptal probable', 3, 'qR en V1 o QS en V1–V2');
     if (has('crit_onda_u')) addPick('Hipokalemia probable', 3, 'Onda U');
     if (has('crit_t_picuda')) addPick('Hiperkalemia probable', 4, 'T picuda');
+    if (has('crit_qtc_prolongado')) addPick('QT prolongado (valorar QTc y riesgo de torsades)', 3, 'QTc prolongado');
 
     // Territorios (añadir al comentario)
     const textoTerr = (stText + ' ' + otras).toUpperCase();
@@ -244,43 +253,7 @@ function generarSospechaECG() {
     if (terr.length) comentario += ' Territorio sugestivo: ' + terr.join(', ') + '.';
 
     // Mapeo morfológico desde "alteraciones" a criterios (Comparación de Patrones)
-    const alt = (otras || '').toLowerCase();
-    // BRD
-    if (/(rsr['’]?)/i.test(otras) && /v1/i.test(otras)) addPick('Bloqueo de rama derecha (BRD) probable', 4, "rSR' en V1");
-    if (/s\s*ancha/i.test(alt) && /(di|i|v6)/i.test(otras)) addPick('Bloqueo de rama derecha (BRD) probable', 2, 'S ancha en I/V6');
-    // BRI
-    if (/(r\s*empastada|r\s*ancha|r\s*ensanchada)/i.test(alt) && /(v5|v6)/i.test(otras)) addPick('Bloqueo de rama izquierda (BRI) probable', 4, 'R empastada en V5–V6');
-    if (/(sin\s*q)/i.test(alt) && /(i|v6)/i.test(otras)) addPick('Bloqueo de rama izquierda (BRI) probable', 3, 'Sin q en I/V6');
-    if (/notch\s*>?\s*75\s*ms/i.test(alt) && /\bi\b/i.test(otras)) addPick('Bloqueo de rama izquierda (BRI) probable', 3, 'Notch >75 ms en I');
-    if (/bri\s*verdadero|bri\s*aut[eé]ntico/i.test(alt)) addPick('Bloqueo de rama izquierda (BRI) probable', 2, 'Criterios de BRI verdadero');
-    // AV completo
-    if (/disociaci[oó]n\s*aur[ií]culo[- ]?ventricular|bloqueo\s*av\s*completo|tercer\s*grado|3er\s*grado/i.test(alt)) {
-        addPick('Bloqueo AV completo (3er grado)', 5, 'Disociación AV referida');
-    }
-    // Mobitz I/II
-    if (/wenckebach|pr\s*progresivo|progresi[oó]n\s*del\s*pr/i.test(alt) && /(p\s*no\s*conducida|qrs\s*ausente)/i.test(alt)) addPick('AV 2° Mobitz I (Wenckebach) probable', 3, 'PR progresivo con P no conducida');
-    if (/pr\s*constante/i.test(alt) && /(p\s*no\s*conducida|qrs\s*ausente)/i.test(alt)) addPick('AV 2° Mobitz II probable', 3, 'PR constante con P no conducida');
-    // TV morfología
-    if (/capturas\s*ventriculares|capture/i.test(alt)) addPick('Taquicardia ventricular (TV) probable', 3, 'Capturas ventriculares');
-    if (/fusi[oó]n|fusion/i.test(alt)) addPick('Taquicardia ventricular (TV) probable', 2, 'Latidos de fusión');
-    if (/concordancia\s*precordial/i.test(alt)) addPick('Taquicardia ventricular (TV) probable', 3, 'Concordancia precordial');
-    // TSV textual
-    if (/tsv|taquicardia\s*supraventricular/i.test(alt)) addPick('Taquicardia supraventricular (TSV) probable', 2, 'Texto refiere TSV');
-    // Electrolitos textual
-    if (/t\s*picuda|peaked\s*t|t\s*en\s*punta/i.test(alt)) addPick('Hiperkalemia probable', 4, 'T picuda referida');
-    if (/onda\s*u/i.test(alt)) addPick('Hipokalemia probable', 3, 'Onda U referida');
-
-    // Infarto/lesión con criterios avanzados (Sgarbossa/Smith) y morfología Q
-    if (/sgarbossa|smith/i.test(alt)) addPick('Infarto con elevación del ST (STEMI)', 5, 'Criterios Sgarbossa/Smith referidos');
-    if (/st\s*concordante/i.test(alt) && /(bri|bloqueo\s*de\s*rama\s*izquierda)/i.test(alt)) {
-        addPick('Infarto con elevación del ST (STEMI)', 5, 'ST concordante con BRI');
-    }
-    if (/(st\s*discordante\s*excesiv|discordancia\s*excesiva)/i.test(alt) && /(bri|bloqueo\s*de\s*rama\s*izquierda)/i.test(alt)) {
-        addPick('Infarto con elevación del ST (STEMI)', 4, 'ST discordante excesivo con BRI');
-    }
-    // Q waves patterns suggesting anteroseptal involvement
-    if (/q\s*r\s*en\s*v1|qr\s*v1/i.test(alt)) addPick('Infarto anteroseptal probable', 3, 'qR en V1');
-    if (/qs\s*en\s*v1(\s*[-–]\s*)?v2|qs\s*v1\s*v2/i.test(alt)) addPick('Infarto anteroseptal probable', 3, 'QS en V1–V2');
+    // Texto libre retirado: la sospecha se nutre de variables guiadas y criterios morfológicos
 
     // Selección top 2 por puntuación
     const byScore = {};
