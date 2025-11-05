@@ -5,11 +5,25 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 OPENROUTER_API_KEY = os.environ.get('OPENROUTER_API_KEY')
-FRONTEND_ORIGIN = os.environ.get('FRONTEND_ORIGIN', '*')
-FRONTEND_REFERER = os.environ.get('FRONTEND_REFERER', 'http://localhost:8000/')
+FRONTEND_ORIGIN = (os.environ.get('FRONTEND_ORIGIN', '*') or '*').strip()
+FRONTEND_REFERER = (os.environ.get('FRONTEND_REFERER', 'http://localhost:8000/') or 'http://localhost:8000/').strip()
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": FRONTEND_ORIGIN}})
+# Permitir múltiples orígenes separados por coma en FRONTEND_ORIGIN
+if FRONTEND_ORIGIN == '*':
+    origins_config = '*'
+else:
+    origins_config = [o.strip() for o in FRONTEND_ORIGIN.split(',')]
+
+# Habilitar CORS para métodos y headers típicos
+CORS(
+    app,
+    resources={r"/api/*": {
+        "origins": origins_config,
+        "methods": ["GET", "POST", "OPTIONS"],
+        "allow_headers": ["Content-Type", "Authorization"],
+    }}
+)
 
 @app.route('/api/health', methods=['GET'])
 def health():
