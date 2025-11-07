@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EKGGo — Lectura Guiada</title>
+    <title>EKG-LA — Lectura Guiada</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg ao-topbar">
         <div class="container-fluid">
-            <a class="navbar-brand fw-bold" href="index.html">EKGGo</a>
+            <a class="navbar-brand fw-bold" href="index.html">EKG-LA</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarLectura"
                     aria-controls="navbarLectura" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -53,7 +53,7 @@
                             <option value="Sinusal">Sinusal</option>
                             <option value="No sinusal">No sinusal</option>
                         </select>
-                        <small class="form-text text-muted">Ritmo sinusal: onda P positiva en DII, relación P-QRS 1:1, frecuencia regular. (Consignar: seleccione Sinusal o No sinusal)</small>
+                        <small class="form-text text-muted">Ritmo sinusal: onda P positiva en DII, relación P-QRS 1:1, frecuencia regular. (seleccione: Sinusal o No sinusal)</small>
                     </div>
 
                     <div class="mb-3">
@@ -71,25 +71,32 @@
                             <option value="Desviación derecha">Desviación derecha</option>
                             <option value="Eje extremo">Eje extremo</option>
                         </select>
-                        <small class="form-text text-muted">Eje normal: entre -30° y +90°. Medición breve: deflexión neta (R−S) en DI y aVF; calcular atan2(aVF, DI) y normalizar a −180°…+180°. (Consignar: categoría de eje)</small>
+                        <small class="form-text text-muted">Eje normal: entre -30° y +90°. Medición breve: diferencia neta (R−S) en DI y aVF; calcular en el plano (aVF, DI) y seleccionar desviación del eje.</small>
                     </div>
 
                     <div class="mb-3">
                         <label for="pr" class="form-label">Intervalo PR (ms)</label>
                         <input type="number" class="form-control" id="pr" min="80" max="400">
-                        <small class="form-text text-muted">Normal: 120–200 ms. Medir desde el inicio de la onda P hasta el inicio del QRS. (Respuesta: dar en milisegundos)</small>
+                        <small class="form-text text-muted">Normal: 120–200 ms. Medir desde el inicio de la onda P hasta el inicio del QRS. (Respuesta: Solo escriba el número de milisegundos)</small>
                     </div>
 
                     <div class="mb-3">
                         <label for="ondaP" class="form-label">Onda P</label>
-                        <input type="text" class="form-control" id="ondaP">
-                        <small class="form-text text-muted">Normal: duración &lt;120 ms, amplitud &lt;2.5 mm en derivaciones frontales. (Respuesta: normal, Aumetada en duracion, Aumentada en voltaje)</small>
+                        <select class="form-select" id="ondaP">
+                            <option value="">Seleccione...</option>
+                            <option value="Normal">Normal</option>
+                            <option value="Aumentada en duración">Aumentada en duración (P mitral)</option>
+                            <option value="Aumentada en voltaje">Aumentada en voltaje (P pulmonar)</option>
+                            <option value="Bifásica">Bifásica</option>
+                            <option value="Ausente">Ausente</option>
+                        </select>
+                        <small class="form-text text-muted">Normal: duración &lt;120 ms, amplitud &lt;2.5 mm en derivaciones frontales. P mitral: aumento de duración; P pulmonar: aumento de voltaje.</small>
                     </div>
 
                     <div class="mb-3">
                         <label for="qrs" class="form-label">Complejo QRS (ms)</label>
                         <input type="number" class="form-control" id="qrs" min="60" max="200">
-                        <small class="form-text text-muted">Normal: &lt;120 ms. Medir desde el inicio de la onda Q hasta el final de la onda S. (Consignar: milisegundos)</small>
+                        <small class="form-text text-muted">Normal: &lt;120 ms. Medir desde el inicio de la onda Q hasta el final de la onda S. (Respuesta: Solo escriba el número de milisegundos)</small>
                     </div>
 
                     <div class="mb-3">
@@ -100,14 +107,52 @@
 
                     <div class="mb-3">
                         <label for="ondaT" class="form-label">Onda T</label>
-                        <input type="text" class="form-control" id="ondaT">
-                        <small class="form-text text-muted">Debe ser positiva en la mayoría de derivaciones excepto aVR; inversión puede indicar isquemia. (Consignar: texto breve)</small>
+                        <select class="form-select" id="ondaT">
+                            <option value="">Seleccione...</option>
+                            <option value="Normal">Normal</option>
+                            <option value="Invertida">Invertida</option>
+                            <option value="Picuda">Picuda</option>
+                            <option value="Aplanada">Aplanada</option>
+                            <option value="Bifásica">Bifásica</option>
+                        </select>
+                        <small class="form-text text-muted">Debe ser positiva en la mayoría de derivaciones excepto aVR. Invertida puede indicar isquemia; T picuda sugiere hiperkalemia; T aplanada sugiere hipokalemia.</small>
+                        <div class="mt-2">
+                            <div class="card ao-card">
+                                <div class="card-header">Derivaciones afectadas</div>
+                                <div class="card-body">
+                                    <small class="form-text text-muted d-block mb-2">Aplica para alteraciones de Segmento ST y Onda T.</small>
+                                    <div class="row g-2">
+                                        <div class="col-md-6">
+                                            <div class="form-check"><input class="form-check-input lead-checkbox" type="checkbox" id="lead_DI"><label class="form-check-label" for="lead_DI">DI</label></div>
+                                            <div class="form-check"><input class="form-check-input lead-checkbox" type="checkbox" id="lead_DII"><label class="form-check-label" for="lead_DII">DII</label></div>
+                                            <div class="form-check"><input class="form-check-input lead-checkbox" type="checkbox" id="lead_DIII"><label class="form-check-label" for="lead_DIII">DIII</label></div>
+                                            <div class="form-check"><input class="form-check-input lead-checkbox" type="checkbox" id="lead_aVR"><label class="form-check-label" for="lead_aVR">aVR</label></div>
+                                            <div class="form-check"><input class="form-check-input lead-checkbox" type="checkbox" id="lead_aVL"><label class="form-check-label" for="lead_aVL">aVL</label></div>
+                                            <div class="form-check"><input class="form-check-input lead-checkbox" type="checkbox" id="lead_aVF"><label class="form-check-label" for="lead_aVF">aVF</label></div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-check"><input class="form-check-input lead-checkbox" type="checkbox" id="lead_V1"><label class="form-check-label" for="lead_V1">V1</label></div>
+                                            <div class="form-check"><input class="form-check-input lead-checkbox" type="checkbox" id="lead_V2"><label class="form-check-label" for="lead_V2">V2</label></div>
+                                            <div class="form-check"><input class="form-check-input lead-checkbox" type="checkbox" id="lead_V3"><label class="form-check-label" for="lead_V3">V3</label></div>
+                                            <div class="form-check"><input class="form-check-input lead-checkbox" type="checkbox" id="lead_V4"><label class="form-check-label" for="lead_V4">V4</label></div>
+                                            <div class="form-check"><input class="form-check-input lead-checkbox" type="checkbox" id="lead_V5"><label class="form-check-label" for="lead_V5">V5</label></div>
+                                            <div class="form-check"><input class="form-check-input lead-checkbox" type="checkbox" id="lead_V6"><label class="form-check-label" for="lead_V6">V6</label></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="qt" class="form-label">Intervalo QT (ms)</label>
-                        <input type="number" class="form-control" id="qt" min="300" max="600">
-                        <small class="form-text text-muted">QTc &lt; 440 ms (H), &lt; 460 ms (M). QTc prolongado puede predisponer a arritmias ventriculares. (Consignar: milisegundos)</small>
+                        <label for="qt" class="form-label">Intervalo QT</label>
+                        <select class="form-select" id="qt">
+                            <option value="">Seleccione...</option>
+                            <option value="Normal">Normal</option>
+                            <option value="Prolongado">Prolongado</option>
+                            <option value="Corto">Corto</option>
+                        </select>
+                        <small class="form-text text-muted">Normal: QTc &lt; 440 ms (H) y &lt; 460 ms (M). Prolongado: riesgo de torsades; corto: evaluar causas y electrolitos.</small>
                     </div>
 
                     <div class="mb-3">
@@ -129,32 +174,20 @@
                                 <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_r_empastada_v5_v6"><label class="form-check-label" for="crit_r_empastada_v5_v6">R empastada en V5–V6 (BRI) <span class="ms-1" data-bs-toggle="tooltip" title="Muesca en R lateral; típico de BRI.">ℹ️</span></label></div>
                                 <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_sin_q_i_v6"><label class="form-check-label" for="crit_sin_q_i_v6">Sin q en I/V6 (BRI) <span class="ms-1" data-bs-toggle="tooltip" title="Ausencia de onda q lateral; favorece BRI.">ℹ️</span></label></div>
                                 <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_notch_75_i"><label class="form-check-label" for="crit_notch_75_i">Notch >75 ms en I (BRI) <span class="ms-1" data-bs-toggle="tooltip" title="Empastamiento prolongado en I; BRI verdadero.">ℹ️</span></label></div>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_v1_qs_rs"><label class="form-check-label" for="crit_v1_qs_rs">V1 QS/rS (patrón R/S en V1) <span class="ms-1" data-bs-toggle="tooltip" title="Patrón R/S en V1; orientación BRD/infarto.">ℹ️</span></label></div>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_v6_r_ancha"><label class="form-check-label" for="crit_v6_r_ancha">V6 R alta ancha (onda R empastada) <span class="ms-1" data-bs-toggle="tooltip" title="R empastada en V6; sugiere BRI.">ℹ️</span></label></div>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_qrs_ancho"><label class="form-check-label" for="crit_qrs_ancho">QRS ≥120 ms (QRS ancho) <span class="ms-1" data-bs-toggle="tooltip" title="Complejo ensanchado: bloqueo de rama o ritmo ventricular.">ℹ️</span></label></div>
                                 <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_pr_corto"><label class="form-check-label" for="crit_pr_corto">PR corto (WPW) <span class="ms-1" data-bs-toggle="tooltip" title="Vía accesoria; PR <120 ms.">ℹ️</span></label></div>
                                 <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_onda_delta"><label class="form-check-label" for="crit_onda_delta">Onda delta (WPW) <span class="ms-1" data-bs-toggle="tooltip" title="Inicio lento del QRS; preexcitación.">ℹ️</span></label></div>
                                 <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_st_difuso"><label class="form-check-label" for="crit_st_difuso">ST elevado difuso (Pericarditis) <span class="ms-1" data-bs-toggle="tooltip" title="ST en múltiples derivaciones; PR puede estar deprimido.">ℹ️</span></label></div>
                                 <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_pr_deprimido"><label class="form-check-label" for="crit_pr_deprimido">PR deprimido (Pericarditis) <span class="ms-1" data-bs-toggle="tooltip" title="Desnivel PR; marcador de inflamación pericárdica.">ℹ️</span></label></div>
                                 <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_hvi"><label class="form-check-label" for="crit_hvi">HVI voltaje alto (Sokolow-Lyon) <span class="ms-1" data-bs-toggle="tooltip" title="S V1 + R V5/V6 ≥35 mm aprox.; alto voltaje.">ℹ️</span></label></div>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_qtc_prolongado"><label class="form-check-label" for="crit_qtc_prolongado">QTc prolongado (≥460 ms) <span class="ms-1" data-bs-toggle="tooltip" title="Riesgo de torsades; confirmar QTc (Bazett).">ℹ️</span></label></div>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_qr_v1_qs_v1v2"><label class="form-check-label" for="crit_qr_v1_qs_v1v2">qR en V1 / QS en V1–V2 (anteroseptal) <span class="ms-1" data-bs-toggle="tooltip" title="Patrón Q anteroseptal; infarto previo o lesión septal.">ℹ️</span></label></div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_disociacion_av"><label class="form-check-label" for="crit_disociacion_av">Disociación AV (BAV completo) <span class="ms-1" data-bs-toggle="tooltip" title="P y QRS sin relación fija; marcapasos ventricular.">ℹ️</span></label></div>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_pr_progresivo"><label class="form-check-label" for="crit_pr_progresivo">PR progresivo (Mobitz I) <span class="ms-1" data-bs-toggle="tooltip" title="Wenckebach: PR se alarga hasta bloqueo.">ℹ️</span></label></div>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_pr_constante"><label class="form-check-label" for="crit_pr_constante">PR constante (Mobitz II) <span class="ms-1" data-bs-toggle="tooltip" title="PR fijo con P no conducida; más grave.">ℹ️</span></label></div>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_p_no_conducida"><label class="form-check-label" for="crit_p_no_conducida">P no conducida (Mobitz I/II) <span class="ms-1" data-bs-toggle="tooltip" title="Onda P sin QRS posterior; evento de bloqueo AV.">ℹ️</span></label></div>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_capturas_ventriculares"><label class="form-check-label" for="crit_capturas_ventriculares">Capturas ventriculares (TV) <span class="ms-1" data-bs-toggle="tooltip" title="Latido normal dentro de TV; criterio fuerte de TV.">ℹ️</span></label></div>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_fusion"><label class="form-check-label" for="crit_fusion">Latidos de fusión (TV) <span class="ms-1" data-bs-toggle="tooltip" title="QRS mixto normal+ventricular; apoya TV.">ℹ️</span></label></div>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_concordancia_precordial"><label class="form-check-label" for="crit_concordancia_precordial">Concordancia precordial (TV) <span class="ms-1" data-bs-toggle="tooltip" title="Polaridad uniforme en V1–V6; sugiere TV.">ℹ️</span></label></div>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_st_concordante_bri"><label class="form-check-label" for="crit_st_concordante_bri">ST concordante en BRI (STEMI) <span class="ms-1" data-bs-toggle="tooltip" title="Criterio Sgarbossa: ST del mismo signo que QRS.">ℹ️</span></label></div>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_st_discordante_bri"><label class="form-check-label" for="crit_st_discordante_bri">ST discordante excesivo en BRI (STEMI) <span class="ms-1" data-bs-toggle="tooltip" title="Criterio Smith modificado: discordancia ST desproporcionada.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_pr_progresivo"><label class="form-check-label" for="crit_pr_progresivo">PR progresivo (Mobitz I), con una P que no conduce <span class="ms-1" data-bs-toggle="tooltip" title="Wenckebach: PR se alarga hasta bloqueo.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_pr_constante"><label class="form-check-label" for="crit_pr_constante">PR constante (Mobitz II), con una P que no conduce <span class="ms-1" data-bs-toggle="tooltip" title="PR fijo con P no conducida; más grave.">ℹ️</span></label></div>
                                 <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_onda_u"><label class="form-check-label" for="crit_onda_u">Onda U (Hipokalemia) <span class="ms-1" data-bs-toggle="tooltip" title="Pequeña onda tras T; típica de hipokalemia.">ℹ️</span></label></div>
                                 <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_t_picuda"><label class="form-check-label" for="crit_t_picuda">T picuda (Hiperkalemia) <span class="ms-1" data-bs-toggle="tooltip" title="T altas y estrechas; sugiere hiperkalemia.">ℹ️</span></label></div>
                                 <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_brugada"><label class="form-check-label" for="crit_brugada">Patrón Brugada V1–V3 (ST convexo) <span class="ms-1" data-bs-toggle="tooltip" title="Elevación ST cóncava/convexa en V1–V3; patrón Brugada.">ℹ️</span></label></div>
                                 <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_wellens"><label class="form-check-label" for="crit_wellens">Wellens V2–V3 (T negativa profunda) <span class="ms-1" data-bs-toggle="tooltip" title="DA crítica: T negativa/profunda en V2–V3.">ℹ️</span></label></div>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_t_inv_antero"><label class="form-check-label" for="crit_t_inv_antero">T invertida anteroseptal <span class="ms-1" data-bs-toggle="tooltip" title="Isquemia subendocárdica en territorio anteroseptal.">ℹ️</span></label></div>
                                 <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_st_dep_global"><label class="form-check-label" for="crit_st_dep_global">ST descendido global <span class="ms-1" data-bs-toggle="tooltip" title="Descenso ST generalizado; isquemia subendocárdica difusa.">ℹ️</span></label></div>
                             </div>
                         </div>
@@ -176,7 +209,7 @@
                 <div class="card ao-card mt-3">
                     <div class="card-header">Sospecha diagnóstica electrocardiográfica</div>
                     <div class="card-body">
-                        <p class="mb-2">Se genera automáticamente al crear el informe, basada en reglas clínicas y patrones del módulo de comparación.</p>
+                        <p class="mb-2">Esta es una sugerencia diagnóstica de acuerdo con los hallazgos electrocardiográficos.</p>
                         <div class="d-flex gap-2 mb-3">
                             <!-- Botón de generar removido; se dispara desde Generar informe -->
                             <button type="button" id="copiarSospecha" class="btn btn-outline-primary btn-sm">Copiar sospecha</button>

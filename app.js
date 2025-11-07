@@ -83,20 +83,34 @@ document.addEventListener('DOMContentLoaded', function() {
     const toggle = document.createElement('button');
     toggle.className = 'chat-widget-toggle';
     toggle.type = 'button';
-    toggle.setAttribute('aria-label', 'Abrir chat ECG');
-    toggle.textContent = 'Chat ECG';
+    toggle.setAttribute('aria-label', 'Abrir Chat EKG-LA');
+    toggle.textContent = 'Chat EKG-LA';
 
     const panel = document.createElement('div');
     panel.className = 'chat-widget-panel';
     const iframe = document.createElement('iframe');
     iframe.src = 'chat.html';
-    iframe.title = 'Chat ECG';
+    iframe.title = 'Chat EKG-LA';
     panel.appendChild(iframe);
 
     document.body.appendChild(toggle);
     document.body.appendChild(panel);
     toggle.addEventListener('click', () => {
         panel.classList.toggle('open');
+    });
+
+    // Escucha mensajes desde el iframe del chat para minimizar/expandir panel
+    window.addEventListener('message', (e) => {
+        const data = e.data || {};
+        if (data.type === 'chat:minimize') {
+            panel.classList.remove('open');
+        } else if (data.type === 'chat:expand') {
+            panel.classList.add('open');
+            // Se puede ajustar tamaño si fuese necesario
+            // panel.style.maxWidth = '480px';
+        } else if (data.type === 'chat:close') {
+            panel.classList.remove('open');
+        }
     });
 });
 
@@ -111,6 +125,9 @@ function generarInformeECG() {
     const qrs = document.getElementById('qrs').value || '';
     const st = document.getElementById('st').value || '';
     const ondaT = document.getElementById('ondaT').value || '';
+    const ondaTLeads = Array.from(document.querySelectorAll('.lead-checkbox'))
+        .filter(cb => cb.checked)
+        .map(cb => cb.id.replace('lead_','').toUpperCase());
     const qt = document.getElementById('qt').value || '';
     const alteraciones = '';
 
@@ -122,9 +139,35 @@ function generarInformeECG() {
     if (eje) partes.push(`Eje ${eje.toLowerCase()}.`);
     if (pr) partes.push(`Intervalo PR ${pr} ms.`);
     if (qrs) partes.push(`Complejo QRS ${qrs} ms.`);
-    if (st) partes.push(`Segmento ST ${st.toLowerCase()}.`);
-    if (ondaT) partes.push(`Onda T ${ondaT.toLowerCase()}.`);
-    if (qt) partes.push(`Intervalo QT ${qt} ms.`);
+    // Prioridad excluyente entre ST y T en el informe
+    const stLower = (st || '').toLowerCase();
+    const stElevadoR = /elev/i.test(stLower);
+    const stDescendidoR = /(desc|deprim)/i.test(stLower);
+    const stAlterado = stElevadoR || stDescendidoR;
+    const tLower = (ondaT || '').toLowerCase();
+    const tAlterada = !!ondaT && !/normal/i.test(ondaT);
+
+    if (st) {
+        if (stAlterado) {
+            if (ondaTLeads && ondaTLeads.length) {
+                partes.push(`Segmento ST ${stLower} en derivaciones ${ondaTLeads.join(', ')}.`);
+            } else {
+                partes.push(`Segmento ST ${stLower}.`);
+            }
+        } else {
+            // ST isoeléctrico u otro: consignar sin derivaciones
+            partes.push(`Segmento ST ${stLower}.`);
+        }
+    }
+    // Solo se consigna Onda T con derivaciones si ST no está alterado
+    if (!stAlterado && ondaT) {
+        if (tAlterada && ondaTLeads && ondaTLeads.length) {
+            partes.push(`Onda T ${tLower} en derivaciones ${ondaTLeads.join(', ')}.`);
+        } else {
+            partes.push(`Onda T ${tLower}.`);
+        }
+    }
+    if (qt) partes.push(`Intervalo QT: ${qt.toLowerCase()}.`);
     if (ondaP) partes.push(`Onda P: ${ondaP}.`);
     // Campo de alteraciones adicionales retirado: no se agrega al informe
 
@@ -158,6 +201,9 @@ function generarSospechaECG() {
     const qrs = parseFloat(document.getElementById('qrs')?.value);
     const stText = (document.getElementById('st')?.value || '').toLowerCase();
     const ondaTText = (document.getElementById('ondaT')?.value || '').toLowerCase();
+    const leadsSel = Array.from(document.querySelectorAll('.lead-checkbox'))
+        .filter(cb => cb.checked)
+        .map(cb => cb.id.replace('lead_','').toUpperCase());
     const qt = parseFloat(document.getElementById('qt')?.value);
     const otras = '';
     const has = (id) => !!document.getElementById(id)?.checked;
@@ -174,10 +220,37 @@ function generarSospechaECG() {
     const addPick = (name, score, reason) => picks.push({ name, score, reason });
     let comentario = '';
 
+    // Territorios confirmados SOLO si se marcan TODAS sus derivaciones
+    const territoryMap = {
+        'inferior': ['DII', 'DIII', 'AVF'],
+        'lateral alta': ['DI', 'AVL'],
+        'lateral baja': ['V5', 'V6'],
+        'anterior': ['V3', 'V4'],
+        'septal': ['V1', 'V2']
+    };
+    const territoriesConfirmed = [];
+    const territoryConfirmedDetails = [];
+    Object.entries(territoryMap).forEach(([terr, leads]) => {
+        const allPresent = leads.every(l => leadsSel.includes(l));
+        if (allPresent) {
+            territoriesConfirmed.push(terr);
+            territoryConfirmedDetails.push(`${terr} (${leads.join(', ')})`);
+        }
+    });
+
     // Isquemia/lesión
-    if (stElevado) addPick('Infarto con elevación del ST (STEMI)', 5, 'Elevación del ST');
-    if (stDescendido) addPick('Isquemia subendocárdica / NSTEMI', 3, 'Descenso del ST');
-    if (tInvertida) addPick('Isquemia subendocárdica / NSTEMI', 3, 'T invertida');
+    if (stElevado) {
+        if (territoriesConfirmed.length) territoriesConfirmed.forEach(t => addPick('Infarto con elevación del ST (STEMI)', 5, `ST elevado en territorio ${t} (selección completa)`));
+        else addPick('Infarto con elevación del ST (STEMI)', 5, 'Elevación del ST');
+    }
+    if (stDescendido) {
+        if (territoriesConfirmed.length) territoriesConfirmed.forEach(t => addPick('Isquemia subendocárdica / NSTEMI', 3, `ST descendido en territorio ${t} (selección completa)`));
+        else addPick('Isquemia subendocárdica / NSTEMI', 3, 'Descenso del ST');
+    }
+    if (tInvertida) {
+        if (territoriesConfirmed.length) territoriesConfirmed.forEach(t => addPick('Isquemia subendocárdica / NSTEMI', 3, `T invertida en territorio ${t} (selección completa)`));
+        else addPick('Isquemia subendocárdica / NSTEMI', 3, 'T invertida');
+    }
 
     // Arritmias
     if (ritmo.includes('no sinusal') && !isNaN(frecuencia) && frecuencia > 150 && !isNaN(qrs) && qrs < 120) {
@@ -208,8 +281,10 @@ function generarSospechaECG() {
     // Onda U por checkbox
     if (has('crit_onda_u')) addPick('Hipokalemia probable', 3, 'Onda U');
 
-    // QT prolongado (usar QT a falta de QTc)
-    if (!isNaN(qt) && qt >= 470) addPick('QT prolongado (valorar QTc y riesgo de torsades)', 3, 'QT ≥470 ms');
+    // QT por selección (lista desplegable)
+    const qtSelSos = (document.getElementById('qt')?.value || '').toLowerCase();
+    if (/prolong/.test(qtSelSos)) addPick('QT prolongado (valorar QTc y riesgo de torsades)', 3, 'QT prolongado');
+    if (/cort/.test(qtSelSos)) addPick('QT corto (valorar causas y electrolitos)', 2, 'QT corto');
 
     // WPW y AV blocks por checkboxes
     if (has('crit_pr_corto') || has('crit_onda_delta')) addPick('Preexcitación (WPW) probable', 4, 'PR corto/onda delta');
@@ -244,13 +319,10 @@ function generarSospechaECG() {
     if (has('crit_qtc_prolongado')) addPick('QT prolongado (valorar QTc y riesgo de torsades)', 3, 'QTc prolongado');
 
     // Territorios (añadir al comentario)
-    const textoTerr = (stText + ' ' + otras).toUpperCase();
-    const terr = [];
-    if (/\bV1\b|\bV2\b/.test(textoTerr)) terr.push('septal (V1–V2)');
-    if (/\bV3\b|\bV4\b/.test(textoTerr)) terr.push('anterior (V3–V4)');
-    if (/\bDI\b|\bAVL\b|\bV5\b|\bV6\b/.test(textoTerr)) terr.push('lateral (I, aVL, V5–V6)');
-    if (/\bDII\b|\bDIII\b|\bAVF\b/.test(textoTerr)) terr.push('inferior (II, III, aVF)');
-    if (terr.length) comentario += ' Territorio sugestivo: ' + terr.join(', ') + '.';
+    // Añadir criterio territorial explícito basado en derivaciones
+    if (territoryConfirmedDetails.length) {
+        comentario += ' Territorios confirmados por derivaciones: ' + territoryConfirmedDetails.join(', ') + '.';
+    }
 
     // Mapeo morfológico desde "alteraciones" a criterios (Comparación de Patrones)
     // Texto libre retirado: la sospecha se nutre de variables guiadas y criterios morfológicos
@@ -723,3 +795,4 @@ function buscarImagenesSimilares_V2() {
         }
     }, 3000);
 }
+// (bloque previo de territorios trasladado dentro de generarSospechaECG)

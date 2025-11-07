@@ -248,6 +248,30 @@ body {
 }
 .form-check-label [data-bs-toggle="tooltip"]:hover { border-color: #222222; }
 
+/* Controles estilo macOS para el chat */
+.mac-controls { position: absolute; left: 8px; top: 8px; display: flex; gap: 6px; z-index: 2; }
+.mac-dot { display: inline-flex; align-items: center; justify-content: center; width: 14px; height: 14px; border-radius: 50%; border: 1px solid #333; cursor: pointer; }
+.mac-dot.close { background: #e74c3c; color: #ffffff; }
+.mac-dot.close::after {
+  content: '×';
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  line-height: 14px; /* centra verticalmente */
+  text-align: center; /* centra horizontalmente */
+  font-size: 11px;
+  font-weight: 700;
+}
+.mac-dot:hover { filter: brightness(0.95); }
+
+/* Estados del contenedor del chat */
+.chat-container { position: relative; }
+.chat-container.minimized .chat-box,
+.chat-container.minimized .chat-input { display: none; }
+.chat-container.minimized { padding-top: 14px; }
+.chat-container.expanded { max-width: 100%; width: 95%; }
+.chat-container.expanded .chat-box { height: 60vh; }
+
 /* Prefer reduced motion: turn off transitions/animations */
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
