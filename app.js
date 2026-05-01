@@ -1845,8 +1845,10 @@ window.askAIAbout = function(query) {
     }
     modalInstance.show();
 
-    // Llamada al backend de la IA
-    fetch('/api/chat', {
+    // Llamada al backend de la IA (Usa la URL configurada globalmente o el fallback local)
+    const API_URL = window.CHAT_API_URL || '/api/chat';
+
+    fetch(API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ prompt: query })
