@@ -1,0 +1,139 @@
+{
+    "appName": "ECG Assist",
+    "description": "Aplicación educativa y de apoyo clínico para interpretación de electrocardiogramas.",
+    "modules": [
+        {
+            "id": 1,
+            "name": "Conceptos básicos",
+            "description": "Módulo educativo que explica cómo leer un ECG paso a paso.",
+            "sections": [
+                {
+                    "title": "Sistema de conducción cardíaca",
+                    "content": "Explicación de nodo SA, nodo AV, haz de His, ramas, fibras de Purkinje."
+                },
+                {
+                    "title": "Papel electrocardiográfico",
+                    "content": "Cada cuadro pequeño equivale a 0.04 s en el eje horizontal y 0.1 mV en el eje vertical."
+                },
+                {
+                    "title": "Derivaciones",
+                    "content": "Derivaciones bipolares (DI, DII, DIII), unipolares (aVR, aVL, aVF) y precordiales (V1–V6)."
+                },
+                {
+                    "title": "Frecuencia cardíaca",
+                    "content": "Contar cuadros pequeños entre dos QRS y dividir 1500 por ese número."
+                },
+                {
+                    "title": "Intervalos normales",
+                    "content": "PR: 120–200 ms, QRS: <120 ms, QT corregido: <440 ms en hombres y <460 ms en mujeres."
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Lectura guiada",
+            "description": "Pantalla principal para realizar la lectura guiada del ECG.",
+            "fields": [
+                {
+                    "label": "Bien tomado",
+                    "type": "boolean",
+                    "helpText": "Verificar calibración (10 mm/mV) y velocidad (25 mm/s), ausencia de artefactos."
+                },
+                {
+                    "label": "Ritmo",
+                    "type": "select",
+                    "options": [
+                        "Sinusal",
+                        "No sinusal",
+                        "Fibrilación auricular",
+                        "Flutter auricular",
+                        "Ritmo nodal",
+                        "Otros"
+                    ],
+                    "helpText": "Ritmo sinusal: onda P positiva en DII, relación P-QRS 1:1, frecuencia regular."
+                },
+                {
+                    "label": "Frecuencia cardíaca",
+                    "type": "number",
+                    "unit": "lpm",
+                    "normalRange": "60–100 lpm",
+                    "helpText": "Contar cuadros pequeños entre dos QRS y dividir 1500 por ese número."
+                },
+                {
+                    "label": "Eje",
+                    "type": "select",
+                    "options": [
+                        "Normal",
+                        "Desviación izquierda",
+                        "Desviación derecha",
+                        "Eje indeterminado"
+                    ],
+                    "helpText": "Eje normal: entre -30° y +90°."
+                },
+                {
+                    "label": "Intervalo PR",
+                    "type": "number",
+                    "unit": "ms",
+                    "normalRange": "120–200 ms",
+                    "helpText": "Medir desde el inicio de la onda P hasta el inicio del QRS."
+                },
+                {
+                    "label": "Onda P",
+                    "type": "text",
+                    "helpText": "Normal: duración <120 ms, amplitud <2.5 mm en derivaciones frontales."
+                },
+                {
+                    "label": "Complejo QRS",
+                    "type": "number",
+                    "unit": "ms",
+                    "normalRange": "<120 ms",
+                    "helpText": "Medir desde el inicio de la onda Q hasta el final de la onda S."
+                },
+                {
+                    "label": "Segmento ST",
+                    "type": "text",
+                    "helpText": "Debe ser isoeléctrico; elevación o depresión sugiere isquemia o lesión."
+                },
+                {
+                    "label": "Onda T",
+                    "type": "text",
+                    "helpText": "Debe ser positiva en la mayoría de derivaciones excepto aVR; inversión puede indicar isquemia."
+                },
+                {
+                    "label": "Intervalo QT",
+                    "type": "number",
+                    "unit": "ms",
+                    "normalRange": "QTc < 440 ms (H), < 460 ms (M)",
+                    "helpText": "QTc prolongado puede predisponer a arritmias ventriculares."
+                },
+                {
+                    "label": "Alteraciones adicionales",
+                    "type": "textarea",
+                    "helpText": "Ej: bloqueos, arritmias, signos de necrosis, crecimiento auricular o ventricular."
+                }
+            ],
+            "outputTemplate": "Electrocardiograma {bien_tomado}, con ritmo {ritmo}, con frecuencia cardíaca de {frecuencia} lpm, eje {eje}, intervalo PR {pr} ms, onda P {onda_p}, QRS {qrs} ms, ST {st}, onda T {t}, QT {qt} ms, {alteraciones}."
+        },
+        {
+            "id": 3,
+            "name": "Comparación de patrones",
+            "description": "Permite tomar una foto y comparar patrones ECG con bases de datos públicas.",
+            "actions": [
+                {
+                    "label": "Tomar fotografía",
+                    "description": "Activar cámara del dispositivo para capturar ECG en papel o pantalla."
+                },
+                {
+                    "label": "Buscar patrones similares",
+                    "description": "Comparar la imagen con bases de datos o IA para sugerir posibles diagnósticos.",
+                    "dataSources": [
+                        "https://physionet.org/",
+                        "https://ecgwaves.com/",
+                        "https://litfl.com/ecg-library/"
+                    ]
+                }
+            ]
+        }
+    ],
+    "developerNotes": "Esta estructura JSON puede cargarse en Trade o dividirse en módulos. Se recomienda iniciar con módulos 1 y 2 para el MVP."
+}

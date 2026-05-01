@@ -1,0 +1,89 @@
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo -->
+  <rect width="400" height="300" fill="#f8f9fa"/>
+
+  <!-- Título -->
+  <text x="200" y="25" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#333">
+    Onda P — Básica
+  </text>
+
+  <!-- Cuadrícula principal (5 mm) igual al patrón de Papel ECG tiempo -->
+  <g stroke="#d32f2f" stroke-width="1" fill="none">
+    <line x1="50" y1="60" x2="350" y2="60"/>
+    <line x1="50" y1="100" x2="350" y2="100"/>
+    <line x1="50" y1="140" x2="350" y2="140"/>
+    <line x1="50" y1="180" x2="350" y2="180"/>
+    <line x1="50" y1="220" x2="350" y2="220"/>
+    <line x1="50" y1="260" x2="350" y2="260"/>
+    <line x1="50" y1="60" x2="50" y2="260"/>
+    <line x1="100" y1="60" x2="100" y2="260"/>
+    <line x1="150" y1="60" x2="150" y2="260"/>
+    <line x1="200" y1="60" x2="200" y2="260"/>
+    <line x1="250" y1="60" x2="250" y2="260"/>
+    <line x1="300" y1="60" x2="300" y2="260"/>
+    <line x1="350" y1="60" x2="350" y2="260"/>
+  </g>
+
+  <!-- Cuadrícula secundaria (1 mm) -->
+  <g stroke="#ffcdd2" stroke-width="0.5" fill="none">
+    <!-- horizontales pequeñas -->
+    <g>
+      <line x1="50" y1="70" x2="350" y2="70"/>
+      <line x1="50" y1="80" x2="350" y2="80"/>
+      <line x1="50" y1="90" x2="350" y2="90"/>
+      <line x1="50" y1="110" x2="350" y2="110"/>
+      <line x1="50" y1="120" x2="350" y2="120"/>
+      <line x1="50" y1="130" x2="350" y2="130"/>
+      <line x1="50" y1="150" x2="350" y2="150"/>
+      <line x1="50" y1="160" x2="350" y2="160"/>
+      <line x1="50" y1="170" x2="350" y2="170"/>
+      <line x1="50" y1="190" x2="350" y2="190"/>
+      <line x1="50" y1="200" x2="350" y2="200"/>
+      <line x1="50" y1="210" x2="350" y2="210"/>
+      <line x1="50" y1="230" x2="350" y2="230"/>
+      <line x1="50" y1="240" x2="350" y2="240"/>
+      <line x1="50" y1="250" x2="350" y2="250"/>
+    </g>
+    <!-- verticales pequeñas -->
+    <g>
+      <line x1="60" y1="60" x2="60" y2="260"/>
+      <line x1="70" y1="60" x2="70" y2="260"/>
+      <line x1="80" y1="60" x2="80" y2="260"/>
+      <line x1="90" y1="60" x2="90" y2="260"/>
+      <line x1="110" y1="60" x2="110" y2="260"/>
+      <line x1="120" y1="60" x2="120" y2="260"/>
+      <line x1="130" y1="60" x2="130" y2="260"/>
+      <line x1="140" y1="60" x2="140" y2="260"/>
+      <line x1="160" y1="60" x2="160" y2="260"/>
+      <line x1="170" y1="60" x2="170" y2="260"/>
+      <line x1="180" y1="60" x2="180" y2="260"/>
+      <line x1="190" y1="60" x2="190" y2="260"/>
+      <line x1="210" y1="60" x2="210" y2="260"/>
+      <line x1="220" y1="60" x2="220" y2="260"/>
+      <line x1="230" y1="60" x2="230" y2="260"/>
+      <line x1="240" y1="60" x2="240" y2="260"/>
+      <line x1="260" y1="60" x2="260" y2="260"/>
+      <line x1="270" y1="60" x2="270" y2="260"/>
+      <line x1="280" y1="60" x2="280" y2="260"/>
+      <line x1="290" y1="60" x2="290" y2="260"/>
+      <line x1="310" y1="60" x2="310" y2="260"/>
+      <line x1="320" y1="60" x2="320" y2="260"/>
+      <line x1="330" y1="60" x2="330" y2="260"/>
+      <line x1="340" y1="60" x2="340" y2="260"/>
+    </g>
+  </g>
+
+  <!-- Línea isoeléctrica -->
+  <line x1="50" y1="180" x2="350" y2="180" stroke="#4caf50" stroke-width="2" stroke-dasharray="5,5"/>
+  <text x="355" y="185" font-family="Arial" font-size="10" fill="#4caf50" font-weight="bold">Isoeléctrica</text>
+
+  <!-- Trazo simplificado con P pequeña -->
+  <path d="M80 180 L120 180 C128 180 132 175 140 173 C148 171 156 187 164 189 C172 191 176 180 180 180 L200 180"
+        fill="none" stroke="#f44336" stroke-width="3"/>
+
+  <!-- Medidas de referencia -->
+  <g font-family="Arial" font-size="11" font-weight="bold" fill="#d32f2f">
+    <text x="110" y="205" text-anchor="middle">Duración &lt; 120 ms</text>
+    <text x="110" y="220" text-anchor="middle">Amplitud &lt; 2.5 mm</text>
+  </g>
+</svg>

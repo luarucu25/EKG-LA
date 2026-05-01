@@ -1,0 +1,427 @@
+:root {
+  --ao-bg: #f9fafb;
+  --ao-surface: #ffffff;
+  --ao-primary: #710C04;          /* red blood */
+  --ao-primary-600: #5a0a03;
+  --ao-accent: #B21F13;
+  --ao-text: #1f2937;
+  --ao-muted: #6b7280;
+  --ao-border: #e4d2cf;
+  --ao-shadow: 0 10px 28px rgba(113,12,4,0.18);
+  --ao-shadow-strong: 0 16px 40px rgba(113,12,4,0.26);
+  --ao-inner: inset 0 1px 0 rgba(255,255,255,0.6), inset 0 -1px 0 rgba(113,12,4,0.08);
+  --ao-radius: 16px;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: var(--ao-bg);
+  color: var(--ao-text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  line-height: 1.6;
+}
+
+/* Topbar inspirado (no literal) */
+.navbar.ao-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  background: #ffffff; /* remove heavy blur for performance */
+  border: 1px solid var(--ao-primary);
+  border-radius: 12px;
+  margin: 12px 16px;
+  box-shadow: var(--ao-shadow);
+}
+.navbar.ao-topbar .navbar-brand {
+  color: var(--ao-primary);
+  text-shadow: 0 1px 0 rgba(0,0,0,0.06);
+}
+.navbar.ao-topbar .nav-link {
+  color: #374151;
+}
+.navbar.ao-topbar .nav-link:hover {
+  color: var(--ao-primary);
+  transform: translateY(-1px);
+}
+.navbar.ao-topbar .nav-link { transition: color .12s ease, transform .12s ease; }
+
+/* Logo en navbar: tamaño escritorio y escala móvil */
+.la-navbar-logo img {
+  width: 2cm;
+  height: 2cm;
+  object-fit: contain;
+}
+@media (max-width: 576px) {
+  .la-navbar-logo img {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* Hero */
+.ao-hero {
+  background: linear-gradient(135deg, rgba(113,12,4,0.10), rgba(178,31,19,0.10));
+  border: 1px solid var(--ao-primary);
+  border-radius: var(--ao-radius);
+  padding: 32px 24px;
+  box-shadow: var(--ao-shadow);
+}
+.ao-hero-title {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.ao-hero-subtitle {
+  color: var(--ao-muted);
+}
+
+/* Contenido principal */
+.ao-content {
+  margin-top: 24px;
+}
+
+/* Tarjetas unificadas */
+.card.ao-card {
+  background: #ffffff;
+  border: 1px solid var(--ao-primary);
+  border-radius: var(--ao-radius);
+  box-shadow: var(--ao-shadow);
+}
+.card.ao-card:hover {
+  box-shadow: var(--ao-shadow);
+  transform: none;
+}
+
+/* Imágenes de catálogo de patrones */
+.ecg-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.ecg-fig figcaption { color: var(--ao-muted); }
+
+/* Cabecera de tarjeta más consistente */
+.card.ao-card .card-header {
+  background: linear-gradient(180deg, rgba(113,12,4,0.06), rgba(113,12,4,0.02));
+  border-bottom: 1px solid var(--ao-primary);
+  font-weight: 600;
+}
+
+/* Botones */
+.btn-primary {
+  background: linear-gradient(180deg, var(--ao-primary), var(--ao-primary-600));
+  border-color: var(--ao-primary-600);
+  border-radius: 999px;
+  padding: 10px 18px;
+  box-shadow: 0 6px 14px rgba(113,12,4,0.25);
+  transition: transform .08s ease, box-shadow .08s ease;
+}
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 18px rgba(113,12,4,0.28);
+}
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(113,12,4,0.22);
+}
+.btn-outline-secondary {
+  border-color: var(--ao-primary);
+  color: var(--ao-primary);
+  border-radius: 999px;
+  padding: 10px 18px;
+}
+.btn-outline-secondary:hover { background: var(--ao-primary); color: #fff; }
+
+/* Formularios */
+.form-control, .form-select {
+  border-radius: 12px;
+  border: 1px solid var(--ao-primary);
+  box-shadow: var(--ao-inner);
+}
+.form-control:focus, .form-select:focus {
+  border-color: var(--ao-primary);
+  box-shadow: 0 0 0 0.22rem rgba(113,12,4,0.22);
+}
+.form-check-input:checked {
+  background-color: var(--ao-primary);
+  border-color: var(--ao-primary);
+}
+/* remove bump animation for performance */
+
+/* Accordion */
+.accordion {
+  --bs-accordion-border-color: var(--ao-primary);
+  --bs-accordion-border-radius: var(--ao-radius);
+  --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(113,12,4,0.18);
+  --bs-accordion-btn-icon-transform: rotate(0deg);
+}
+.accordion-button {
+  border-radius: 12px !important;
+}
+.accordion-item {
+  border: 1px solid var(--ao-primary);
+  border-radius: var(--ao-radius);
+  box-shadow: var(--ao-shadow);
+  margin-bottom: 12px;
+}
+.accordion-button:not(.collapsed) { color: var(--ao-primary); background-color: rgba(113,12,4,0.06); }
+.accordion .collapsing { transition: height .12s ease !important; }
+
+/* Alerts */
+.alert { border-radius: 12px; border: 1px solid var(--ao-primary); }
+
+/* Utilidades */
+.rounded-ao { border-radius: var(--ao-radius); }
+.shadow-ao { box-shadow: var(--ao-shadow); }
+
+/* Visibilizar imágenes en el módulo de conceptos (se replica estilo de Comparación) */
+/* Ajuste de relación de aspecto 4:3 solo para el módulo de Conceptos */
+#accordionConceptos img.ecg-img {
+  width: 100%;
+  height: auto !important; /* sobreescribe altura fija general */
+  aspect-ratio: 4 / 3;
+  object-fit: contain; /* muestra el contenido completo dentro del 4:3 */
+}
+/* Eliminado override específico: todas las imágenes en Conceptos usan 4:3 */
+
+/* Ajuste de imágenes en módulo Comparación de Patrones: respetar tamaño natural */
+#accordionComparacion img.ecg-img {
+  width: 100%;
+  height: auto !important; /* evita recorte por altura fija */
+  object-fit: contain;      /* muestra la imagen completa */
+  aspect-ratio: auto;       /* usa la relación de aspecto intrínseca */
+}
+
+/* Animaciones sutiles en select y checkbox */
+.form-select, .form-check-input { transition: box-shadow .12s ease, transform .08s ease; }
+
+/* Outline primary al tema rojo */
+.btn-outline-primary {
+  border-color: var(--ao-primary);
+  color: var(--ao-primary);
+}
+.btn-outline-primary:hover {
+  background: var(--ao-primary);
+  color: #fff;
+  border-color: var(--ao-primary);
+}
+
+/* Pulse animation disabled by default for performance */
+.pulse { animation: none; }
+
+/* Tooltip dot: small, subtle indicator for inline help */
+.tooltip-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 10px; /* ligeramente mayor para legibilidad */
+  height: 10px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid #333333;
+  color: #333333;
+  font-size: 8px; /* signo ? pequeño */
+  line-height: 1;
+  font-weight: 700;
+  vertical-align: middle;
+  cursor: help;
+}
+
+/* Buscador de Patrones */
+.search-container {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Buscador en Navbar */
+.navbar-search-container {
+  position: relative;
+  max-width: 350px;
+  width: 100%;
+  margin: 0 15px;
+}
+.navbar-search-container .input-group {
+  height: 40px;
+}
+.navbar-search-container .input-group-text {
+  padding-left: 15px !important;
+  font-size: 0.9rem;
+}
+.navbar-search-container .form-control {
+  font-size: 0.9rem;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.search-suggestions-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid var(--ao-primary);
+  border-radius: 12px;
+  margin-top: 8px;
+  box-shadow: var(--ao-shadow-strong);
+  z-index: 1050;
+  max-height: 300px;
+  overflow-y: auto;
+}
+.search-suggestion-item {
+  padding: 12px 20px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(113,12,4,0.05);
+  transition: background 0.2s ease;
+}
+.search-suggestion-item:last-child { border-bottom: none; }
+.search-suggestion-item:hover {
+  background: rgba(113,12,4,0.05);
+  color: var(--ao-primary);
+}
+.search-suggestion-item .item-title {
+  font-weight: 600;
+  display: block;
+}
+.search-suggestion-item .item-desc {
+  font-size: 0.85rem;
+  color: var(--ao-muted);
+}
+
+/* Modal Estilos */
+.modal-content {
+  border: none;
+  box-shadow: var(--ao-shadow-strong);
+}
+.modal-header.bg-primary {
+  background-color: var(--ao-primary) !important;
+}
+.modal-body h6 {
+  color: var(--ao-primary);
+  margin-top: 1.5rem;
+  border-left: 4px solid var(--ao-primary);
+  padding-left: 10px;
+}
+.modal-body h6:first-of-type {
+  margin-top: 0;
+}
+.modal-body ul {
+  padding-left: 1.2rem;
+  margin-bottom: 1rem;
+}
+.modal-body p {
+  margin-bottom: 0.5rem;
+}
+.tooltip-dot::after {
+  content: '?';
+  color: #333333;
+  font-size: 8px;
+  line-height: 1;
+  font-weight: 700;
+}
+.tooltip-dot:hover { border-color: #222222; }
+
+/* Aplicar estilo de punto de ayuda también a spans de tooltip en etiquetas */
+.form-check-label [data-bs-toggle="tooltip"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid #333333;
+  vertical-align: middle;
+  cursor: help;
+  font-size: 0; /* ocultar texto original (ℹ️) */
+}
+.form-check-label [data-bs-toggle="tooltip"]::after {
+  content: '?';
+  color: #333333;
+  font-size: 8px;
+  line-height: 1;
+  font-weight: 700;
+}
+.form-check-label [data-bs-toggle="tooltip"]:hover { border-color: #222222; }
+
+/* Logo del footer: tamaño de escritorio y escala móvil */
+.la-footer-brand img {
+  width: 2cm;
+  height: 2cm;
+  object-fit: contain;
+}
+
+@media (max-width: 576px) {
+  .la-footer-brand img {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* Controles estilo macOS para el chat */
+.mac-controls { position: absolute; left: 8px; top: 8px; display: flex; gap: 6px; z-index: 2; }
+.mac-dot { display: inline-flex; align-items: center; justify-content: center; width: 14px; height: 14px; border-radius: 50%; border: 1px solid #333; cursor: pointer; }
+.mac-dot.close { background: #e74c3c; color: #ffffff; }
+.mac-dot.close::after {
+  content: '×';
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  line-height: 14px; /* centra verticalmente */
+  text-align: center; /* centra horizontalmente */
+  font-size: 11px;
+  font-weight: 700;
+}
+.mac-dot:hover { filter: brightness(0.95); }
+
+/* Estados del contenedor del chat */
+.chat-container { position: relative; }
+.chat-container.minimized .chat-box,
+.chat-container.minimized .chat-input { display: none; }
+.chat-container.minimized { padding-top: 14px; }
+.chat-container.expanded { max-width: 100%; width: 95%; }
+.chat-container.expanded .chat-box { height: 60vh; }
+
+/* Prefer reduced motion: turn off transitions/animations */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+/* Chat widget: botón y panel */
+.chat-widget-toggle {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 1050;
+  background: var(--ao-primary);
+  color: #fff;
+  border: 1px solid var(--ao-primary);
+  border-radius: 999px;
+  padding: 10px 14px;
+  box-shadow: var(--ao-shadow);
+}
+.chat-widget-panel {
+  position: fixed;
+  right: 16px;
+  bottom: 72px;
+  width: 380px;
+  height: 560px;
+  z-index: 1050;
+  background: #fff;
+  border: 1px solid var(--ao-primary);
+  border-radius: 12px;
+  box-shadow: var(--ao-shadow);
+  display: none;
+}
+.chat-widget-panel.open { display: block; }
+.chat-widget-panel iframe { width: 100%; height: 100%; border: 0; border-radius: 12px; }
+
+@keyframes informePulse {
+  0% { background: #ffffff; box-shadow: none; }
+  30% { background: rgba(113,12,4,0.08); box-shadow: 0 0 0 0.24rem rgba(113,12,4,0.25); }
+  70% { background: rgba(113,12,4,0.08); box-shadow: 0 0 0 0.24rem rgba(113,12,4,0.25); }
+  100% { background: #ffffff; box-shadow: none; }
+}
+.informe-flash { animation: informePulse 1200ms ease-out; border-radius: 12px; }

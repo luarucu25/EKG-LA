@@ -1,0 +1,19 @@
+<svg width="420" height="300" viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="420" height="300" fill="#f8f9fa"/>
+  <text x="210" y="22" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#333">Complejo QRS</text>
+  
+  <g stroke="#2196f3" stroke-width="3" fill="none" transform="translate(40,80)">
+    <!-- QRS normal (~<120 ms) -->
+    <path d="M0 50 L5 55 L10 5 L15 95 L20 15 L25 50"/>
+    <text x="12" y="70" text-anchor="middle" font-family="Arial" font-size="12" fill="#333">Estrecho</text>
+    
+    <!-- QRS ancho (>=120 ms) -->
+    <path d="M80 50 L90 55 L100 5 L110 95 L120 15 L130 50"/>
+    <text x="105" y="70" text-anchor="middle" font-family="Arial" font-size="12" fill="#333">Ancho</text>
+  </g>
+  
+  <g transform="translate(30,200)" font-family="Arial" font-size="12" fill="#333">
+    <text x="0" y="0">Referencia: duración &lt; 120 ms (normal).</text>
+    <text x="0" y="18">QRS ancho: bloqueos de rama o ritmos ventriculares.</text>
+  </g>
+</svg>

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <title>Complejo QRS — Visual</title>
+  <defs>
+    <pattern id="gridSmall" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M20 0H0V20" fill="none" stroke="#e5e7eb" stroke-width="1"/>
+    </pattern>
+    <pattern id="gridLarge" width="100" height="100" patternUnits="userSpaceOnUse">
+      <rect width="100" height="100" fill="url(#gridSmall)"/>
+      <path d="M100 0H0V100" fill="none" stroke="#cbd5e1" stroke-width="1.5"/>
+    </pattern>
+  </defs>
+  <rect x="20" y="20" width="760" height="560" rx="18" fill="#fff" stroke="#d1d5db"/>
+  <rect x="40" y="80" width="720" height="360" fill="url(#gridLarge)" rx="8"/>
+  <line x1="40" y1="260" x2="760" y2="260" stroke="#9ca3af" stroke-width="2"/>
+
+  <!-- Trazo ECG simplificado con QRS prominente -->
+  <path d="M40 260 L200 260 C210 260 218 255 225 252 
+           L235 258 L242 250 L249 310 L256 180 L263 310 L270 240 L276 260 
+           C310 260 340 280 370 260 C400 240 430 220 460 260 C490 300 520 280 550 260 C580 240 610 260 760 260"
+        fill="none" stroke="#1a73e8" stroke-width="4"/>
+
+  <!-- Resaltado del QRS -->
+  <rect x="240" y="160" width="60" height="120" fill="#16a34a" opacity="0.12" rx="6"/>
+  <path d="M240 150 H300" stroke="#16a34a" stroke-width="3" marker-end="url(#arrowQRS)"/>
+  <text x="245" y="145" fill="#16a34a" font-size="20" font-weight="700">QRS</text>
+
+  <defs>
+    <marker id="arrowQRS" orient="auto" markerWidth="6" markerHeight="6" refX="2" refY="3">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#16a34a"/>
+    </marker>
+  </defs>
+
+  <!-- Glosa lateral -->
+  <g font-size="16" fill="#111827">
+    <text x="60" y="480" font-weight="700">Referencia</text>
+    <text x="60" y="505">Duración &lt; 120 ms (estrecho)</text>
+    <text x="60" y="530">≥ 120 ms: QRS ancho</text>
+  </g>
+</svg>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EKG-LA — Inicio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=la1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg ao-topbar">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="index.html">EKG-LA</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarIndex"
+                aria-controls="navbarIndex" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="navbarIndex" class="collapse navbar-collapse">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="conceptos-basicos.html">Conceptos Básicos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="lectura-guiada.html">Lectura Guiada</a></li>
+                    <li class="nav-item"><a class="nav-link" href="comparacion-patrones.html">Comparación de Patrones</a></li>
+                </ul>
+            </div>
+
+            <!-- Buscador de Patrones en Navbar -->
+            <div class="navbar-search-container d-none d-lg-block">
+                <div class="input-group shadow-sm rounded-pill overflow-hidden border border-primary">
+                    <span class="input-group-text bg-white border-0">
+                        <i class="bi bi-search text-primary"></i>
+                    </span>
+                    <input type="text" id="patronSearch" class="form-control border-0" placeholder="Buscar patrón..." autocomplete="off">
+                </div>
+                <div id="searchSuggestions" class="search-suggestions-list d-none"></div>
+            </div>
+
+            <div class="ms-auto la-navbar-logo d-none d-lg-block">
+                <a href="https://latidoasistido.wixsite.com/lav1" target="_blank" rel="noopener" aria-label="Página web" title="Página web">
+                    <img src="img/latido-asistido-logo.png" alt="Latido Asistido" />
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-4">
+        <section class="ao-hero mb-4">
+            <h1 class="ao-hero-title display-6">EKG-LA</h1>
+            <p class="ao-hero-subtitle lead">Aprende, analiza y compara ECG con interfaz uniforme.</p>
+        </section>
+
+        <!-- Modal para Detalles del Patrón -->
+        <div class="modal fade" id="patronModal" tabindex="-1" aria-labelledby="patronModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content border-0 shadow-lg rounded-4">
+                    <div class="modal-header bg-primary text-white border-0 rounded-top-4">
+                        <h5 class="modal-title fw-bold" id="patronModalLabel">Detalles del Patrón</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body p-4" id="patronModalBody">
+                        <!-- Contenido dinámico -->
+                    </div>
+                    <div class="modal-footer border-0">
+                        <button type="button" class="btn btn-outline-secondary px-4" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card ao-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Conceptos Básicos</h5>
+                        <p class="card-text">Módulo educativo que explica cómo leer un ECG paso a paso.</p>
+                        <a href="conceptos-basicos.html" class="btn btn-primary">Acceder</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card ao-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Lectura Guiada</h5>
+                        <p class="card-text">Pantalla principal para realizar la lectura guiada del ECG.</p>
+                        <a href="lectura-guiada.html" class="btn btn-primary">Acceder</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card ao-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Comparación de Patrones</h5>
+                        <p class="card-text">Permite tomar una foto y comparar patrones ECG con bases de datos públicas.</p>
+                        <a href="comparacion-patrones.html" class="btn btn-primary">Acceder</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Configura el endpoint del backend en Render para el chat
+      window.CHAT_API_URL = 'https://ekggo.onrender.com/api/chat';
+    </script>
+    <script src="app.js?v=la1"></script>
+</body>
+</html>
+
+<footer class="container my-5">
+    <div class="text-center" style="margin-bottom:8px;">
+        <a href="https://latidoasistido.wixsite.com/lav1" target="_blank" rel="noopener" aria-label="Página web" title="Página web" class="mx-2" style="font-size:1.4rem; text-decoration:none;"><i class="bi bi-globe2"></i></a>
+        <a href="https://www.instagram.com/latidoasistido/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram" class="mx-2" style="font-size:1.4rem; text-decoration:none;"><i class="bi bi-instagram"></i></a>
+        <a href="https://wa.me/573508956163" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp" class="mx-2" style="font-size:1.4rem; text-decoration:none;"><i class="bi bi-whatsapp"></i></a>
+    </div>
+    <div class="text-center my-2 la-footer-brand">
+        <span class="small text-muted">Una plataforma de Latido Asistido</span>
+    </div>
+    <div class="text-center text-muted small">
+        Contenido educativo — No sustituye evaluación clínica. Autor: Dr. Luis Ángel Rueda Cuervo.
+    </div>
+</footer>

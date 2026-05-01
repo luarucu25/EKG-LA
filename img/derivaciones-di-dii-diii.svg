@@ -1,0 +1,82 @@
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo -->
+  <rect width="400" height="300" fill="#f8f9fa"/>
+  
+  <!-- Título -->
+  <text x="200" y="25" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#333">
+    Derivaciones de Miembros: DI, DII, DIII
+  </text>
+  
+  <!-- Triángulo de Einthoven -->
+  <g stroke="#2196f3" stroke-width="3" fill="none">
+    <path d="M200 60 L120 180 L280 180 Z"/>
+  </g>
+  
+  <!-- Electrodos -->
+  <circle cx="200" cy="60" r="12" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+  <text x="200" y="66" text-anchor="middle" font-family="Arial" font-size="10" fill="white" font-weight="bold">RA</text>
+  <text x="200" y="45" text-anchor="middle" font-family="Arial" font-size="10" fill="#333" font-weight="bold">Brazo Derecho</text>
+  
+  <circle cx="120" cy="180" r="12" fill="#ff9800" stroke="#e65100" stroke-width="2"/>
+  <text x="120" y="186" text-anchor="middle" font-family="Arial" font-size="10" fill="white" font-weight="bold">LA</text>
+  <text x="120" y="205" text-anchor="middle" font-family="Arial" font-size="10" fill="#333" font-weight="bold">Brazo Izquierdo</text>
+  
+  <circle cx="280" cy="180" r="12" fill="#f44336" stroke="#c62828" stroke-width="2"/>
+  <text x="280" y="186" text-anchor="middle" font-family="Arial" font-size="10" fill="white" font-weight="bold">LL</text>
+  <text x="280" y="205" text-anchor="middle" font-family="Arial" font-size="10" fill="#333" font-weight="bold">Pierna Izquierda</text>
+  
+  <!-- Derivaciones con flechas -->
+  <!-- DI: LA - RA -->
+  <g stroke="#e91e63" stroke-width="3" fill="#e91e63" marker-end="url(#pinkarrow)">
+    <defs>
+      <marker id="pinkarrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" fill="#e91e63"/>
+      </marker>
+    </defs>
+    <line x1="210" y1="70" x2="150" y2="120"/>
+  </g>
+  <text x="170" y="90" font-family="Arial" font-size="12" font-weight="bold" fill="#e91e63">DI</text>
+  <text x="170" y="105" font-family="Arial" font-size="9" fill="#e91e63">LA - RA</text>
+  
+  <!-- DII: LL - RA -->
+  <g stroke="#9c27b0" stroke-width="3" fill="#9c27b0" marker-end="url(#purplearrow)">
+    <defs>
+      <marker id="purplearrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" fill="#9c27b0"/>
+      </marker>
+    </defs>
+    <line x1="210" y1="70" x2="270" y2="170"/>
+  </g>
+  <text x="250" y="110" font-family="Arial" font-size="12" font-weight="bold" fill="#9c27b0">DII</text>
+  <text x="250" y="125" font-family="Arial" font-size="9" fill="#9c27b0">LL - RA</text>
+  
+  <!-- DIII: LL - LA -->
+  <g stroke="#673ab7" stroke-width="3" fill="#673ab7" marker-end="url(#indigoarrow)">
+    <defs>
+      <marker id="indigoarrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" fill="#673ab7"/>
+      </marker>
+    </defs>
+    <line x1="130" y1="170" x2="270" y2="170"/>
+  </g>
+  <text x="200" y="160" font-family="Arial" font-size="12" font-weight="bold" fill="#673ab7">DIII</text>
+  <text x="200" y="175" font-family="Arial" font-size="9" fill="#673ab7">LL - LA</text>
+  
+  <!-- Corazón en el centro -->
+  <g transform="translate(200, 120)">
+    <path d="M0 -15 C-10 -15 -20 -5 -20 5 C-20 15 -10 25 0 35 C10 25 20 15 20 5 C20 -5 10 -15 0 -15 Z" 
+          fill="#ffcdd2" stroke="#d32f2f" stroke-width="1"/>
+  </g>
+  
+  <!-- Información adicional -->
+  <g transform="translate(50, 230)">
+    <text x="0" y="0" font-family="Arial" font-size="12" font-weight="bold" fill="#333">Características:</text>
+    <text x="0" y="15" font-family="Arial" font-size="10" fill="#666">• Forman el triángulo de Einthoven</text>
+    <text x="0" y="28" font-family="Arial" font-size="10" fill="#666">• DI + DIII = DII (Ley de Einthoven)</text>
+    <text x="0" y="41" font-family="Arial" font-size="10" fill="#666">• Evalúan actividad eléctrica en plano frontal</text>
+    
+    <text x="200" y="15" font-family="Arial" font-size="10" fill="#666">• DI: actividad lateral</text>
+    <text x="200" y="28" font-family="Arial" font-size="10" fill="#666">• DII: actividad inferior (más usada)</text>
+    <text x="200" y="41" font-family="Arial" font-size="10" fill="#666">• DIII: actividad inferior</text>
+  </g>
+</svg>

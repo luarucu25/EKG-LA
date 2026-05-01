@@ -1,0 +1,28 @@
+<svg width="420" height="320" viewBox="0 0 420 320" xmlns="http://www.w3.org/2000/svg">
+  <rect width="420" height="320" fill="#f8f9fa"/>
+  <text x="210" y="22" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#333">Interpretación del eje QRS</text>
+  
+  <g transform="translate(210,160)">
+    <circle cx="0" cy="0" r="110" fill="none" stroke="#ddd"/>
+    
+    <!-- Zonas -->
+    <path d="M0,0 L110,0 A110,110 0 0,1 0,110 Z" fill="#c8e6c9" stroke="#66bb6a"/> <!-- Normal -->
+    <path d="M0,0 L0,110 A110,110 0 0,1 -95,55 Z" fill="#ffe0b2" stroke="#ffb74d"/> <!-- Izquierda -->
+    <path d="M0,0 L-95,-55 A110,110 0 0,1 0,-110 Z" fill="#ffcdd2" stroke="#ef9a9a"/> <!-- Extremo -->
+    <path d="M0,0 L110,0 A110,110 0 0,1 95,-55 Z" fill="#bbdefb" stroke="#90caf9"/> <!-- Derecha -->
+    
+    <!-- Etiquetas -->
+    <text x="60" y="50" font-family="Arial" font-size="12" fill="#2e7d32">Normal</text>
+    <text x="-60" y="70" font-family="Arial" font-size="12" fill="#ef6c00">Desviación izquierda</text>
+    <text x="-60" y="-60" font-family="Arial" font-size="12" fill="#c62828">Eje extremo</text>
+    <text x="60" y="-60" font-family="Arial" font-size="12" fill="#1565c0">Desviación derecha</text>
+    
+    <!-- Referencias grados -->
+    <g font-family="Arial" font-size="10" fill="#666">
+      <text x="115" y="-5">0°</text>
+      <text x="5" y="120">+90°</text>
+      <text x="-115" y="-5">±180°</text>
+      <text x="5" y="-120">-90°</text>
+    </g>
+  </g>
+</svg>

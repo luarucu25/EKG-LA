@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EKG-LA — Lectura Guiada</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=la1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg ao-topbar">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="index.html">EKG-LA</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarLectura"
+                    aria-controls="navbarLectura" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="navbarLectura" class="collapse navbar-collapse">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="conceptos-basicos.html">Conceptos Básicos</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="lectura-guiada.html">Lectura Guiada</a></li>
+                    <li class="nav-item"><a class="nav-link" href="comparacion-patrones.html">Comparación de Patrones</a></li>
+                </ul>
+            </div>
+
+            <!-- Buscador de Patrones en Navbar -->
+            <div class="navbar-search-container d-none d-lg-block">
+                <div class="input-group shadow-sm rounded-pill overflow-hidden border border-primary">
+                    <span class="input-group-text bg-white border-0">
+                        <i class="bi bi-search text-primary"></i>
+                    </span>
+                    <input type="text" id="patronSearch" class="form-control border-0" placeholder="Buscar patrón..." autocomplete="off">
+                </div>
+                <div id="searchSuggestions" class="search-suggestions-list d-none"></div>
+            </div>
+
+            <div class="ms-auto la-navbar-logo d-none d-lg-block">
+                <a href="https://latidoasistido.wixsite.com/lav1" target="_blank" rel="noopener" aria-label="Página web" title="Página web">
+                    <img src="img/latido-asistido-logo.png" alt="Latido Asistido" />
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-4">
+        <section class="ao-hero mb-4">
+            <h1 class="ao-hero-title display-6">Lectura Guiada de ECG</h1>
+            <p class="ao-hero-subtitle lead">Sigue el checklist en una interfaz uniforme.</p>
+        </section>
+
+        <!-- Modal para Detalles del Patrón -->
+        <div class="modal fade" id="patronModal" tabindex="-1" aria-labelledby="patronModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content border-0 shadow-lg rounded-4">
+                    <div class="modal-header bg-primary text-white border-0 rounded-top-4">
+                        <h5 class="modal-title fw-bold" id="patronModalLabel">Detalles del Patrón</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body p-4" id="patronModalBody">
+                        <!-- Contenido dinámico -->
+                    </div>
+                    <div class="modal-footer border-0">
+                        <button type="button" class="btn btn-outline-secondary px-4" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <section class="ao-content">
+            <div class="row g-3">
+            <div class="col-md-8">
+                <div class="card ao-card mb-4">
+                    <div class="card-header">Checklist de lectura</div>
+                    <div class="card-body">
+                <form id="ecgForm" class="mb-0">
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="bienTomado">
+                        <label class="form-check-label" for="bienTomado">ECG bien tomado</label>
+                        <small class="form-text text-muted d-block">Verificar calibración (10 mm/mV) y velocidad (25 mm/s), ausencia de artefactos.</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="ritmo" class="form-label">Ritmo</label>
+                        <select class="form-select" id="ritmo">
+                            <option value="">Seleccione...</option>
+                            <option value="Sinusal">Sinusal</option>
+                            <option value="No sinusal">No sinusal</option>
+                        </select>
+                        <small class="form-text text-muted">Ritmo sinusal: onda P positiva en DII, relación P-QRS 1:1, frecuencia regular. (seleccione: Sinusal o No sinusal)</small>
+                        <div class="d-flex gap-3 mt-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="rr_regular">
+                                <label class="form-check-label" for="rr_regular">RR regular</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="rr_irregular">
+                                <label class="form-check-label" for="rr_irregular">RR irregular</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="frecuencia" class="form-label">Frecuencia cardíaca (lpm)</label>
+                        <input type="number" class="form-control" id="frecuencia" min="20" max="300">
+                        <small class="form-text text-muted">Normal: 60–100 lpm. Contar cuadros pequeños entre dos QRS y dividir 1500 por ese número.</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="eje" class="form-label">Eje</label>
+                        <select class="form-select" id="eje">
+                            <option value="">Seleccione...</option>
+                            <option value="Normal">Normal</option>
+                            <option value="Desviación izquierda">Desviación izquierda</option>
+                            <option value="Desviación derecha">Desviación derecha</option>
+                            <option value="Eje extremo">Eje extremo</option>
+                        </select>
+                        <small class="form-text text-muted">Eje normal: entre -30° y +90°. Medición breve: diferencia neta (R−S) en DI y aVF; calcular en el plano (aVF, DI) y seleccionar desviación del eje.</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="pr" class="form-label">Intervalo PR (ms)</label>
+                        <input type="number" class="form-control" id="pr" min="80" max="400">
+                        <small class="form-text text-muted">Normal: 120–200 ms. Medir desde el inicio de la onda P hasta el inicio del QRS. (Respuesta: Solo escriba el número de milisegundos)</small>
+                        <div class="row g-2 mt-2">
+                            <div class="col-md-12">
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_disociacion_av"><label class="form-check-label" for="crit_disociacion_av">Disociación AV (BAV completo) <span class="ms-1" data-bs-toggle="tooltip" title="P y QRS sin relación fija; marcapasos ventricular.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_pr_progresivo"><label class="form-check-label" for="crit_pr_progresivo">PR progresivo (Mobitz I), con una P que no conduce <span class="ms-1" data-bs-toggle="tooltip" title="Wenckebach: PR se alarga hasta bloqueo.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_pr_constante"><label class="form-check-label" for="crit_pr_constante">PR constante (Mobitz II), con una P que no conduce <span class="ms-1" data-bs-toggle="tooltip" title="PR fijo con P no conducida; más grave.">ℹ️</span></label></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="ondaP" class="form-label">Onda P</label>
+                        <select class="form-select" id="ondaP">
+                            <option value="">Seleccione...</option>
+                            <option value="Normal">Normal</option>
+                            <option value="Aumentada en duración">Aumentada en duración (P mitral)</option>
+                            <option value="Aumentada en voltaje">Aumentada en voltaje (P pulmonar)</option>
+                            <option value="Ausente">Ausente</option>
+                        </select>
+                        <small class="form-text text-muted">Normal: duración &lt;120 ms, amplitud &lt;2.5 mm en derivaciones frontales. P mitral: aumento de duración; P pulmonar: aumento de voltaje.</small>
+                        <div class="form-check mt-2">
+                            <input class="form-check-input" type="checkbox" id="ondas_f_sierra">
+                            <label class="form-check-label" for="ondas_f_sierra">Ondas F (sierra) <span class="ms-1" data-bs-toggle="tooltip" title="Marcador de Flutter auricular.">ℹ️</span></label>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="qrs" class="form-label">Complejo QRS (ms)</label>
+                        <input type="number" class="form-control" id="qrs" min="60" max="200">
+                        <small class="form-text text-muted">Normal: &lt;120 ms. Medir desde el inicio de la onda Q hasta el final de la onda S. (Respuesta: Solo escriba el número de milisegundos)</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="st" class="form-label">Segmento ST</label>
+                        <select class="form-select" id="st">
+                            <option value="">Seleccione...</option>
+                            <option value="Isoeléctrico">Isoeléctrico</option>
+                            <option value="Elevación">Elevación</option>
+                            <option value="Descenso">Descenso</option>
+                        </select>
+                        <small class="form-text text-muted">Debe ser isoeléctrico; elevación o depresión sugiere isquemia o lesión.</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="ondaT" class="form-label">Onda T</label>
+                        <select class="form-select" id="ondaT">
+                            <option value="">Seleccione...</option>
+                            <option value="Normal">Normal</option>
+                            <option value="Invertida">Invertida</option>
+                            <option value="Picuda">Picuda</option>
+                            <option value="Aplanada">Aplanada</option>
+                            <option value="Bifásica">Bifásica</option>
+                        </select>
+                        <small class="form-text text-muted">Debe ser positiva en la mayoría de derivaciones excepto aVR. Invertida puede indicar isquemia; T picuda sugiere hiperkalemia; T aplanada sugiere hipokalemia.</small>
+                        <div class="mt-2">
+                            <div class="card ao-card">
+                                <div class="card-header">Derivaciones afectadas</div>
+                                <div class="card-body">
+                                    <small class="form-text text-muted d-block mb-2">Aplica para alteraciones de Segmento ST y Onda T.</small>
+                                    <div class="row g-2">
+                                        <div class="col-md-6">
+                                            <div class="form-check"><input class="form-check-input lead-checkbox" type="checkbox" id="lead_DI"><label class="form-check-label" for="lead_DI">DI</label></div>
+                                            <div class="form-check"><input class="form-check-input lead-checkbox" type="checkbox" id="lead_DII"><label class="form-check-label" for="lead_DII">DII</label></div>
+                                            <div class="form-check"><input class="form-check-input lead-checkbox" type="checkbox" id="lead_DIII"><label class="form-check-label" for="lead_DIII">DIII</label></div>
+                                            <div class="form-check"><input class="form-check-input lead-checkbox" type="checkbox" id="lead_aVR"><label class="form-check-label" for="lead_aVR">aVR</label></div>
+                                            <div class="form-check"><input class="form-check-input lead-checkbox" type="checkbox" id="lead_aVL"><label class="form-check-label" for="lead_aVL">aVL</label></div>
+                                            <div class="form-check"><input class="form-check-input lead-checkbox" type="checkbox" id="lead_aVF"><label class="form-check-label" for="lead_aVF">aVF</label></div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-check"><input class="form-check-input lead-checkbox" type="checkbox" id="lead_V1"><label class="form-check-label" for="lead_V1">V1</label></div>
+                                            <div class="form-check"><input class="form-check-input lead-checkbox" type="checkbox" id="lead_V2"><label class="form-check-label" for="lead_V2">V2</label></div>
+                                            <div class="form-check"><input class="form-check-input lead-checkbox" type="checkbox" id="lead_V3"><label class="form-check-label" for="lead_V3">V3</label></div>
+                                            <div class="form-check"><input class="form-check-input lead-checkbox" type="checkbox" id="lead_V4"><label class="form-check-label" for="lead_V4">V4</label></div>
+                                            <div class="form-check"><input class="form-check-input lead-checkbox" type="checkbox" id="lead_V5"><label class="form-check-label" for="lead_V5">V5</label></div>
+                                            <div class="form-check"><input class="form-check-input lead-checkbox" type="checkbox" id="lead_V6"><label class="form-check-label" for="lead_V6">V6</label></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="qt" class="form-label">Intervalo QT</label>
+                        <select class="form-select" id="qt">
+                            <option value="">Seleccione...</option>
+                            <option value="Normal">Normal</option>
+                            <option value="Prolongado">Prolongado</option>
+                            <option value="Corto">Corto</option>
+                        </select>
+                        <small class="form-text text-muted">Normal: QTc &lt; 440 ms (H) y &lt; 460 ms (M). Prolongado: riesgo de torsades; corto: evaluar causas y electrolitos.</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <!-- Campo de alteraciones adicionales retirado: usamos criterios morfológicos específicos -->
+                    </div>
+
+                    <button type="button" class="btn btn-primary" id="generarInforme">Generar informe</button>
+                </form>
+                    </div>
+                </div>
+                <!-- Criterios morfológicos (opcional) -->
+                <div class="card ao-card mb-4">
+                    <div class="card-header">Criterios morfológicos (opcional) <span class="tooltip-dot ms-2" data-bs-toggle="tooltip" title="Estos criterios son la referencia principal para generar la sospecha diagnóstica."></span></div>
+                    <div class="card-body">
+                        <div class="row g-2">
+                            <div class="col-md-6">
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_rsr_v1"><label class="form-check-label" for="crit_rsr_v1">rSR' en V1 (BRD) <span class="ms-1" data-bs-toggle="tooltip" title="QRS mellado en V1; compatible con BRD.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_s_ancha_i_v6"><label class="form-check-label" for="crit_s_ancha_i_v6">S ancha en I/V6 (BRD) <span class="ms-1" data-bs-toggle="tooltip" title="Deflexión terminal negativa ancha; pista de BRD.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_r_empastada_v5_v6"><label class="form-check-label" for="crit_r_empastada_v5_v6">R empastada en V5–V6 (BRI) <span class="ms-1" data-bs-toggle="tooltip" title="Muesca en R lateral; típico de BRI.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_sin_q_i_v6"><label class="form-check-label" for="crit_sin_q_i_v6">Sin q en I/V6 (BRI) <span class="ms-1" data-bs-toggle="tooltip" title="Ausencia de onda q lateral; favorece BRI.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_notch_75_i"><label class="form-check-label" for="crit_notch_75_i">Notch >75 ms en I (BRI) <span class="ms-1" data-bs-toggle="tooltip" title="Empastamiento prolongado en I; BRI verdadero.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_pr_corto"><label class="form-check-label" for="crit_pr_corto">PR corto (WPW) <span class="ms-1" data-bs-toggle="tooltip" title="Vía accesoria; PR <120 ms.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_onda_delta"><label class="form-check-label" for="crit_onda_delta">Onda delta (WPW) <span class="ms-1" data-bs-toggle="tooltip" title="Inicio lento del QRS; preexcitación.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_st_difuso"><label class="form-check-label" for="crit_st_difuso">ST elevado difuso (Pericarditis) <span class="ms-1" data-bs-toggle="tooltip" title="ST en múltiples derivaciones; PR puede estar deprimido.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_pr_deprimido"><label class="form-check-label" for="crit_pr_deprimido">PR deprimido (Pericarditis) <span class="ms-1" data-bs-toggle="tooltip" title="Desnivel PR; marcador de inflamación pericárdica.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_hvi"><label class="form-check-label" for="crit_hvi">HVI voltaje alto (Sokolow-Lyon) <span class="ms-1" data-bs-toggle="tooltip" title="S V1 + R V5/V6 ≥35 mm aprox.; alto voltaje.">ℹ️</span></label></div>
+                            </div>
+                            <div class="col-md-6">
+                                
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_onda_u"><label class="form-check-label" for="crit_onda_u">Onda U (Hipokalemia) <span class="ms-1" data-bs-toggle="tooltip" title="Pequeña onda tras T; típica de hipokalemia.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_t_picuda"><label class="form-check-label" for="crit_t_picuda">T picuda (Hiperkalemia) <span class="ms-1" data-bs-toggle="tooltip" title="T altas y estrechas; sugiere hiperkalemia.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_brugada"><label class="form-check-label" for="crit_brugada">Patrón Brugada V1–V3 (ST convexo) <span class="ms-1" data-bs-toggle="tooltip" title="Elevación ST cóncava/convexa en V1–V3; patrón Brugada.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_wellens"><label class="form-check-label" for="crit_wellens">Wellens V2–V3 (T negativa profunda) <span class="ms-1" data-bs-toggle="tooltip" title="DA crítica: T negativa/profunda en V2–V3.">ℹ️</span></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="crit_st_dep_global"><label class="form-check-label" for="crit_st_dep_global">ST descendido global <span class="ms-1" data-bs-toggle="tooltip" title="Descenso ST generalizado; isquemia subendocárdica difusa.">ℹ️</span></label></div>
+                            </div>
+                        </div>
+                        <small class="form-text text-muted">Estos criterios son la referencia principal para generar la sospecha diagnóstica.</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card ao-card">
+                    <div class="card-header">Informe ECG</div>
+                    <div class="card-body">
+                        <div id="informeECG" class="mb-3">
+                            Complete el formulario y haga clic en "Generar informe" para ver el resultado.
+                        </div>
+                        <button type="button" class="btn btn-outline-primary btn-sm" id="copiarInforme">Copiar informe</button>
+                    </div>
+                </div>
+                <!-- Sospecha diagnóstica justo debajo del informe -->
+                <div class="card ao-card mt-3">
+                    <div class="card-header">Sospecha diagnóstica electrocardiográfica</div>
+                    <div class="card-body">
+                        <p class="mb-2">Esta es una sugerencia diagnóstica de acuerdo con los hallazgos electrocardiográficos.</p>
+                        <div class="d-flex gap-2 mb-3">
+                            <!-- Botón de generar removido; se dispara desde Generar informe -->
+                            <button type="button" id="copiarSospecha" class="btn btn-outline-primary btn-sm">Copiar sospecha</button>
+                        </div>
+                        <div id="resultadoSospecha" class="alert alert-info d-none"></div>
+                        <div id="criteriosDetectados" class="small text-muted d-none"></div>
+                        <div id="sospechaImagen" class="mt-3"></div>
+                    </div>
+                </div>
+                <!-- Hallazgos anormales/Sugerencias -->
+                <div class="card ao-card mt-3">
+                    <div class="card-header">Hallazgos anormales/Sugerencias</div>
+                    <div class="card-body">
+                        <p class="mb-2">Hallazgos patológicos que no cumplen criterios patológicos específicos pero requieren atención.</p>
+                        <div id="resultadoHallazgos" class="alert alert-warning d-none"></div>
+                        <button type="button" id="copiarHallazgos" class="btn btn-outline-primary btn-sm mt-2">Copiar hallazgos</button>
+                    </div>
+                </div>
+                <div class="d-flex gap-2 mt-3">
+                    <button type="button" id="limpiarFormulario" class="btn btn-outline-secondary btn-sm">Limpiar formulario</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js?v=la1"></script>
+    
+    <script>
+        // Inicializar tooltips de Bootstrap para criterios morfológicos
+        document.addEventListener('DOMContentLoaded', function() {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+                new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        });
+    </script>
+</body>
+</html>
+
+<footer class="container my-5">
+    <div class="text-center" style="margin-bottom:8px;">
+        <a href="https://latidoasistido.wixsite.com/lav1" target="_blank" rel="noopener" aria-label="Página web" title="Página web" class="mx-2" style="font-size:1.4rem; text-decoration:none;"><i class="bi bi-globe2"></i></a>
+        <a href="https://www.instagram.com/latidoasistido/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram" class="mx-2" style="font-size:1.4rem; text-decoration:none;"><i class="bi bi-instagram"></i></a>
+        <a href="https://wa.me/573508956163" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp" class="mx-2" style="font-size:1.4rem; text-decoration:none;"><i class="bi bi-whatsapp"></i></a>
+    </div>
+    <div class="text-center my-2 la-footer-brand">
+        <span class="small text-muted">Una plataforma de Latido Asistido</span>
+    </div>
+    <div class="text-center text-muted small">
+        Contenido educativo — No sustituye evaluación clínica. Autor: Dr. Luis Ángel Rueda Cuervo.
+    </div>
+</footer>

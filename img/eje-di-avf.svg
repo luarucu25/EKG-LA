@@ -1,0 +1,32 @@
+<svg width="420" height="320" viewBox="0 0 420 320" xmlns="http://www.w3.org/2000/svg">
+  <rect width="420" height="320" fill="#f8f9fa"/>
+  <text x="210" y="22" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#333">Estimación del eje: DI y aVF</text>
+  
+  <g transform="translate(210,160)">
+    <circle cx="0" cy="0" r="110" fill="none" stroke="#ddd"/>
+    
+    <!-- DI (0°) -->
+    <line x1="-110" y1="0" x2="110" y2="0" stroke="#2196f3" stroke-width="2"/>
+    <text x="120" y="5" font-family="Arial" font-size="12" fill="#2196f3">DI (0°)</text>
+    
+    <!-- aVF (90°) -->
+    <line x1="0" y1="-110" x2="0" y2="110" stroke="#795548" stroke-width="2"/>
+    <text x="8" y="125" font-family="Arial" font-size="12" fill="#795548">aVF (90°)</text>
+    
+    <!-- Vector de ejemplo (R-S) positivo en DI y aVF → eje normal -->
+    <line x1="0" y1="0" x2="85" y2="-49" stroke="#e91e63" stroke-width="3" marker-end="url(#arr)"/>
+    <text x="90" y="-40" font-family="Arial" font-size="12" font-weight="bold" fill="#e91e63">Eje ~ +30°</text>
+
+    <defs>
+      <marker id="arr" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" fill="#e91e63"/>
+      </marker>
+    </defs>
+  </g>
+  
+  <g transform="translate(30,250)" font-family="Arial" font-size="12" fill="#333">
+    <text x="0" y="0">Regla: DI positivo → eje entre -90° y +90°.</text>
+    <text x="0" y="18">aVF positivo → eje entre 0° y +180°.</text>
+    <text x="0" y="36">Ambos positivos → eje normal (aprox. -30° a +90°).</text>
+  </g>
+</svg>
