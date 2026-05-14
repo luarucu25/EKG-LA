@@ -296,7 +296,10 @@ body {
     border: none;
     border-radius: 0 0 24px 24px;
     box-shadow: var(--ao-shadow-strong);
-    max-height: 90vh !important;
+    min-height: 50vh;
+    max-height: 85vh;
+    height: auto;
+    z-index: 1080 !important;
 }
 
 .offcanvas-header {
@@ -304,24 +307,26 @@ body {
     color: white;
     border-radius: 0 0 24px 24px;
     padding: 16px 20px;
-    flex-shrink: 0;
 }
 
 .offcanvas-body {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
     flex-grow: 1;
-    overflow-y: auto;
 }
 
 /* Sugerencias de búsqueda en móviles: más espacio y scroll limpio */
 #searchSuggestionsMobile {
-    max-height: 75vh;
+    flex-grow: 1;
+    max-height: 70vh;
     overflow-y: auto;
     position: relative;
     margin-top: 12px;
     border-radius: 16px;
     box-shadow: var(--ao-shadow);
-    z-index: 1060;
+    z-index: 1090;
+    display: block !important;
 }
 
 /* Scroll personalizado para móviles (coincide con el estilo del sitio) */
@@ -341,6 +346,11 @@ body {
 
 #searchSuggestionsMobile::-webkit-scrollbar-thumb:hover {
     background: var(--ao-primary-600);
+}
+
+/* Asegurar que el offcanvas se expanda completamente */
+.offcanvas.show:not(.hiding) {
+    transform: translateY(0);
 }
 
 .ai-suggestion {
