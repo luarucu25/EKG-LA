@@ -1697,65 +1697,91 @@ const ecgImagesMap = [
 
 // Inicializar búsqueda
 document.addEventListener('DOMContentLoaded', () => {
-    const searchInput = document.getElementById('patronSearch');
-    const suggestionsList = document.getElementById('searchSuggestions');
+    // Funcionalidad para búsqueda en escritorio y móvil
+    const initSearch = (searchInputId, suggestionsListId) => {
+        const searchInput = document.getElementById(searchInputId);
+        const suggestionsList = document.getElementById(suggestionsListId);
+        if (!searchInput) return;
 
-    if (!searchInput) return;
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            if (query.length < 2) {
+                suggestionsList.classList.add('d-none');
+                return;
+            }
 
-    searchInput.addEventListener('input', (e) => {
-        const query = e.target.value.toLowerCase().trim();
-        if (query.length < 2) {
-            suggestionsList.classList.add('d-none');
-            return;
-        }
+            const filtered = patronesDatabase.filter(p => 
+                p.nombre.toLowerCase().includes(query) || 
+                p.keywords.some(k => k.toLowerCase().includes(query))
+            );
 
-        const filtered = patronesDatabase.filter(p => 
-            p.nombre.toLowerCase().includes(query) || 
-            p.keywords.some(k => k.toLowerCase().includes(query))
-        );
+            if (filtered.length > 0) {
+                suggestionsList.innerHTML = filtered.map(p => `
+                    <div class="search-suggestion-item" onclick="openPatronDetail('${p.nombre}'); closeSearchOffcanvas();">
+                        <span class="item-title">${p.nombre}</span>
+                        <span class="item-desc">${p.criterios[0].substring(0, 60)}...</span>
+                    </div>
+                `).join('');
+                suggestionsList.classList.remove('d-none');
+            } else {
+                suggestionsList.innerHTML = `
+                    <div class="search-suggestion-item ai-suggestion" onclick="askAIAbout('${query}'); closeSearchOffcanvas();">
+                        <span class="item-title text-primary"><i class="bi bi-robot me-2"></i>Preguntar a la IA sobre "${query}"</span>
+                        <span class="item-desc">No encontramos este patrón, pero la IA de EKG-LA puede ayudarte.</span>
+                    </div>
+                `;
+                suggestionsList.classList.remove('d-none');
+            }
+        });
 
-        if (filtered.length > 0) {
-            suggestionsList.innerHTML = filtered.map(p => `
-                <div class="search-suggestion-item" onclick="openPatronDetail('${p.nombre}')">
-                    <span class="item-title">${p.nombre}</span>
-                    <span class="item-desc">${p.criterios[0].substring(0, 60)}...</span>
-                </div>
-            `).join('');
-            suggestionsList.classList.remove('d-none');
-        } else {
-            // Opción para preguntar a la IA si no hay resultados parametrizados
-            suggestionsList.innerHTML = `
-                <div class="search-suggestion-item ai-suggestion" onclick="askAIAbout('${query}')">
-                    <span class="item-title text-primary"><i class="bi bi-robot me-2"></i>Preguntar a la IA sobre "${query}"</span>
-                    <span class="item-desc">No encontramos este patrón, pero la IA de EKG-LA puede ayudarte.</span>
-                </div>
-            `;
-            suggestionsList.classList.remove('d-none');
-        }
-    });
-
-    // Manejar tecla Enter en el buscador
-    searchInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-            const query = searchInput.value.trim();
-            if (query.length >= 2) {
-                const exactMatch = patronesDatabase.find(p => p.nombre.toLowerCase() === query.toLowerCase());
-                if (exactMatch) {
-                    openPatronDetail(exactMatch.nombre);
-                } else {
-                    askAIAbout(query);
+        // Manejar tecla Enter en el buscador
+        searchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const query = searchInput.value.trim();
+                if (query.length >= 2) {
+                    const exactMatch = patronesDatabase.find(p => p.nombre.toLowerCase() === query.toLowerCase());
+                    if (exactMatch) {
+                        openPatronDetail(exactMatch.nombre);
+                        closeSearchOffcanvas();
+                    } else {
+                        askAIAbout(query);
+                        closeSearchOffcanvas();
+                    }
                 }
             }
-        }
-    });
+        });
+    };
+
+    // Inicializar búsqueda para escritorio y móvil
+    initSearch('patronSearch', 'searchSuggestions');
+    initSearch('patronSearchMobile', 'searchSuggestionsMobile');
 
     // Cerrar sugerencias al hacer click fuera
     document.addEventListener('click', (e) => {
-        if (!searchInput.contains(e.target) && !suggestionsList.contains(e.target)) {
-            suggestionsList.classList.add('d-none');
+        const searchInputs = [document.getElementById('patronSearch'), document.getElementById('patronSearchMobile')];
+        const suggestionsLists = [document.getElementById('searchSuggestions'), document.getElementById('searchSuggestionsMobile')];
+        
+        const clickedOnSearch = searchInputs.some(input => input && input.contains(e.target));
+        const clickedOnSuggestions = suggestionsLists.some(list => list && list.contains(e.target));
+
+        if (!clickedOnSearch && !clickedOnSuggestions) {
+            suggestionsLists.forEach(list => {
+                if (list) list.classList.add('d-none');
+            });
         }
     });
 });
+
+// Función para cerrar el offcanvas de búsqueda en móviles
+window.closeSearchOffcanvas = function() {
+    const offcanvasEl = document.getElementById('offcanvasSearch');
+    if (offcanvasEl) {
+        const offcanvasInstance = bootstrap.Offcanvas.getInstance(offcanvasEl);
+        if (offcanvasInstance) {
+            offcanvasInstance.hide();
+        }
+    }
+};
 
 // Función global para abrir el detalle del patrón
 window.openPatronDetail = function(nombre) {
