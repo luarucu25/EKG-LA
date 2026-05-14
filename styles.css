@@ -287,8 +287,44 @@ body {
   display: block;
 }
 .search-suggestion-item .item-desc {
-  font-size: 0.85rem;
-  color: var(--ao-muted);
+    font-size: 0.85rem;
+    color: var(--ao-muted);
+}
+
+/* Estilos personalizados para Offcanvas de Búsqueda Móvil */
+.offcanvas.offcanvas-top {
+    border: none;
+    border-radius: 0 0 24px 24px;
+    box-shadow: var(--ao-shadow-strong);
+}
+
+.offcanvas-header {
+    background: linear-gradient(135deg, var(--ao-primary), var(--ao-primary-600));
+    color: white;
+    border-radius: 0 0 24px 24px;
+    padding: 16px 20px;
+}
+
+.offcanvas-body {
+    padding: 20px;
+}
+
+/* Sugerencias de búsqueda en móviles: más espacio y sin scroll innecesario */
+#searchSuggestionsMobile {
+    max-height: 70vh;
+    overflow-y: auto;
+    position: static;
+    margin-top: 12px;
+    border-radius: 16px;
+    box-shadow: var(--ao-shadow);
+}
+
+.ai-suggestion {
+    background: linear-gradient(135deg, rgba(113,12,4,0.05), rgba(178,31,19,0.05));
+}
+
+.ai-suggestion:hover {
+    background: linear-gradient(135deg, rgba(113,12,4,0.12), rgba(178,31,19,0.12));
 }
 
 /* Modal Estilos */
